@@ -1,0 +1,16 @@
+[
+  "first",
+  {
+    "compact": {
+      "replaces": [
+        0,
+        1
+      ],
+      "summary": "[manual compact for revert fixture]"
+    }
+  },
+  {
+    "revert": 2
+  },
+  "after revert"
+]

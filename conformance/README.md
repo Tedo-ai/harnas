@@ -25,7 +25,7 @@ Each directory under `agents/` is one fixture:
         ├── provider-script.json   # ordered buffered provider responses
         ├── provider-script-stream.json
         │                           # ordered streaming provider events
-        ├── inputs.json            # ordered user message strings
+        ├── inputs.json            # ordered user message strings or actions
         └── expected-log.jsonl     # the Log any conformant impl must produce
 
 Buffered fixtures use `provider-script.json`: an ordered list of
@@ -48,6 +48,16 @@ callback.
 
 The fixture format is language-neutral: no Ruby-specific state, no
 host-dependent timing, no randomness. Every event in
+`inputs.json` entries are usually strings, each appended as a
+`:user_message` before running the AgentLoop. Fixtures may also use
+explicit action objects when they need to exercise Log operations
+directly:
+
+- `{"compact":{"replaces":[0,1],"summary":"..."}}` appends a
+  `:compact` Mutation Event without a provider call.
+- `{"revert":2}` appends a `:revert` Mutation Event revoking the
+  mutation at seq 2, without a provider call.
+
 `expected-log.jsonl` carries `seq`, `type`, and `payload` fields
 with canonical values per the spec.
 

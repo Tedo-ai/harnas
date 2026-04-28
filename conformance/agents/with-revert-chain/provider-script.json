@@ -1,0 +1,48 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "one"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 3,
+      "output_tokens": 1
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "first"
+        },
+        {
+          "role": "assistant",
+          "content": "one"
+        },
+        {
+          "role": "user",
+          "content": "after revert"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "restored"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 2
+      }
+    }
+  }
+]

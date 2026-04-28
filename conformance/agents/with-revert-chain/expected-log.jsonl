@@ -1,0 +1,6 @@
+{"seq":0,"type":"user_message","payload":{"text":"first"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"one","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":1}}}
+{"seq":2,"type":"compact","payload":{"replaces":[0,1],"summary":"[manual compact for revert fixture]"}}
+{"seq":3,"type":"revert","payload":{"revokes":2}}
+{"seq":4,"type":"user_message","payload":{"text":"after revert"}}
+{"seq":5,"type":"assistant_message","payload":{"text":"restored","stop_reason":"end_turn","usage":{"input_tokens":6,"output_tokens":2}}}
