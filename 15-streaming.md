@@ -52,9 +52,15 @@ Log in this order:
 MUST contain a corresponding `:tool_use_end(turn_id:, tool_use_id:)`
 with a matching `tool_use_id` before `:assistant_turn_completed`.
 
+**S4.** Delta Events are real Log Events. They are assigned sequence
+numbers, persist through Session persistence, are visible to readers,
+and are part of conformance. Two implementations that produce the same
+final `:assistant_message` but different delta sequences have produced
+different Logs.
+
 ## Provider Stream Contract
 
-**S4.** A Harnas Provider MUST provide a streaming operation that
+**S5.** A Harnas Provider MUST provide a streaming operation that
 yields delta Events (per S1) to a caller-supplied block:
 
     provider.stream(request) do |event_args|
@@ -66,7 +72,14 @@ correspond to one Event's worth of progress. Wire-format parsing
 (Anthropic SSE, OpenAI SSE, Gemini streamGenerateContent JSON) is an
 implementation detail of each Provider.
 
-**S5.** After the stream terminates successfully, the provider MUST
+**S6.** At the Log level, **stream completion** means the provider has
+appended exactly one `:assistant_turn_completed` Event for the active
+`turn_id`, followed by the consolidated Events for that turn. The
+consolidated Events MUST appear after all delta Events for that turn
+and MUST preserve the same turn result: one `:assistant_message`, plus
+one `:tool_use` for each completed tool-use block in provider order.
+
+**S7.** After the stream terminates successfully, the provider MUST
 yield the **consolidated** Events that are equivalent to what the
 non-streaming `#call` would have produced — so that later Projections
 can be written against the consolidated shape and ignore deltas:
@@ -78,11 +91,11 @@ can be written against the consolidated shape and ignore deltas:
 
 If the stream fails (network error, provider-signaled error before
 completion), the provider MUST yield `:assistant_turn_failed` and MUST
-NOT yield the consolidated events.
+NOT yield `:assistant_turn_completed` or the consolidated events.
 
 ## Projection Behavior
 
-**S6.** Projections MUST ignore all delta Event types
+**S8.** Projections MUST ignore all delta Event types
 (`:assistant_turn_started`, `:assistant_text_delta`, `:tool_use_begin`,
 `:tool_use_argument_delta`, `:tool_use_end`,
 `:assistant_turn_completed`, `:assistant_turn_failed`) when building
@@ -95,7 +108,7 @@ providers.
 
 ## Non-Streaming Providers
 
-**S7.** Providers whose wire protocol is not actually incremental
+**S9.** Providers whose wire protocol is not actually incremental
 (or providers that opt out of streaming for a given request) MUST
 still emit the canonical sequence (S2), collapsed into a single
 `:assistant_text_delta` (or a single `:tool_use_begin` +
@@ -123,14 +136,24 @@ the streaming interface.
 
 ## Conformance
 
-The `hello-streaming` case under
-`spec/conformance/fixtures/hello-streaming/<provider>/` records a
-canonical streamed round-trip per provider as a sequence of delta
-Events (JSONL). Any Harnas implementation SHOULD be able to replay
-these fixtures and produce structurally equivalent Log contents.
+Streaming agent fixtures under `spec/conformance/agents/` use
+`provider-script-stream.json` instead of `provider-script.json`. The
+stream script is an ordered list of provider-call streams; each stream
+is an ordered list of Event-args objects `{type, payload}` yielded to
+the AgentLoop's stream callback.
+
+**S10.** Streaming conformance fixtures MUST capture every delta Event
+verbatim, in append order, followed by the consolidated Events that
+complete the stream. Fixtures MUST NOT collapse a stream to only its
+final `:assistant_message` / `:tool_use` Events.
+
+The fact that real network chunking can vary does not weaken this
+requirement: conformance fixtures do not replay the network. They
+replay a deterministic scripted stream. Given the same scripted stream,
+two conformant implementations MUST produce byte-identical Logs.
 
 ## Versioning Note
 
-**S8.** The delta Event vocabulary (S1) and ordering (S2, S3) are
+**S11.** The delta Event vocabulary (S1) and ordering (S2, S3) are
 stable within a major specification version. New payload fields MAY
 be added; Subscribers MUST ignore unknown fields.

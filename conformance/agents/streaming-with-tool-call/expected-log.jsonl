@@ -1,0 +1,13 @@
+{"seq":0,"type":"user_message","payload":{"text":"what time is it?"}}
+{"seq":1,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_tool_1"}}
+{"seq":2,"type":"tool_use_begin","payload":{"turn_id":"turn_stream_tool_1","tool_use_id":"toolu_stream_1","name":"get_current_time"}}
+{"seq":3,"type":"tool_use_argument_delta","payload":{"turn_id":"turn_stream_tool_1","tool_use_id":"toolu_stream_1","chunk":"{}"}}
+{"seq":4,"type":"tool_use_end","payload":{"turn_id":"turn_stream_tool_1","tool_use_id":"toolu_stream_1","arguments":{}}}
+{"seq":5,"type":"assistant_turn_completed","payload":{"turn_id":"turn_stream_tool_1","stop_reason":"tool_use","usage":{"input_tokens":5,"output_tokens":4}}}
+{"seq":6,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":5,"output_tokens":4}}}
+{"seq":7,"type":"tool_use","payload":{"id":"toolu_stream_1","name":"get_current_time","arguments":{}}}
+{"seq":8,"type":"tool_result","payload":{"tool_use_id":"toolu_stream_1","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
+{"seq":9,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_tool_2"}}
+{"seq":10,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_tool_2","chunk":"done"}}
+{"seq":11,"type":"assistant_turn_completed","payload":{"turn_id":"turn_stream_tool_2","stop_reason":"end_turn","usage":{"input_tokens":8,"output_tokens":1}}}
+{"seq":12,"type":"assistant_message","payload":{"text":"done","stop_reason":"end_turn","usage":{"input_tokens":8,"output_tokens":1}}}

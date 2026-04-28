@@ -1,0 +1,32 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": { "turn_id": "turn_stream_minimal_1" }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": { "turn_id": "turn_stream_minimal_1", "chunk": "he" }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": { "turn_id": "turn_stream_minimal_1", "chunk": "llo" }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_stream_minimal_1",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 3, "output_tokens": 2 }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "hello",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 3, "output_tokens": 2 }
+      }
+    }
+  ]
+]

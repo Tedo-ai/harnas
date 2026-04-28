@@ -52,8 +52,8 @@ reference earlier ones rather than modifying them.
 
 | Language | Repo | Status |
 |---|---|---|
-| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 5/5 conformance, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 5/5 conformance. Conformance-only stub, ~750 lines, standard library only. |
+| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 7/7 conformance, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 7/7 conformance. Conformance-only stub, standard library only. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's

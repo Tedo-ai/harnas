@@ -1,0 +1,6 @@
+{"seq":0,"type":"user_message","payload":{"text":"stream hello"}}
+{"seq":1,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_minimal_1"}}
+{"seq":2,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_minimal_1","chunk":"he"}}
+{"seq":3,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_minimal_1","chunk":"llo"}}
+{"seq":4,"type":"assistant_turn_completed","payload":{"turn_id":"turn_stream_minimal_1","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":2}}}
+{"seq":5,"type":"assistant_message","payload":{"text":"hello","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":2}}}

@@ -1,0 +1,82 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": { "turn_id": "turn_stream_tool_1" }
+    },
+    {
+      "type": "tool_use_begin",
+      "payload": {
+        "turn_id": "turn_stream_tool_1",
+        "tool_use_id": "toolu_stream_1",
+        "name": "get_current_time"
+      }
+    },
+    {
+      "type": "tool_use_argument_delta",
+      "payload": {
+        "turn_id": "turn_stream_tool_1",
+        "tool_use_id": "toolu_stream_1",
+        "chunk": "{}"
+      }
+    },
+    {
+      "type": "tool_use_end",
+      "payload": {
+        "turn_id": "turn_stream_tool_1",
+        "tool_use_id": "toolu_stream_1",
+        "arguments": {}
+      }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_stream_tool_1",
+        "stop_reason": "tool_use",
+        "usage": { "input_tokens": 5, "output_tokens": 4 }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "",
+        "stop_reason": "tool_use",
+        "usage": { "input_tokens": 5, "output_tokens": 4 }
+      }
+    },
+    {
+      "type": "tool_use",
+      "payload": {
+        "id": "toolu_stream_1",
+        "name": "get_current_time",
+        "arguments": {}
+      }
+    }
+  ],
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": { "turn_id": "turn_stream_tool_2" }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": { "turn_id": "turn_stream_tool_2", "chunk": "done" }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_stream_tool_2",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 8, "output_tokens": 1 }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "done",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 8, "output_tokens": 1 }
+      }
+    }
+  ]
+]

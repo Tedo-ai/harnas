@@ -1,0 +1,18 @@
+{
+  "harnas_version": "0.1",
+  "name": "streaming-with-tool-call",
+  "provider": {
+    "kind": "mock",
+    "model": "mock-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "get_current_time",
+      "handler": "conformance.get_current_time",
+      "description": "Returns the current time.",
+      "input_schema": { "type": "object", "properties": {}, "required": [] }
+    }
+  ],
+  "strategies": []
+}

@@ -22,9 +22,18 @@ Each directory under `agents/` is one fixture:
     └── <case-name>/
         ├── README.md              # what the case exercises
         ├── manifest.json          # standard spec/18 Agent Manifest
-        ├── provider-script.json   # ordered provider responses (wire shape)
+        ├── provider-script.json   # ordered buffered provider responses
+        ├── provider-script-stream.json
+        │                           # ordered streaming provider events
         ├── inputs.json            # ordered user message strings
         └── expected-log.jsonl     # the Log any conformant impl must produce
+
+Buffered fixtures use `provider-script.json`: an ordered list of
+provider responses, one per `Provider.call`. Streaming fixtures use
+`provider-script-stream.json`: an ordered list of streams, one per
+streaming provider call; each stream is an ordered list of Event-args
+objects `{type, payload}` yielded verbatim to the AgentLoop stream
+callback.
 
 The fixture format is language-neutral: no Ruby-specific state, no
 host-dependent timing, no randomness. Every event in
@@ -50,9 +59,11 @@ on normal CI.
 To verify a `harnas-py` / `harnas-go` / `harnas-ts` port is
 conformant on the agent layer:
 
-1. Implement a ScriptedProvider in your language: consumes
-   `provider-script.json`, returns the next response on each
-   `#call(request)` invocation.
+1. Implement a ScriptedProvider in your language: for buffered fixtures,
+   consume `provider-script.json` and return the next response on each
+   `#call(request)` invocation; for streaming fixtures, consume
+   `provider-script-stream.json` and yield the next stream's Event-args
+   objects one by one to the AgentLoop stream callback.
 2. Implement a manifest loader for spec v0.1.
 3. For each fixture directory:
     - Load the manifest
@@ -110,9 +121,16 @@ both Ruby and Python use compact JSON to comply with this rule.
     require "harnas/conformance/runner"
     dir = "spec/conformance/agents/<new-case-name>"
     manifest  = JSON.parse(File.read("#{dir}/manifest.json"))
-    responses = JSON.parse(File.read("#{dir}/provider-script.json"))
+    script = if File.exist?("#{dir}/provider-script-stream.json")
+               JSON.parse(File.read("#{dir}/provider-script-stream.json"))
+             else
+               JSON.parse(File.read("#{dir}/provider-script.json"))
+             end
     inputs    = JSON.parse(File.read("#{dir}/inputs.json"))
-    actual    = Harnas::Conformance::Runner.run_agent(manifest, responses, inputs)
+    actual    = Harnas::Conformance::Runner.run_agent(
+      manifest, script, inputs,
+      streaming: File.exist?("#{dir}/provider-script-stream.json")
+    )
     File.write("#{dir}/expected-log.jsonl", actual.map { |e| JSON.generate(e) }.join("\n") + "\n")
     ```
 

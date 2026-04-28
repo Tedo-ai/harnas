@@ -7,6 +7,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [Unreleased]
+
+### Specification
+
+#### Added — normative
+
+- §15 now makes explicit that streaming conformance fixtures capture
+  every delta Event verbatim, in append order, followed by the
+  consolidated Events that complete the stream.
+- Two streaming agent fixtures were added:
+  `streaming-minimal-chat` and `streaming-with-tool-call`.
+
 ## [0.1.0] — 2026-04-28
 
 First substantively releasable version. The specification and the
