@@ -7,7 +7,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.2.0** (released 2026-04-28). See
+**Version 0.4.0** (released 2026-04-29). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 

@@ -299,5 +299,5 @@ Sections 03 onward are forthcoming.
 
 ## Version
 
-This specification is at version **0.1.0**. All normative statements
+This specification is at version **0.4.0**. All normative statements
 remain subject to change before 1.0.0.
