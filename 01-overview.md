@@ -217,6 +217,12 @@ The following concerns are explicitly NOT specified:
   treats models as opaque named identifiers.
 - **Vector stores and retrieval-augmented generation.** Retrieval is a
   Tool concern; how a tool computes its results is out of scope.
+- **Cross-Session persistent memory.** A Harnas Session is
+  single-conversation; the Log is the source of truth for that
+  conversation only. Adopters that want agents to recall facts across
+  Sessions compose those facts into the system prompt or as in-context
+  Events when constructing each new Session. The mechanism by which
+  adopters extract, store, and retrieve memory is out of scope.
 - **UI rendering.** Surfaces are out of scope; what one looks like and
   how it is implemented is up to the surface.
 - **Specific transport protocols.** The provider contract specifies

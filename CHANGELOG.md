@@ -9,6 +9,14 @@ the specification as a whole.
 
 ## [Unreleased]
 
+### Specification
+
+#### Clarified
+
+- §01 now explicitly treats cross-Session persistent memory as out of
+  scope. A Session Log remains single-conversation; adopters compose
+  external memory back into each new Session.
+
 ## [0.2.0] — 2026-04-28
 
 ### Specification
