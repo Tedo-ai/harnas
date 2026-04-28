@@ -1,0 +1,12 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-system-prompt-openai",
+  "system": "You are a concise conformance assistant.",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}

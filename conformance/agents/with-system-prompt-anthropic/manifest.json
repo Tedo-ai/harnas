@@ -1,0 +1,12 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-system-prompt-anthropic",
+  "system": "You are a concise conformance assistant.",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}

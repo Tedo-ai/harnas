@@ -1,0 +1,12 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-system-prompt-gemini",
+  "system": "You are a concise conformance assistant.",
+  "provider": {
+    "kind": "gemini",
+    "model": "gemini-test",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}

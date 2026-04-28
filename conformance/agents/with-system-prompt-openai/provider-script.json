@@ -1,0 +1,31 @@
+[
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a concise conformance assistant."
+        },
+        {
+          "role": "user",
+          "content": "hello with system"
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "content": "Hello."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 8,
+        "completion_tokens": 2
+      }
+    }
+  }
+]

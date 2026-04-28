@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello with system"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"Hello.","stop_reason":"end_turn","usage":{"input_tokens":8,"output_tokens":2}}}

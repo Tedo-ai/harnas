@@ -1,0 +1,28 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello with system"
+        }
+      ],
+      "system": "You are a concise conformance assistant."
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Hello."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 2
+      }
+    }
+  }
+]

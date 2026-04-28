@@ -34,6 +34,12 @@ may instead be an error object of the form
 `{"error":{"status":503,"body":"Service Unavailable"}}`; the
 ScriptedProvider MUST raise the implementation's canonical HTTP
 provider error for that status/body instead of returning a response.
+Buffered script entries may also wrap a response with an expected
+request assertion:
+`{"expect_request":{...},"response":{...}}`. The ScriptedProvider
+MUST compare the projected request to `expect_request` after canonical
+normalization and fail the fixture if it differs, then return
+`response`.
 Streaming fixtures use
 `provider-script-stream.json`: an ordered list of streams, one per
 streaming provider call; each stream is an ordered list of Event-args

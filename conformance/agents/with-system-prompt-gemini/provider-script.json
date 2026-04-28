@@ -1,0 +1,47 @@
+[
+  {
+    "expect_request": {
+      "model": "gemini-test",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "hello with system"
+            }
+          ]
+        }
+      ],
+      "systemInstruction": {
+        "parts": [
+          {
+            "text": "You are a concise conformance assistant."
+          }
+        ]
+      },
+      "generationConfig": {
+        "thinkingConfig": {
+          "thinkingBudget": 0
+        }
+      }
+    },
+    "response": {
+      "candidates": [
+        {
+          "content": {
+            "parts": [
+              {
+                "text": "Hello."
+              }
+            ]
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 8,
+        "candidatesTokenCount": 2
+      }
+    }
+  }
+]
