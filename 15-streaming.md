@@ -93,9 +93,26 @@ If the stream fails (network error, provider-signaled error before
 completion), the provider MUST yield `:assistant_turn_failed` and MUST
 NOT yield `:assistant_turn_completed` or the consolidated events.
 
+## Stream Failure Semantics
+
+**S8.** A streaming Provider call may fail mid-stream, including from
+network failure, a server-signaled error after partial deltas, or a
+malformed event. Partial delta Events already appended to the Log MUST
+remain. They are not retroactively removed; the Log is append-only.
+
+**S9.** When a streaming Provider call fails, the runtime MUST emit
+`:assistant_turn_failed` recording the failure. It MUST NOT emit
+`:assistant_turn_completed` or the consolidated `:assistant_message` /
+`:tool_use` Events that complete a successful stream.
+
+**S10.** After a streaming Provider failure, the runtime MUST either
+retry per its RetryPolicy, yielding a new `:assistant_turn_started` and
+a fresh delta sequence, or terminate the Session with `:provider_error`
+carrying `terminal: true`. Either outcome is conformant.
+
 ## Projection Behavior
 
-**S8.** Projections MUST ignore all delta Event types
+**S11.** Projections MUST ignore all delta Event types
 (`:assistant_turn_started`, `:assistant_text_delta`, `:tool_use_begin`,
 `:tool_use_argument_delta`, `:tool_use_end`,
 `:assistant_turn_completed`, `:assistant_turn_failed`) when building
@@ -108,7 +125,7 @@ providers.
 
 ## Non-Streaming Providers
 
-**S9.** Providers whose wire protocol is not actually incremental
+**S12.** Providers whose wire protocol is not actually incremental
 (or providers that opt out of streaming for a given request) MUST
 still emit the canonical sequence (S2), collapsed into a single
 `:assistant_text_delta` (or a single `:tool_use_begin` +
@@ -142,7 +159,7 @@ stream script is an ordered list of provider-call streams; each stream
 is an ordered list of Event-args objects `{type, payload}` yielded to
 the AgentLoop's stream callback.
 
-**S10.** Streaming conformance fixtures MUST capture every delta Event
+**S13.** Streaming conformance fixtures MUST capture every delta Event
 verbatim, in append order, followed by the consolidated Events that
 complete the stream. Fixtures MUST NOT collapse a stream to only its
 final `:assistant_message` / `:tool_use` Events.
@@ -154,6 +171,6 @@ two conformant implementations MUST produce byte-identical Logs.
 
 ## Versioning Note
 
-**S11.** The delta Event vocabulary (S1) and ordering (S2, S3) are
+**S14.** The delta Event vocabulary (S1) and ordering (S2, S3) are
 stable within a major specification version. New payload fields MAY
 be added; Subscribers MUST ignore unknown fields.

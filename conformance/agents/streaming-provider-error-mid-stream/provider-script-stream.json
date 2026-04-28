@@ -1,0 +1,32 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": {
+        "turn_id": "turn_stream_fail_1"
+      }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": {
+        "turn_id": "turn_stream_fail_1",
+        "chunk": "partial "
+      }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": {
+        "turn_id": "turn_stream_fail_1",
+        "chunk": "answer"
+      }
+    },
+    {
+      "error": {
+        "turn_id": "turn_stream_fail_1",
+        "message": "HTTP 400: stream aborted",
+        "status": 400,
+        "body": "stream aborted"
+      }
+    }
+  ]
+]

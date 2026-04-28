@@ -14,12 +14,17 @@ the specification as a whole.
 #### Added
 
 - Agent conformance now includes provider error retry/fatal, tool
-  failure, permission denial, streaming tool failure, and large/unicode
-  argument fixtures, bringing the suite to 13 cross-language cases.
+  failure, permission denial, streaming tool failure, streaming
+  provider failure, and large/unicode argument fixtures, bringing the
+  suite to 14 cross-language cases.
 - §04 now requires `:tool_use` ids to be unique within a Session, with
   provider-specific synthetic ids when the wire format lacks one.
 - §05 now requires compaction strategies to preserve tool-use/result
   pair integrity by dropping orphan halves from candidate sets.
+- §15 now defines stream failure semantics: partial deltas remain,
+  `:assistant_turn_failed` records the failure, successful
+  consolidation is not emitted, and the runtime retries or terminates
+  with a terminal `:provider_error`.
 
 #### Clarified
 

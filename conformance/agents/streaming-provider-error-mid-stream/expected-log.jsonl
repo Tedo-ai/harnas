@@ -1,0 +1,6 @@
+{"seq":0,"type":"user_message","payload":{"text":"start streaming then fail"}}
+{"seq":1,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_fail_1"}}
+{"seq":2,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_fail_1","chunk":"partial "}}
+{"seq":3,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_fail_1","chunk":"answer"}}
+{"seq":4,"type":"assistant_turn_failed","payload":{"turn_id":"turn_stream_fail_1","error":"HTTP 400: stream aborted"}}
+{"seq":5,"type":"provider_error","payload":{"provider":"unknown","status":400,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 400: stream aborted","attempt":1,"terminal":true}}
