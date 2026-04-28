@@ -96,6 +96,13 @@ family: summarization, selection, and trigger logic are all
 expressible through spec primitives, so a compaction Strategy MUST
 NOT accept a callable parameter for that work.
 
+**R7.** A compaction Mutation MUST NOT shadow a `:tool_use` without
+also shadowing its corresponding `:tool_result`, or vice versa.
+Strategies whose Selection axis would orphan one half of a tool-call
+pair MUST drop both halves from the candidate set. The reference
+implementation provides `Compaction::Helpers.tool_pair_safe_range`
+for this.
+
 ## Canonical Strategies
 
 [informative]

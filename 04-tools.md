@@ -71,9 +71,17 @@ missing lookup.
   - `output:` — a String containing the tool's successful output, or
   - `error:` — a String error message describing the failure.
 
+**R6.** A `:tool_use` Event's payload `id` MUST be unique within a
+Session. Implementations whose underlying provider does not supply
+unique ids (for example, providers whose function-call parts carry
+only a name) MUST synthesize ids that satisfy this requirement. The
+`tool_use_id` field on `:tool_result` Events MUST refer to the same
+id; correlation by id is the canonical way the AgentLoop pairs
+`:tool_use` with `:tool_result`.
+
 ## Runner
 
-**R6.** A Harnas implementation MUST provide a Runner that, given a
+**R7.** A Harnas implementation MUST provide a Runner that, given a
 `:tool_use` Event and a Registry, executes the named tool and appends
 a corresponding `:tool_result` Event to the Log. On any `StandardError`
 raised during execution, the Runner MUST still append a `:tool_result`
@@ -84,7 +92,7 @@ exception.
 
 ## Projection Responsibilities
 
-**R7.** A Projection that supports tools MUST:
+**R8.** A Projection that supports tools MUST:
 
 - Emit the provider-specific tool list (name, description, input
   schema) when the Session carries a non-empty Registry.
@@ -100,7 +108,7 @@ normatively by the conformance fixtures under
 
 ## Ingestor Responsibilities
 
-**R8.** An Ingestor that supports tools MUST, for each provider
+**R9.** An Ingestor that supports tools MUST, for each provider
 response that contains tool-call data, emit zero or more `:tool_use`
 Event-args in content-array order, alongside the `:assistant_message`
 event. The `:assistant_message`'s `stop_reason` MUST reflect the
