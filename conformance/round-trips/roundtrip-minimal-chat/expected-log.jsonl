@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"hello back","stop_reason":"end_turn","usage":{"input_tokens":0,"output_tokens":0}}}
+{"seq":2,"type":"user_message","payload":{"text":"continue"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"continued","stop_reason":"end_turn","usage":{"input_tokens":0,"output_tokens":0}}}

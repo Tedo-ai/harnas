@@ -18,6 +18,9 @@ the specification as a whole.
   provider failure, strategy composition, revert chains, system
   prompts, Session fork/continue, and large/unicode argument fixtures,
   bringing the suite to 20 cross-language cases.
+- Added `conformance/round-trips/roundtrip-minimal-chat`, the first
+  cross-language Session persistence fixture. The coordinator now runs
+  the Ruby/Python/Go 3x3 load/save matrix.
 - §04 now requires `:tool_use` ids to be unique within a Session, with
   provider-specific synthetic ids when the wire format lacks one.
 - §05 now requires compaction strategies to preserve tool-use/result
@@ -38,6 +41,9 @@ the specification as a whole.
 - `conformance/README.md` now defines buffered `expect_request`
   assertions so fixtures can verify provider-specific projection wire
   shapes, not only final Logs.
+- `conformance/README.md` now defines the `round-trips/` fixture
+  shape and the Session JSONL persistence contract used by
+  cross-language round-trip tests.
 
 ## [0.2.0] — 2026-04-28
 

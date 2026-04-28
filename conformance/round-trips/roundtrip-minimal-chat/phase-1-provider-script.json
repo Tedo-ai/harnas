@@ -1,0 +1,11 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "hello back"
+      }
+    ],
+    "stop_reason": "end_turn"
+  }
+]

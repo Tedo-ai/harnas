@@ -9,10 +9,15 @@ Two layers of conformance:
   sequence of provider responses + user inputs + the exact Log any
   conformant implementation must produce. This is where the spec's
   language-neutrality claim gets tested.
+- **`round-trips/`** — persistence fixtures. One implementation runs
+  phase 1 and saves a Session as JSONL; a second implementation loads
+  that JSONL, runs phase 2, and diffs the final Log. This is the
+  cross-language wire-compatibility contract for Session persistence.
 
 Both are **normative**. Any Harnas implementation in any language
-SHOULD pass every agent fixture and SHOULD be able to load every
-single-call fixture into its mock provider.
+SHOULD pass every agent fixture, SHOULD pass every round-trip fixture,
+and SHOULD be able to load every single-call fixture into its mock
+provider.
 
 ## `agents/` — agent-level conformance
 
@@ -106,6 +111,44 @@ A port that passes every fixture under `agents/` is, by the spec's
 definition, conformant on those cases. Add new fixtures as the
 catalog grows; every new canonical strategy should come with at
 least one fixture that exercises it.
+
+## `round-trips/` — persistence conformance
+
+Each directory under `round-trips/` is one persistence fixture:
+
+    round-trips/
+    └── <case-name>/
+        ├── README.md
+        ├── manifest.json
+        ├── phase-1-inputs.json
+        ├── phase-1-provider-script.json
+        ├── phase-2-inputs.json
+        ├── phase-2-provider-script.json
+        └── expected-log.jsonl
+
+The runner contract is:
+
+1. Implementation X loads the manifest, runs phase 1 against the
+   phase-1 scripted provider, and saves the resulting Session as JSONL.
+2. Implementation Y loads that JSONL, runs phase 2 against the phase-2
+   scripted provider, and serializes the final Log.
+3. The final Log MUST match `expected-log.jsonl` after canonical
+   normalization.
+
+Conformance SHOULD exercise every language pair, including
+same-language pairs. For Ruby, Python, and Go this is the 3x3 matrix:
+Ruby->Ruby, Ruby->Python, Ruby->Go, Python->Ruby, Python->Python,
+Python->Go, Go->Ruby, Go->Python, and Go->Go.
+
+Session JSONL uses a one-line header followed by one event per line:
+
+    {"__session__":true,"id":"ses_...","metadata":{...}}
+    {"seq":0,"id":"evt_...","type":"user_message","payload":{"text":"hello"}}
+
+Consumers MUST preserve the Session id, metadata, Event seq, Event type,
+Event payload, and append order. Event ids are persisted for
+losslessness, but agent-level conformance comparisons continue to use
+`seq`, `type`, and `payload`.
 
 ### The conformance stub tool handler — normative format
 
