@@ -1,0 +1,31 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-permission-denial",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "dangerous_tool",
+      "handler": "conformance.dangerous_tool",
+      "description": "A tool denied by fixture policy.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "Permission::DenyByName",
+      "config": {
+        "names": [
+          "dangerous_tool"
+        ]
+      }
+    }
+  ]
+}

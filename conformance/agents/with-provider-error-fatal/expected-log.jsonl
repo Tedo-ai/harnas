@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello with provider trouble"}}
+{"seq":1,"type":"provider_error","payload":{"provider":"unknown","status":400,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 400: Bad Request","attempt":1,"terminal":true}}

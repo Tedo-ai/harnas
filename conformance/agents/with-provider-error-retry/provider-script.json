@@ -1,0 +1,27 @@
+[
+  {
+    "error": {
+      "status": 503,
+      "body": "Service Unavailable"
+    }
+  },
+  {
+    "error": {
+      "status": 503,
+      "body": "Service Unavailable"
+    }
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "Recovered after retry."
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 11,
+      "output_tokens": 5
+    }
+  }
+]

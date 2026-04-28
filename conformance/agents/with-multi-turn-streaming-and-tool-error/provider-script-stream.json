@@ -1,0 +1,112 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": {
+        "turn_id": "turn_stream_error_1"
+      }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": {
+        "turn_id": "turn_stream_error_1",
+        "chunk": "I will try it. "
+      }
+    },
+    {
+      "type": "tool_use_begin",
+      "payload": {
+        "turn_id": "turn_stream_error_1",
+        "tool_use_id": "toolu_stream_error_1",
+        "name": "explode"
+      }
+    },
+    {
+      "type": "tool_use_argument_delta",
+      "payload": {
+        "turn_id": "turn_stream_error_1",
+        "tool_use_id": "toolu_stream_error_1",
+        "chunk": "{\"reason\":\"fixture\"}"
+      }
+    },
+    {
+      "type": "tool_use_end",
+      "payload": {
+        "turn_id": "turn_stream_error_1",
+        "tool_use_id": "toolu_stream_error_1",
+        "arguments": {
+          "reason": "fixture"
+        }
+      }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_stream_error_1",
+        "stop_reason": "tool_use",
+        "usage": {
+          "input_tokens": 9,
+          "output_tokens": 7
+        }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "I will try it. ",
+        "stop_reason": "tool_use",
+        "usage": {
+          "input_tokens": 9,
+          "output_tokens": 7
+        }
+      }
+    },
+    {
+      "type": "tool_use",
+      "payload": {
+        "id": "toolu_stream_error_1",
+        "name": "explode",
+        "arguments": {
+          "reason": "fixture"
+        }
+      }
+    }
+  ],
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": {
+        "turn_id": "turn_stream_error_2"
+      }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": {
+        "turn_id": "turn_stream_error_2",
+        "chunk": "The tool failed."
+      }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_stream_error_2",
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 14,
+          "output_tokens": 4
+        }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "The tool failed.",
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 14,
+          "output_tokens": 4
+        }
+      }
+    }
+  ]
+]

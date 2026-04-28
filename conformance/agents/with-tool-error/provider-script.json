@@ -1,0 +1,32 @@
+[
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_error_1",
+        "name": "explode",
+        "input": {
+          "reason": "fixture"
+        }
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+      "input_tokens": 14,
+      "output_tokens": 6
+    }
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "The tool failed as expected."
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 24,
+      "output_tokens": 7
+    }
+  }
+]

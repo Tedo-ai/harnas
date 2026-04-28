@@ -29,7 +29,12 @@ Each directory under `agents/` is one fixture:
         └── expected-log.jsonl     # the Log any conformant impl must produce
 
 Buffered fixtures use `provider-script.json`: an ordered list of
-provider responses, one per `Provider.call`. Streaming fixtures use
+provider responses, one per `Provider.call`. A buffered script entry
+may instead be an error object of the form
+`{"error":{"status":503,"body":"Service Unavailable"}}`; the
+ScriptedProvider MUST raise the implementation's canonical HTTP
+provider error for that status/body instead of returning a response.
+Streaming fixtures use
 `provider-script-stream.json`: an ordered list of streams, one per
 streaming provider call; each stream is an ordered list of Event-args
 objects `{type, payload}` yielded verbatim to the AgentLoop stream
@@ -96,18 +101,19 @@ Where:
 
 - `<handler_name>` is the manifest's symbolic handler reference for
   this tool (e.g. `"conformance.get_current_time"`), inserted verbatim.
-- `<args>` is the **compact JSON serialization** of the arguments
-  object — no whitespace between separators, keys preserved in the
-  order they appear in the arguments dict. For an empty arguments
-  object the value is `{}`; for `{"x": 1}` the value is `{"x":1}`;
-  etc.
+- `<args>` is the **canonical compact JSON serialization** of the
+  arguments object: no whitespace between separators, object keys
+  sorted lexically at every nesting level, and unicode characters
+  emitted as characters rather than ASCII escape sequences. For an
+  empty arguments object the value is `{}`; for `{"x": 1}` the value
+  is `{"x":1}`; etc.
 
 This format is normative because fixture `expected-log.jsonl` files
 record it byte-for-byte. A port that uses any other format (e.g.
 Ruby's native `Hash#inspect`, Python's `repr`) will produce
 non-conformant fixtures even for the empty-args case the moment a
-fixture exercises non-empty args. The reference implementations in
-both Ruby and Python use compact JSON to comply with this rule.
+fixture exercises non-empty args. The reference implementations use
+canonical compact JSON to comply with this rule.
 
 ### Adding a new agent fixture
 

@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"please run the failing tool"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":6}}}
+{"seq":2,"type":"tool_use","payload":{"id":"toolu_error_1","name":"explode","arguments":{"reason":"fixture"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_error_1","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":4,"type":"assistant_message","payload":{"text":"The tool failed as expected.","stop_reason":"end_turn","usage":{"input_tokens":24,"output_tokens":7}}}

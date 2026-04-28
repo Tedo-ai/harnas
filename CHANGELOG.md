@@ -11,11 +11,20 @@ the specification as a whole.
 
 ### Specification
 
+#### Added
+
+- Agent conformance now includes provider error retry/fatal, tool
+  failure, permission denial, streaming tool failure, and large/unicode
+  argument fixtures, bringing the suite to 13 cross-language cases.
+
 #### Clarified
 
 - §01 now explicitly treats cross-Session persistent memory as out of
   scope. A Session Log remains single-conversation; adopters compose
   external memory back into each new Session.
+- `conformance/README.md` now defines scripted provider error entries
+  and canonical compact JSON for conformance stub tool arguments,
+  including sorted keys and unescaped unicode.
 
 ## [0.2.0] — 2026-04-28
 

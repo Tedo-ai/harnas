@@ -1,0 +1,8 @@
+[
+  {
+    "error": {
+      "status": 400,
+      "body": "Bad Request"
+    }
+  }
+]

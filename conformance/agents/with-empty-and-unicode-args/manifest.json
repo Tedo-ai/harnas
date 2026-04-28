@@ -1,0 +1,22 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-empty-and-unicode-args",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "echo_args",
+      "handler": "conformance.echo_args",
+      "description": "Echoes arguments through the conformance stub.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ],
+  "strategies": []
+}

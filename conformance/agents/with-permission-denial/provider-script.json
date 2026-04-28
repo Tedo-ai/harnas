@@ -1,0 +1,32 @@
+[
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_denied_1",
+        "name": "dangerous_tool",
+        "input": {
+          "reason": "policy-test"
+        }
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": {
+      "input_tokens": 16,
+      "output_tokens": 6
+    }
+  },
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "The tool was denied."
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 24,
+      "output_tokens": 5
+    }
+  }
+]

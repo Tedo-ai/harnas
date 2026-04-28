@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"try the denied tool"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":16,"output_tokens":6}}}
+{"seq":2,"type":"tool_use","payload":{"id":"toolu_denied_1","name":"dangerous_tool","arguments":{"reason":"policy-test"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_denied_1","output":null,"error":"denied by hook: tool \"dangerous_tool\" is on the deny-list"}}
+{"seq":4,"type":"assistant_message","payload":{"text":"The tool was denied.","stop_reason":"end_turn","usage":{"input_tokens":24,"output_tokens":5}}}

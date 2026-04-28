@@ -1,0 +1,14 @@
+{"seq":0,"type":"user_message","payload":{"text":"stream then fail the tool"}}
+{"seq":1,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_error_1"}}
+{"seq":2,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_error_1","chunk":"I will try it. "}}
+{"seq":3,"type":"tool_use_begin","payload":{"turn_id":"turn_stream_error_1","tool_use_id":"toolu_stream_error_1","name":"explode"}}
+{"seq":4,"type":"tool_use_argument_delta","payload":{"turn_id":"turn_stream_error_1","tool_use_id":"toolu_stream_error_1","chunk":"{\"reason\":\"fixture\"}"}}
+{"seq":5,"type":"tool_use_end","payload":{"turn_id":"turn_stream_error_1","tool_use_id":"toolu_stream_error_1","arguments":{"reason":"fixture"}}}
+{"seq":6,"type":"assistant_turn_completed","payload":{"turn_id":"turn_stream_error_1","stop_reason":"tool_use","usage":{"input_tokens":9,"output_tokens":7}}}
+{"seq":7,"type":"assistant_message","payload":{"text":"I will try it. ","stop_reason":"tool_use","usage":{"input_tokens":9,"output_tokens":7}}}
+{"seq":8,"type":"tool_use","payload":{"id":"toolu_stream_error_1","name":"explode","arguments":{"reason":"fixture"}}}
+{"seq":9,"type":"tool_result","payload":{"tool_use_id":"toolu_stream_error_1","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":10,"type":"assistant_turn_started","payload":{"turn_id":"turn_stream_error_2"}}
+{"seq":11,"type":"assistant_text_delta","payload":{"turn_id":"turn_stream_error_2","chunk":"The tool failed."}}
+{"seq":12,"type":"assistant_turn_completed","payload":{"turn_id":"turn_stream_error_2","stop_reason":"end_turn","usage":{"input_tokens":14,"output_tokens":4}}}
+{"seq":13,"type":"assistant_message","payload":{"text":"The tool failed.","stop_reason":"end_turn","usage":{"input_tokens":14,"output_tokens":4}}}

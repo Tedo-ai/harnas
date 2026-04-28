@@ -1,0 +1,22 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-tool-error",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "explode",
+      "handler": "conformance.raise_error",
+      "description": "Raises a deterministic conformance error.",
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ],
+  "strategies": []
+}
