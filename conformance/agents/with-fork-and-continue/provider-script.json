@@ -1,0 +1,48 @@
+[
+  {
+    "content": [
+      {
+        "type": "text",
+        "text": "original answer"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": {
+      "input_tokens": 4,
+      "output_tokens": 2
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "original path"
+        },
+        {
+          "role": "assistant",
+          "content": "original answer"
+        },
+        {
+          "role": "user",
+          "content": "continue on fork"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "fork answer"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 2
+      }
+    }
+  }
+]

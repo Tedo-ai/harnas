@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"original path"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"original answer","stop_reason":"end_turn","usage":{"input_tokens":4,"output_tokens":2}}}
+{"seq":2,"type":"user_message","payload":{"text":"continue on fork"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"fork answer","stop_reason":"end_turn","usage":{"input_tokens":7,"output_tokens":2}}}

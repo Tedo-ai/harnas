@@ -16,8 +16,8 @@ the specification as a whole.
 - Agent conformance now includes provider error retry/fatal, tool
   failure, permission denial, streaming tool failure, streaming
   provider failure, strategy composition, revert chains, system
-  prompts, and large/unicode argument fixtures, bringing the suite to
-  19 cross-language cases.
+  prompts, Session fork/continue, and large/unicode argument fixtures,
+  bringing the suite to 20 cross-language cases.
 - §04 now requires `:tool_use` ids to be unique within a Session, with
   provider-specific synthetic ids when the wire format lacks one.
 - §05 now requires compaction strategies to preserve tool-use/result

@@ -1,0 +1,9 @@
+[
+  "original path",
+  {
+    "fork": {
+      "at_seq": 1
+    }
+  },
+  "continue on fork"
+]

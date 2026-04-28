@@ -57,6 +57,10 @@ directly:
   `:compact` Mutation Event without a provider call.
 - `{"revert":2}` appends a `:revert` Mutation Event revoking the
   mutation at seq 2, without a provider call.
+- `{"fork":{"at_seq":1}}` replaces the active Session with
+  `Session#fork(at_seq: 1)`, verifies the forked prefix and
+  `forked_from` / `forked_at_seq` metadata, and continues subsequent
+  inputs on the fork.
 
 `expected-log.jsonl` carries `seq`, `type`, and `payload` fields
 with canonical values per the spec.
