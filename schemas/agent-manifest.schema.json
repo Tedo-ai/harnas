@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/agent-manifest-0.1.schema.json",
+  "title": "Harnas Agent Manifest",
+  "description": "Normative schema for the Harnas Agent Manifest format, v0.1. See spec/18-agent-manifest.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["harnas_version", "name", "provider", "tools", "strategies"],
+  "properties": {
+    "harnas_version": {
+      "type": "string",
+      "enum": ["0.1"],
+      "description": "Manifest spec version. v0.1 accepts only the literal '0.1'."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable identifier for the agent."
+    },
+    "system": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional system prompt. When present, the runtime MUST project it into the provider-specific system-message slot (Anthropic top-level `system`, OpenAI `role: \"system\"` message, Gemini `systemInstruction`)."
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "max_tokens"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["anthropic", "openai", "gemini", "mock"],
+          "description": "Selects the Projection + Provider + Ingestor triplet."
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Model identifier. Required for non-mock providers."
+        },
+        "max_tokens": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Upper bound on response length, in tokens."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "kind": { "not": { "const": "mock" } } }
+          },
+          "then": { "required": ["model"] }
+        }
+      ]
+    },
+    "tools": {
+      "type": "array",
+      "description": "Tools the agent may invoke. Empty array means no tools.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "handler", "description", "input_schema"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Tool name, unique within this manifest."
+          },
+          "handler": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Symbolic reference to the tool implementation, resolved by the runtime against a handler map."
+          },
+          "description": {
+            "type": "string",
+            "description": "Tool description, passed to the provider."
+          },
+          "input_schema": {
+            "type": "object",
+            "description": "JSON Schema describing the tool's argument shape."
+          }
+        }
+      }
+    },
+    "strategies": {
+      "type": "array",
+      "description": "Canonical strategies (Layer 2) to install. Empty array means no strategies.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9]+::[A-Z][A-Za-z0-9]+$",
+            "description": "Canonical strategy name, e.g. 'Compaction::Snip'. Matches the directory structure under spec/strategies/."
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration passed to the strategy's install method. Must match the strategy's Configuration section in its spec stub. Callable parameters are given as symbolic references (Strings) here."
+          }
+        }
+      }
+    }
+  }
+}

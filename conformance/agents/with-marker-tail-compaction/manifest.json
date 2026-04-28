@@ -1,0 +1,19 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-marker-tail-compaction",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [],
+
+  "strategies": [
+    {
+      "name": "Compaction::MarkerTail",
+      "config": { "max_messages": 4, "keep_recent": 2 }
+    }
+  ]
+}

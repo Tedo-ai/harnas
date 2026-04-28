@@ -1,0 +1,18 @@
+{
+  "model": "gemini-flash-latest",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "say hello in one word"
+        }
+      ]
+    }
+  ],
+  "generationConfig": {
+    "thinkingConfig": {
+      "thinkingBudget": 0
+    }
+  }
+}

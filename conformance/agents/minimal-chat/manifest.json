@@ -1,0 +1,14 @@
+{
+  "harnas_version": "0.1",
+  "name": "minimal-chat",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [],
+
+  "strategies": []
+}

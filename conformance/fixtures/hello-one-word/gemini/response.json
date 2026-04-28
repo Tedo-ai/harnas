@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hello",
+            "thoughtSignature": "EvsCCvgCAQw51sc8eZ3byA3hTf6oxFfcPdFO6XA/WYahss0f2HClvDlMr+Yp9fVYzARJJUIVyvIgwfqWmrM3LJcMWoL+08hwDDEWPJLl4lCE3cE/VpWzWKpmw35SewRCADpCOI7Ij0euXcpqYYHo1tuzhWfJQpURBUeYS5NK3gAvoiKzyc92c6moYIpmJhtNMWjDXR9XgzxFdQ7Sgl73hQEP/8iAg5h0AWO5YxqfYFBzudA1Y5EqvqkdbVJezmuHrIHTi7hBL75VWE6QaU0S37P+Eodg1M61kO8niKTYN0Und/f4WF6U6qj4QikwIaN3xMUXIPKHsM+Jcdr/5n9VRFU/lPRc3+BxJsPvUTjW4IBnxFedjIg4ISzvjTZcOQJ2m6tim0vW1FB0hpsmxxP4q+uLG8HCrRKnSn+zO6PHRC4pgwKr6BUU9+CqQREP8myqtRhDgaYXxbXNydDLFA3YJJ2hHT5Bu4z7uTnqqqRmUol6sbdVIeCoAkJeH8LGEw=="
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 6,
+    "totalTokenCount": 105,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6
+      }
+    ],
+    "thoughtsTokenCount": 99
+  },
+  "modelVersion": "gemini-3-flash-preview",
+  "responseId": "6m7jafTFO8mxvdIP_JGcsA0"
+}

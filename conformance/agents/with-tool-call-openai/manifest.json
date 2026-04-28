@@ -1,0 +1,21 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-tool-call-openai",
+
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "get_current_time",
+      "handler": "conformance.get_current_time",
+      "description": "Returns the current UTC time.",
+      "input_schema": { "type": "object", "properties": {}, "required": [] }
+    }
+  ],
+
+  "strategies": []
+}

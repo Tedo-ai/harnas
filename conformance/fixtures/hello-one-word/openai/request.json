@@ -1,0 +1,9 @@
+{
+  "model": "gpt-5.4-mini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "say hello in one word"
+    }
+  ]
+}

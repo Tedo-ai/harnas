@@ -1,0 +1,28 @@
+# Canonical benchmark scenario: long-conversation
+#
+# A synthetic multi-turn conversation designed to exercise context
+# growth. Used to compare compaction strategies on a baseline where
+# MarkerTail / TokenMarkerTail / SummaryTail each have a clear
+# opportunity to trigger.
+#
+# Run via: just benchmark long-conversation
+
+name: long-conversation
+description: |
+  Twelve user prompts that grow the context linearly. With no
+  compaction the input-token count per turn grows; with compaction
+  strategies attached, it plateaus.
+
+prompts:
+  - "Hello! Can you help me plan a project?"
+  - "It's a specification for an LLM agent harness."
+  - "The first thing I want to nail is the event model."
+  - "What would you recommend for the core event types?"
+  - "And how should mutations to the event log work?"
+  - "OK that makes sense. What about compaction strategies?"
+  - "Give me three reasonable compaction approaches."
+  - "Which of those is cheapest to implement first?"
+  - "Alright, what about benchmarking them?"
+  - "What metrics would be most revealing?"
+  - "How do I make the benchmark results reproducible?"
+  - "Thanks, this has been helpful. Any closing thoughts?"

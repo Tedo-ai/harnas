@@ -1,0 +1,30 @@
+[
+  {
+    "candidates": [
+      {
+        "content": {
+          "role": "model",
+          "parts": [
+            { "functionCall": { "name": "get_current_time", "args": {} } }
+          ]
+        },
+        "finishReason": "STOP"
+      }
+    ],
+    "usageMetadata": { "promptTokenCount": 14, "candidatesTokenCount": 8 }
+  },
+  {
+    "candidates": [
+      {
+        "content": {
+          "role": "model",
+          "parts": [
+            { "text": "It is 2026-04-21 22:15 UTC." }
+          ]
+        },
+        "finishReason": "STOP"
+      }
+    ],
+    "usageMetadata": { "promptTokenCount": 26, "candidatesTokenCount": 13 }
+  }
+]

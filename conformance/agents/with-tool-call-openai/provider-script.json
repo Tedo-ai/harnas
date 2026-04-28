@@ -1,0 +1,33 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_abc123",
+              "type": "function",
+              "function": { "name": "get_current_time", "arguments": "{}" }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 14, "completion_tokens": 8 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "It is 2026-04-21 22:15 UTC."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 26, "completion_tokens": 13 }
+  }
+]

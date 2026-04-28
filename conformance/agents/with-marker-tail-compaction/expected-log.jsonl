@@ -1,0 +1,9 @@
+{"seq":0,"type":"user_message","payload":{"text":"message one"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"response one","stop_reason":"end_turn","usage":{"input_tokens":10,"output_tokens":2}}}
+{"seq":2,"type":"user_message","payload":{"text":"message two"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"response two","stop_reason":"end_turn","usage":{"input_tokens":15,"output_tokens":2}}}
+{"seq":4,"type":"user_message","payload":{"text":"message three"}}
+{"seq":5,"type":"compact","payload":{"replaces":[0,1,2],"summary":"[snipped 3 earlier messages]"}}
+{"seq":6,"type":"assistant_message","payload":{"text":"response three","stop_reason":"end_turn","usage":{"input_tokens":20,"output_tokens":2}}}
+{"seq":7,"type":"user_message","payload":{"text":"message four"}}
+{"seq":8,"type":"assistant_message","payload":{"text":"response four","stop_reason":"end_turn","usage":{"input_tokens":25,"output_tokens":2}}}

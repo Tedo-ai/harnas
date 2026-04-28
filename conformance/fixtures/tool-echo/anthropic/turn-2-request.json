@@ -1,0 +1,51 @@
+{
+  "model": "claude-sonnet-4-5",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Please call the echo tool with text set to 'hello from harnas'. After the tool returns, reply with exactly the word: done."
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01CpukzV2YdoW8wh4n8farsZ",
+          "name": "echo",
+          "input": {
+            "text": "hello from harnas"
+          }
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "tool_result",
+          "tool_use_id": "toolu_01CpukzV2YdoW8wh4n8farsZ",
+          "content": "hello from harnas"
+        }
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "name": "echo",
+      "description": "Echoes the given text back unchanged.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "the text to echo back"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    }
+  ]
+}
