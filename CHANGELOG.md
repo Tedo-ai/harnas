@@ -16,6 +16,10 @@ the specification as a whole.
 - Added §19, a normative Session JSONL persistence format covering the
   session header, event rows, UTF-8/newline handling, dense seq order,
   and preservation requirements.
+- Added §20, an informative production embedding guide covering
+  per-conversation Session lifecycles, persistence boundaries,
+  streaming, provider errors, fork/retry flows, memory composition, and
+  explicit non-goals.
 
 #### Clarified
 

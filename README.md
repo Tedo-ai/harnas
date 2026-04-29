@@ -46,9 +46,11 @@ reference earlier ones rather than modifying them.
    manifest must produce byte-identical Logs.
 7. [`19-jsonl-persistence.md`](19-jsonl-persistence.md) — canonical
    Session JSONL persistence format for cross-language save/load.
-8. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+8. [`20-production-embedding.md`](20-production-embedding.md) —
+   recommended production embedding shape for web apps and services.
+9. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-9. [`conformance/`](conformance/) — fixtures any conformant
+10. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations
