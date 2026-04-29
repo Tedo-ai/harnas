@@ -9,6 +9,21 @@ the specification as a whole.
 
 ## [Unreleased]
 
+### Specification
+
+#### Added
+
+- Added §19, a normative Session JSONL persistence format covering the
+  session header, event rows, UTF-8/newline handling, dense seq order,
+  and preservation requirements.
+
+#### Clarified
+
+- Round-trip conformance now encourages phase-2 `expect_request`
+  assertions, and `roundtrip-minimal-chat` uses one to prove that
+  cross-language load preserves projection behavior as well as final
+  Log shape.
+
 ## [0.4.0] — 2026-04-29
 
 ### Specification

@@ -135,20 +135,17 @@ The runner contract is:
 3. The final Log MUST match `expected-log.jsonl` after canonical
    normalization.
 
+Phase-2 provider scripts SHOULD wrap responses in `expect_request`
+assertions when practical. This proves that the loaded Session projects
+to the same provider request before returning the scripted response,
+not only that the final Log converges.
+
 Conformance SHOULD exercise every language pair, including
 same-language pairs. For Ruby, Python, and Go this is the 3x3 matrix:
 Ruby->Ruby, Ruby->Python, Ruby->Go, Python->Ruby, Python->Python,
 Python->Go, Go->Ruby, Go->Python, and Go->Go.
 
-Session JSONL uses a one-line header followed by one event per line:
-
-    {"__session__":true,"id":"ses_...","metadata":{...}}
-    {"seq":0,"id":"evt_...","type":"user_message","payload":{"text":"hello"}}
-
-Consumers MUST preserve the Session id, metadata, Event seq, Event type,
-Event payload, and append order. Event ids are persisted for
-losslessness, but agent-level conformance comparisons continue to use
-`seq`, `type`, and `payload`.
+Session JSONL is defined normatively in `19-jsonl-persistence.md`.
 
 ### The conformance stub tool handler — normative format
 

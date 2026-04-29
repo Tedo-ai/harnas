@@ -44,17 +44,20 @@ reference earlier ones rather than modifying them.
 6. [`18-agent-manifest.md`](18-agent-manifest.md) — declarative JSON
    manifest format. Two conformant implementations loading the same
    manifest must produce byte-identical Logs.
-7. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+7. [`19-jsonl-persistence.md`](19-jsonl-persistence.md) — canonical
+   Session JSONL persistence format for cross-language save/load.
+8. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-8. [`conformance/`](conformance/) — fixtures any conformant
+9. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations
 
 | Language | Repo | Status |
 |---|---|---|
-| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 7/7 conformance, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 7/7 conformance. Conformance-only stub, standard library only. |
+| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 20/20 agent conformance, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 20/20 agent conformance. Conformance-first port, standard library only. |
+| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 20/20 agent conformance. Conformance-first peer implementation. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's
