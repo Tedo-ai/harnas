@@ -1,0 +1,11 @@
+{
+  "harnas_version": "0.1",
+  "name": "roundtrip-with-reasoning",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 128
+  },
+  "tools": [],
+  "strategies": []
+}

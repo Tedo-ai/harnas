@@ -1,0 +1,17 @@
+[
+  {
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "Consider the prompt carefully.",
+        "signature": "sig_roundtrip_reasoning"
+      },
+      {
+        "type": "text",
+        "text": "first answer"
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 3, "output_tokens": 4 }
+  }
+]

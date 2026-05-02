@@ -1,0 +1,18 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "reasoning_details": [
+            { "type": "reasoning.text", "text": "Inspect the failing behavior." },
+            { "type": "reasoning.text", "text": "Patch the smallest shared surface." }
+          ]
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 15, "completion_tokens": 9 }
+  }
+]

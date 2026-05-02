@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"solve it"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"The answer is 42.","stop_reason":"end_turn","usage":{"input_tokens":11,"output_tokens":7},"reasoning":[{"type":"text","text":"I reduced the problem to a known result."}]}}

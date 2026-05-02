@@ -1,0 +1,11 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-reasoning-kimi",
+  "provider": {
+    "kind": "openai",
+    "model": "moonshotai/kimi-k2.6",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}

@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"think and answer"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"first answer","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":4},"reasoning":[{"type":"text","text":"Consider the prompt carefully.","signature":"sig_roundtrip_reasoning"}]}}
+{"seq":2,"type":"user_message","payload":{"text":"continue"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"continued","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2}}}

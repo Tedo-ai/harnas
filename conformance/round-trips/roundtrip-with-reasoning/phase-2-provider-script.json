@@ -1,0 +1,39 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 128,
+      "messages": [
+        {
+          "role": "user",
+          "content": "think and answer"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Consider the prompt carefully.",
+              "signature": "sig_roundtrip_reasoning"
+            },
+            {
+              "type": "text",
+              "text": "first answer"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "continue"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        { "type": "text", "text": "continued" }
+      ],
+      "stop_reason": "end_turn",
+      "usage": { "input_tokens": 5, "output_tokens": 2 }
+    }
+  }
+]

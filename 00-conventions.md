@@ -156,7 +156,7 @@ In the reference implementation this separability appears as:
 ## Versioning
 
 This specification is versioned using [Semantic Versioning](https://semver.org)
-applied to the specification as a whole. The current version is **0.4.0**.
+applied to the specification as a whole. The current version is **0.7.0**.
 
 All normative statements are subject to change in any pre-1.0.0 release.
 Breaking changes to normative statements after 1.0.0 will accompany a major

@@ -1,0 +1,15 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "The answer is 42.",
+          "reasoning": "I reduced the problem to a known result."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 11, "completion_tokens": 7 }
+  }
+]

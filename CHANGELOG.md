@@ -9,6 +9,23 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.7.0] — 2026-05-02
+
+### Specification
+
+#### Added
+
+- Added provider-contract rule R7 requiring Ingestors to capture
+  provider reasoning content on
+  `:assistant_message.payload.reasoning`, and requiring Projections to
+  round-trip reasoning for providers that need it.
+- Added `schemas/event-assistant-message.json`, including the optional
+  `reasoning` block-list field.
+- Added reasoning conformance fixtures for Anthropic, OpenAI, and
+  OpenAI-compatible Kimi-shaped responses.
+- Added `roundtrip-with-reasoning` to verify Session JSONL preservation
+  and Anthropic projection round-trip across languages.
+
 ## [0.6.0] — 2026-05-02
 
 ### Specification

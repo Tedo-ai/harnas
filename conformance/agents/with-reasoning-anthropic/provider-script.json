@@ -1,0 +1,71 @@
+[
+  {
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "Need current time, so call the time tool.",
+        "signature": "sig_anthropic_reasoning_1"
+      },
+      {
+        "type": "tool_use",
+        "id": "toolu_reason_1",
+        "name": "get_current_time",
+        "input": {}
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": { "input_tokens": 14, "output_tokens": 6 }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "what time is it?"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Need current time, so call the time tool.",
+              "signature": "sig_anthropic_reasoning_1"
+            },
+            {
+              "type": "tool_use",
+              "id": "toolu_reason_1",
+              "name": "get_current_time",
+              "input": {}
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_reason_1",
+              "content": "[conformance stub: conformance.get_current_time({})]"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "get_current_time",
+          "description": "Returns the current UTC time.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        { "type": "text", "text": "It is 2026-04-21 22:15 UTC." }
+      ],
+      "stop_reason": "end_turn",
+      "usage": { "input_tokens": 28, "output_tokens": 12 }
+    }
+  }
+]

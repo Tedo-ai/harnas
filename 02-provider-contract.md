@@ -75,6 +75,22 @@ Anthropic) MUST accept identical `request` shapes and MUST return `response`
 shapes that are structurally interchangeable. This is the property that
 makes `Mock` swappable for `Anthropic` at test time.
 
+**R7.** If a provider response includes human-readable reasoning content
+(thinking blocks, reasoning text, reasoning summaries, or provider-specific
+equivalents), the Ingestor MUST capture it on the corresponding
+`:assistant_message` Event as `payload.reasoning`. The field, when present,
+MUST be an array of block objects. The only block type currently specified is
+`{type: "text", text: String, signature?: String}`; `signature` is an
+opaque provider token attached to the human-readable reasoning block, not a
+separate Event. Projections MUST round-trip captured reasoning back to
+providers that require it on later turns. Providers that do not require
+reasoning round-trip MAY omit it from outbound requests.
+
+Reasoning is conversation content, not purely opaque derived state. It
+therefore belongs on the assistant turn itself. Purely opaque provider tokens
+whose contents are not human-readable remain annotative Events; Gemini's
+`gemini.thought_signature` annotation is the canonical example.
+
 ## Mock Providers
 
 A **mock provider** is a provider implementation that replays a recorded

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-assistant-message.json",
+  "title": "Harnas assistant_message Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["text", "stop_reason", "usage"],
+  "properties": {
+    "text": { "type": "string" },
+    "stop_reason": {
+      "type": "string",
+      "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "reasoning": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "text"],
+        "properties": {
+          "type": { "const": "text" },
+          "text": { "type": "string" },
+          "signature": { "type": "string" }
+        }
+      }
+    }
+  }
+}

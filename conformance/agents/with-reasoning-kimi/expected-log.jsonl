@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"plan the fix"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"end_turn","usage":{"input_tokens":15,"output_tokens":9},"reasoning":[{"type":"text","text":"Inspect the failing behavior."},{"type":"text","text":"Patch the smallest shared surface."}]}}
