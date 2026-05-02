@@ -58,7 +58,7 @@ reference earlier ones rather than modifying them.
 | Language | Repo | Status |
 |---|---|---|
 | Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 20/20 agent conformance, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 20/20 agent conformance, round-trip persistence matrix, and persisted-Session operator CLI. Feature parity with Ruby is planned for the next implementation arc. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 20/20 agent conformance, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
 | Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 20/20 agent conformance, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
 
 A second implementation that passes every fixture under

@@ -9,6 +9,17 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.6.0] — 2026-05-02
+
+### Specification
+
+#### Clarified
+
+- The implementation table now describes Python as a peer
+  implementation with live providers, built-in tools, middleware,
+  compaction, permissions, and CLI surface, matching Ruby and Go's
+  public feature framing.
+
 ## [0.5.0] — 2026-05-02
 
 ### Specification
