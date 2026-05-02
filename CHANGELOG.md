@@ -27,6 +27,9 @@ the specification as a whole.
   assertions, and `roundtrip-minimal-chat` uses one to prove that
   cross-language load preserves projection behavior as well as final
   Log shape.
+- The implementation table now describes the current Ruby, Python,
+  and Go surfaces consistently, including the Go live-provider work
+  and Python's next parity arc.
 
 ## [0.4.0] — 2026-04-29
 
