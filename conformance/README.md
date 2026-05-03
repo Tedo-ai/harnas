@@ -30,6 +30,7 @@ Each directory under `agents/` is one fixture:
         ├── provider-script.json   # ordered buffered provider responses
         ├── provider-script-stream.json
         │                           # ordered streaming provider events
+        ├── expected-deltas.jsonl   # optional Observation sidecar trace
         ├── inputs.json            # ordered user message strings or actions
         └── expected-log.jsonl     # the Log any conformant impl must produce
 
@@ -50,6 +51,11 @@ Streaming fixtures use
 streaming provider call; each stream is an ordered list of Event-args
 objects `{type, payload}` yielded verbatim to the AgentLoop stream
 callback.
+
+Since v0.8, streaming transport Events are Observation-only. They do
+not appear in `expected-log.jsonl`. Fixtures that need to assert the
+transport stream may include `expected-deltas.jsonl`, an informative
+sidecar trace produced by an Observation DeltaLogger.
 
 The fixture format is language-neutral: no Ruby-specific state, no
 host-dependent timing, no randomness. Every event in

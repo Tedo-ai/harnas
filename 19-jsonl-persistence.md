@@ -53,6 +53,17 @@ whitespace. The semantic JSON values are authoritative.
 emit non-ASCII characters directly or as JSON escapes; consumers MUST
 accept both forms.
 
+**J8.** Producers targeting v0.8.0 or later MUST NOT persist streaming
+transport Events (`assistant_turn_started`, `assistant_text_delta`,
+`tool_use_begin`, `tool_use_argument_delta`, `tool_use_end`,
+`assistant_turn_completed`, or `assistant_turn_failed`) in new Session
+JSONL files. These Events are Observation-only (§13, §15).
+
+**J9.** Consumers MUST tolerate legacy pre-v0.8 Session JSONL files
+that contain streaming transport Events. Loaders MAY preserve those
+rows as historical noise, but projections, mutation strategies, and
+new saves MUST NOT require them for correct behavior.
+
 ## Relationship To Log Conformance
 
 Agent-level conformance fixtures compare Logs using `{seq, type,

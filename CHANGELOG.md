@@ -9,6 +9,29 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.8.0] — 2026-05-03
+
+### Specification
+
+#### Changed
+
+- §15 now makes streaming transport Events Observation-only. Deltas,
+  turn brackets, and streaming tool-use fragments are no longer
+  durable Log Events; only consolidated semantic Events land in the
+  Log.
+- §13 adds normative `:stream_event` Observation semantics and an
+  informative `Observation::DeltaLogger` sidecar recipe for adopters
+  that need durable transport traces.
+- §19 clarifies that new Session JSONL saves must be delta-free while
+  legacy pre-v0.8 saves containing delta rows remain loadable.
+- Streaming conformance expected Logs were regenerated without
+  transport deltas.
+
+#### Added
+
+- Added `with-delta-logger-sidecar`, bringing agent conformance to
+  24 fixtures and proving the opt-in sidecar pattern.
+
 ## [0.7.0] — 2026-05-02
 
 ### Specification

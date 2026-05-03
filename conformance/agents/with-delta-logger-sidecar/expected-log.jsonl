@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"stream with sidecar"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"sidecar","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2}}}

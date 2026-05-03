@@ -1,9 +1,10 @@
 # 15 — Streaming
 
 This document specifies **streaming** as the canonical wire shape of a
-provider response. Streaming is a first-class primitive in Harnas: the
-Log is an event stream, and a provider response is naturally expressed
-as a sequence of Events terminated by a turn-completion marker.
+provider response. Streaming is a first-class primitive in Harnas: a
+provider response is naturally expressed as a sequence of transport
+Events terminated by a turn-completion marker, followed by the
+consolidated semantic Events that enter the Log.
 
 Non-streaming responses are the degenerate case of streaming, not the
 other way around.
@@ -14,17 +15,17 @@ other way around.
 
 Every production LLM API supports Server-Sent Events or chunked JSON
 for responses. Harnas treats this as the default shape of a response
-rather than as an optional feature. A subscriber reading the Log sees
-text, tool calls, and tool arguments arrive incrementally — the same
-shape an end-user UI wants to render. No separate "streaming API"
-exists in Harnas; the normal Observation bus (`:event_appended`) is
-the streaming API.
+rather than as an optional feature. A subscriber reading the Observation
+bus sees text, tool calls, and tool arguments arrive incrementally —
+the same shape an end-user UI wants to render. The durable Log records
+the consolidated semantic result, not every transport chunk.
 
 ## Canonical Delta Event Vocabulary
 
-**S1.** The following Event types MUST be used to record incremental
-provider output. Additional payload fields MAY be added in later
-spec versions; existing fields are stable within a major version.
+**S1.** The following Event types MUST be used to represent
+incremental provider output on the Observation bus. Additional payload
+fields MAY be added in later spec versions; existing fields are stable
+within a major version.
 
 | Event type | Payload fields | Fires when |
 |---|---|---|
@@ -38,8 +39,8 @@ spec versions; existing fields are stable within a major version.
 
 ## Event Ordering
 
-**S2.** Within a single streaming turn, events MUST be appended to the
-Log in this order:
+**S2.** Within a single streaming turn, transport events MUST be
+emitted on the Observation bus in this order:
 
 1. Exactly one `:assistant_turn_started` at the start.
 2. Zero or more `:assistant_text_delta`, `:tool_use_begin`,
@@ -48,15 +49,18 @@ Log in this order:
 3. Exactly one of `:assistant_turn_completed` or
    `:assistant_turn_failed` at the end.
 
-**S3.** For each `:tool_use_begin(turn_id:, tool_use_id:)`, the Log
-MUST contain a corresponding `:tool_use_end(turn_id:, tool_use_id:)`
-with a matching `tool_use_id` before `:assistant_turn_completed`.
+**S3.** For each `:tool_use_begin(turn_id:, tool_use_id:)`, the
+Observation stream MUST contain a corresponding
+`:tool_use_end(turn_id:, tool_use_id:)` with a matching `tool_use_id`
+before `:assistant_turn_completed`.
 
-**S4.** Delta Events are real Log Events. They are assigned sequence
-numbers, persist through Session persistence, are visible to readers,
-and are part of conformance. Two implementations that produce the same
-final `:assistant_message` but different delta sequences have produced
-different Logs.
+**S4.** Streaming transport Events (`:assistant_turn_started`,
+`:assistant_text_delta`, `:tool_use_begin`,
+`:tool_use_argument_delta`, `:tool_use_end`,
+`:assistant_turn_completed`, and `:assistant_turn_failed`) MUST be
+emitted on the Observation bus and MUST NOT be appended to the Log.
+Only consolidated semantic Events such as `:assistant_message` and
+`:tool_use` are appended to the Log.
 
 ## Provider Stream Contract
 
@@ -64,7 +68,7 @@ different Logs.
 yields delta Events (per S1) to a caller-supplied block:
 
     provider.stream(request) do |event_args|
-      # event_args is { type:, payload: } ready for Log#append
+      # event_args is { type:, payload: } ready for AgentLoop handling
     end
 
 The operation MUST honor S2 ordering; each call to the block MUST
@@ -72,12 +76,13 @@ correspond to one Event's worth of progress. Wire-format parsing
 (Anthropic SSE, OpenAI SSE, Gemini streamGenerateContent JSON) is an
 implementation detail of each Provider.
 
-**S6.** At the Log level, **stream completion** means the provider has
-appended exactly one `:assistant_turn_completed` Event for the active
-`turn_id`, followed by the consolidated Events for that turn. The
-consolidated Events MUST appear after all delta Events for that turn
-and MUST preserve the same turn result: one `:assistant_message`, plus
-one `:tool_use` for each completed tool-use block in provider order.
+**S6.** At the AgentLoop boundary, **stream completion** means the
+provider has yielded exactly one `:assistant_turn_completed` Event for
+the active `turn_id`, followed by the consolidated Events for that
+turn. The consolidated Events MUST be yielded after all transport
+Events for that turn and MUST preserve the same turn result: one
+`:assistant_message`, plus one `:tool_use` for each completed tool-use
+block in provider order.
 
 **S7.** After the stream terminates successfully, the provider MUST
 yield the **consolidated** Events that are equivalent to what the
@@ -97,13 +102,15 @@ NOT yield `:assistant_turn_completed` or the consolidated events.
 
 **S8.** A streaming Provider call may fail mid-stream, including from
 network failure, a server-signaled error after partial deltas, or a
-malformed event. Partial delta Events already appended to the Log MUST
-remain. They are not retroactively removed; the Log is append-only.
+malformed event. Partial transport Events already emitted on
+Observation MUST remain visible to subscribers that received them.
+They are not retroactively removed from the Observation stream.
 
 **S9.** When a streaming Provider call fails, the runtime MUST emit
-`:assistant_turn_failed` recording the failure. It MUST NOT emit
-`:assistant_turn_completed` or the consolidated `:assistant_message` /
-`:tool_use` Events that complete a successful stream.
+`:assistant_turn_failed` on Observation recording the failure. It MUST
+NOT emit `:assistant_turn_completed` or append the consolidated
+`:assistant_message` / `:tool_use` Events that complete a successful
+stream.
 
 **S10.** After a streaming Provider failure, the runtime MUST either
 retry per its RetryPolicy, yielding a new `:assistant_turn_started` and
@@ -123,6 +130,12 @@ This property makes streaming transparent at the Projection boundary
 — the same Projection code works for streaming and non-streaming
 providers.
 
+Because these transport Events are Observation-only, a conforming
+Projection usually never sees them in a newly-produced Log. The ignore
+rule preserves compatibility with pre-v0.8 saved Logs and with
+adopter-created diagnostic Logs that may still contain legacy delta
+rows.
+
 ## Non-Streaming Providers
 
 **S12.** Providers whose wire protocol is not actually incremental
@@ -131,25 +144,27 @@ still emit the canonical sequence (S2), collapsed into a single
 `:assistant_text_delta` (or a single `:tool_use_begin` +
 `:tool_use_argument_delta` + `:tool_use_end` per tool call) followed
 by `:assistant_turn_completed` and the consolidated events. This
-preserves the invariant that the Log always contains a complete
-streaming record.
+preserves the invariant that Observation subscribers can render the
+same streaming shape even when the underlying wire call was buffered.
 
 ## Observation Integration
 
 [informative]
 
-A UI renderer subscribes to `:event_appended` on the Observation bus
-and filters for the delta types above:
+A UI renderer subscribes to the streaming Observation event and filters
+for the delta types above:
 
-    Harnas::Observation.on(:event_appended) do |event:, log_size:|
+    Harnas::Observation.subscribe do |event_name, payload|
+      next unless event_name == :stream_event
+      event = payload.fetch(:event)
       case event.type
       when :assistant_text_delta then print(event.payload[:chunk])
       when :assistant_turn_completed then puts
       end
     end
 
-No streaming-specific API is needed — the Observation bus already is
-the streaming interface.
+No durable Log write is required for live streaming UI: the Observation
+bus is the streaming interface.
 
 ## Conformance
 
@@ -159,15 +174,17 @@ stream script is an ordered list of provider-call streams; each stream
 is an ordered list of Event-args objects `{type, payload}` yielded to
 the AgentLoop's stream callback.
 
-**S13.** Streaming conformance fixtures MUST capture every delta Event
-verbatim, in append order, followed by the consolidated Events that
-complete the stream. Fixtures MUST NOT collapse a stream to only its
-final `:assistant_message` / `:tool_use` Events.
+**S13.** Streaming conformance fixtures MUST feed every scripted
+transport Event to the AgentLoop in order, but `expected-log.jsonl`
+MUST contain only the consolidated semantic Events that are appended to
+the Log. Fixtures that need to assert transport-level detail SHOULD use
+an Observation sidecar such as `expected-deltas.jsonl`.
 
-The fact that real network chunking can vary does not weaken this
-requirement: conformance fixtures do not replay the network. They
-replay a deterministic scripted stream. Given the same scripted stream,
-two conformant implementations MUST produce byte-identical Logs.
+The fact that real network chunking can vary is exactly why transport
+deltas are not durable Log conformance. Given the same scripted stream,
+two conformant implementations MUST produce byte-identical Logs for the
+semantic result and MAY separately test byte-identical sidecar traces
+for debugging surfaces.
 
 ## Versioning Note
 

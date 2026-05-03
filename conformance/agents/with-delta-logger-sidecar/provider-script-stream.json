@@ -1,0 +1,32 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": { "turn_id": "turn_sidecar_1" }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": { "turn_id": "turn_sidecar_1", "chunk": "side" }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": { "turn_id": "turn_sidecar_1", "chunk": "car" }
+    },
+    {
+      "type": "assistant_turn_completed",
+      "payload": {
+        "turn_id": "turn_sidecar_1",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 5, "output_tokens": 2 }
+      }
+    },
+    {
+      "type": "assistant_message",
+      "payload": {
+        "text": "sidecar",
+        "stop_reason": "end_turn",
+        "usage": { "input_tokens": 5, "output_tokens": 2 }
+      }
+    }
+  ]
+]

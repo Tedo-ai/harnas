@@ -50,6 +50,7 @@ fields MAY be included; subscribers MUST ignore unknown fields.
 | `:mutation_applied` | `log_size:` (Integer), `effective_size:` (Integer), `applied_count:` (Integer) | `Mutations.apply` has resolved a Log to its effective event stream |
 | `:tokens_consumed` | `provider:` (Symbol), `input_tokens:` (Integer), `output_tokens:` (Integer) | An Ingestor has extracted normalized token counts |
 | `:tool_invoked` | `tool_use_id:` (String), `name:` (String), `outcome:` (`:ok` or `:error`), `duration_ms:` (Integer), `error:` (Exception or nil) | A Tool has been executed by the Runner |
+| `:stream_event` | `event:` (an Event-shaped object) | A streaming transport Event has arrived; see §15 |
 
 **R5.** Implementations MUST emit `:provider_called` before the wire
 request is dispatched, and exactly one of `:provider_responded` or
@@ -70,6 +71,33 @@ append-only. A subscriber that handles only the events it knows
 about, ignoring the rest, is forward-compatible with future
 specification versions. A subscriber that hard-fails on unknown
 event names will break across minor spec updates.
+
+## Streaming Transport Events
+
+**R7.** Streaming transport Events (`:assistant_turn_started`,
+`:assistant_text_delta`, `:tool_use_begin`,
+`:tool_use_argument_delta`, `:tool_use_end`,
+`:assistant_turn_completed`, and `:assistant_turn_failed`) are
+Observation-only. Implementations MUST emit them as `:stream_event`
+payloads and MUST NOT append them to the durable Log.
+
+[informative]
+
+If an adopter needs durable delta persistence for streaming-layer
+debugging, they should attach an Observation sidecar logger rather than
+polluting the Session JSONL:
+
+```ruby
+Harnas::Observation::DeltaLogger.new(
+  path: "session.deltas.jsonl",
+  observation: session.observation
+)
+```
+
+That sidecar file can capture chunk timing, partial argument fragments,
+or mid-stream crash forensics. Its exact JSONL format is informative,
+not normative; the main Session JSONL remains the portable semantic
+record.
 
 ## Reference Implementation Shape
 
