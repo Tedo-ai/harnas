@@ -1,0 +1,21 @@
+[
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_01abc",
+        "name": "get_current_time",
+        "input": {}
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": { "input_tokens": 12, "output_tokens": 5 }
+  },
+  {
+    "content": [
+      { "type": "text", "text": "It is 2026-04-21 22:15 UTC." }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 22, "output_tokens": 13 }
+  }
+]

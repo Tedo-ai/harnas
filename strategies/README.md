@@ -122,6 +122,18 @@ in [`00-conventions.md`](../00-conventions.md) §"Specification
 Layers" exists precisely so organizations can build this layer fit
 to their workflow without fighting the framework.
 
+## Observation around invocation
+
+**R5.** A Strategy SHOULD emit `:strategy_started` and
+`:strategy_completed` Observation events per Hook invocation, with
+payload `{ name, hook_point }` for the start and
+`{ name, hook_point, effect }` for completion. The `effect` field MUST
+be one of `"noop"`, `"mutated"`, `"refused"`, or `"error"`.
+
+These Observation events MUST NOT be appended to the Log. They are
+live telemetry: useful for audit, debugging, benchmark traces, and UI
+inspection, but not part of the durable semantic conversation.
+
 ## Canonical vs user strategies — separability
 
 Canonical strategies in the Ruby reference are independently

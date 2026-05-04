@@ -1,0 +1,30 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-manifest-hooks",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "get_current_time",
+      "handler": "conformance.get_current_time",
+      "description": "Returns the current UTC time.",
+      "input_schema": { "type": "object", "properties": {}, "required": [] }
+    }
+  ],
+
+  "strategies": [],
+
+  "hooks": [
+    {
+      "point": ":post_tool_use",
+      "handler": "conformance.audit_post_tool_use",
+      "config": { "label": "audit" },
+      "on_error": "isolate"
+    }
+  ]
+}

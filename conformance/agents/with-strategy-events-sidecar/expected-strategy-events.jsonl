@@ -1,0 +1,8 @@
+{"index":0,"event":"strategy_started","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection"}}
+{"index":1,"event":"strategy_completed","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection","effect":"noop"}}
+{"index":2,"event":"strategy_started","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection"}}
+{"index":3,"event":"strategy_completed","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection","effect":"noop"}}
+{"index":4,"event":"strategy_started","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection"}}
+{"index":5,"event":"strategy_completed","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection","effect":"mutated"}}
+{"index":6,"event":"strategy_started","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection"}}
+{"index":7,"event":"strategy_completed","payload":{"name":"Compaction::MarkerTail","hook_point":"pre_projection","effect":"noop"}}

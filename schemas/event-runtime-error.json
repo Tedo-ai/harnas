@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-runtime-error.json",
+  "title": "Harnas runtime_error Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source", "handler", "error_class", "message", "terminal"],
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": ["hook", "strategy"]
+    },
+    "handler": {
+      "type": "string",
+      "minLength": 1
+    },
+    "error_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string"
+    },
+    "terminal": {
+      "type": "boolean"
+    }
+  }
+}

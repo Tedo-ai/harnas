@@ -1,0 +1,22 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-hook-fail-turn",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [],
+
+  "strategies": [],
+
+  "hooks": [
+    {
+      "point": ":post_projection",
+      "handler": "conformance.raise_hook",
+      "on_error": "fail_turn"
+    }
+  ]
+}

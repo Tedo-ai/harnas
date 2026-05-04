@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello"}}
+{"seq":1,"type":"runtime_error","payload":{"source":"hook","handler":"conformance.raise_hook","error_class":"RuntimeError","message":"conformance hook failure","terminal":true}}

@@ -1,0 +1,6 @@
+{"seq":0,"type":"user_message","payload":{"text":"what time is it?"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":5}}}
+{"seq":2,"type":"tool_use","payload":{"id":"toolu_01abc","name":"get_current_time","arguments":{}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_01abc","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
+{"seq":4,"type":"annotation","payload":{"kind":"conformance.hook","data":{"tool_use_id":"toolu_01abc","result_seq":3}}}
+{"seq":5,"type":"assistant_message","payload":{"text":"It is 2026-04-21 22:15 UTC.","stop_reason":"end_turn","usage":{"input_tokens":22,"output_tokens":13}}}

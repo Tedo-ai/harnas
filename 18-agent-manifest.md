@@ -116,6 +116,7 @@ install. Each strategy Object:
 |---|---|---|---|
 | `name` | String | yes | Canonical strategy name, e.g. `"Compaction::MarkerTail"` |
 | `config` | Object | no | Configuration passed to the strategy; MUST match the strategy's Configuration section in its spec stub |
+| `on_error` | String | no | Hook invocation error policy; one of `"isolate"` (default) or `"fail_turn"` |
 
 **R5.** A runtime MUST resolve every `name` to the canonical
 strategy declared at `spec/strategies/<family>/<name>.md`. Names
@@ -137,11 +138,33 @@ User strategies (Layer 3) are not installable via the manifest
 in v0.1. They install in the consumer's code, alongside the
 manifest-loaded agent.
 
+### `hooks` (optional)
+
+Array of Objects. Declares arbitrary Hook Handlers to install at
+Session start. Each hook Object:
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `point` | String | yes | Canonical Hook Point from `14-hooks.md`, e.g. `":post_tool_use"` |
+| `handler` | String | yes | Symbolic reference to the handler implementation |
+| `config` | Object | no | Configuration passed to the handler at install time |
+| `on_error` | String | no | Hook invocation error policy; one of `"isolate"` (default) or `"fail_turn"` |
+
+**R6b.** A runtime MUST resolve every hook `handler` string to a
+callable implementation via its implementation-defined
+handler-resolution mechanism. If any hook handler is unresolved at load
+time, the runtime MUST reject the manifest with a clear error.
+
+**R6c.** Hook install-time failures (unresolvable handler names,
+invalid configuration, or the handler install step raising) fail
+manifest loading regardless of `on_error`. Invocation-time failures are
+governed by `14-hooks.md` R9.
+
 ## Loading semantics
 
 **R7.** A runtime's `load` operation MUST be a pure function of
-(manifest, tool_handlers, strategy_handlers) → (session,
-projection, provider, ingestor, strategies_to_install). The load
+(manifest, tool_handlers, strategy_handlers, hook_handlers) → (session,
+projection, provider, ingestor, strategies_to_install, hooks_to_install). The load
 MUST NOT call any Provider, perform any network I/O, or register
 any Hooks beyond what the strategies themselves register on
 `install`.
@@ -151,6 +174,16 @@ registry is a separate, explicit step from loading. A conformant
 runtime MUST expose load and install as either separate calls or
 an opt-in flag, so the loaded manifest can be inspected without
 side effects.
+
+### Manifest immutability
+
+A Manifest is bound to a Session at Session creation. Subsequent
+changes to the Manifest source — file edits, configuration UI changes,
+environment overrides — do not affect existing Sessions. They apply
+only to new Sessions. To apply a new configuration to an in-progress
+conversation, fork the Session with the new Manifest. This invariant
+preserves replay determinism: any saved Session is reproducible against
+its original Manifest, regardless of subsequent edits.
 
 ## Example (v0.1)
 
@@ -183,6 +216,15 @@ side effects.
       "config": { "max_messages": 20, "keep_recent": 10 } },
     { "name": "Permission::DenyByName",
       "config": { "names": ["shell"] } }
+  ],
+
+  "hooks": [
+    {
+      "point": ":post_tool_use",
+      "handler": "acme.audit.ToolUseLogger",
+      "config": { "endpoint": "https://audit.example.test/events" },
+      "on_error": "isolate"
+    }
   ]
 }
 ```

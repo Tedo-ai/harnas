@@ -9,6 +9,27 @@ the specification as a whole.
 
 ## [Unreleased]
 
+### Specification
+
+#### Added
+
+- Added manifest-declared `hooks` entries with implementation-defined
+  handler resolution and `on_error` policy support.
+- Added `:runtime_error` for harness-internal terminal failures,
+  keeping provider failures distinct from hook/strategy failures.
+- Added strategy Observation events (`:strategy_started` /
+  `:strategy_completed`) with an effect taxonomy for strategy audit
+  sidecars.
+- Added an informative Observation-layer cost-tracking recipe.
+- Added conformance fixtures for manifest hooks, fail-turn hook
+  runtime errors, and strategy Observation sidecars, bringing agent
+  conformance to 27 fixtures.
+
+#### Clarified
+
+- §18 now states that a Manifest is bound to a Session at creation time;
+  later manifest source changes apply only to new Sessions.
+
 ## [0.8.0] — 2026-05-03
 
 ### Specification

@@ -51,6 +51,8 @@ fields MAY be included; subscribers MUST ignore unknown fields.
 | `:tokens_consumed` | `provider:` (Symbol), `input_tokens:` (Integer), `output_tokens:` (Integer) | An Ingestor has extracted normalized token counts |
 | `:tool_invoked` | `tool_use_id:` (String), `name:` (String), `outcome:` (`:ok` or `:error`), `duration_ms:` (Integer), `error:` (Exception or nil) | A Tool has been executed by the Runner |
 | `:stream_event` | `event:` (an Event-shaped object) | A streaming transport Event has arrived; see §15 |
+| `:strategy_started` | `name:` (String), `hook_point:` (Symbol) | A Strategy Hook Handler has begun one invocation |
+| `:strategy_completed` | `name:` (String), `hook_point:` (Symbol), `effect:` (`"noop"`, `"mutated"`, `"refused"`, or `"error"`) | A Strategy Hook Handler has finished one invocation |
 
 **R5.** Implementations MUST emit `:provider_called` before the wire
 request is dispatched, and exactly one of `:provider_responded` or
@@ -98,6 +100,22 @@ That sidecar file can capture chunk timing, partial argument fragments,
 or mid-stream crash forensics. Its exact JSONL format is informative,
 not normative; the main Session JSONL remains the portable semantic
 record.
+
+## Cost Tracking
+
+[informative]
+
+Cumulative usage tracking is an Observation-layer concern, not a
+Log-layer one. To compute running token totals across a Session,
+subscribe to the Observation bus and accumulate from
+`:assistant_message` Event payloads' `usage` field on each
+`:event_appended` event. Reference implementations ship a small
+`Observation::CostTracker` utility implementing this pattern;
+consumers may use it directly or write their own.
+
+The substrate does not enforce token budgets. Budget limits,
+threshold warnings, and cost policies are product concerns layered on
+top of Observation.
 
 ## Reference Implementation Shape
 

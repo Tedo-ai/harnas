@@ -97,9 +97,61 @@
           "config": {
             "type": "object",
             "description": "Configuration passed to the strategy's install method. Must match the strategy's Configuration section in its spec stub. Callable parameters are given as symbolic references (Strings) here."
+          },
+          "on_error": {
+            "$ref": "#/$defs/on_error"
           }
         }
       }
+    },
+    "hooks": {
+      "type": "array",
+      "description": "Hook handlers to install at Session start. Empty or absent means no manifest-declared hooks.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["point", "handler"],
+        "properties": {
+          "point": {
+            "type": "string",
+            "enum": [
+              ":session_started",
+              ":session_ended",
+              ":turn_started",
+              ":turn_ended",
+              ":pre_projection",
+              ":post_projection",
+              ":pre_provider_call",
+              ":post_provider_call",
+              ":pre_ingest",
+              ":post_ingest",
+              ":pre_tool_use",
+              ":post_tool_use"
+            ],
+            "description": "Canonical Hook Point from spec/14-hooks.md."
+          },
+          "handler": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Symbolic reference to the hook implementation, resolved by the runtime against a handler map."
+          },
+          "config": {
+            "type": "object",
+            "description": "Configuration passed to the handler at install time."
+          },
+          "on_error": {
+            "$ref": "#/$defs/on_error"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "on_error": {
+      "type": "string",
+      "enum": ["isolate", "fail_turn"],
+      "default": "isolate",
+      "description": "Invocation-time hook error policy."
     }
   }
 }

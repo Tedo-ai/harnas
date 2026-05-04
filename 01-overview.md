@@ -155,6 +155,28 @@ ones means the call eventually succeeded.
 were exhausted, it MUST end with reason `:provider_failed` and
 the most recent `:provider_error` MUST carry `terminal: true`.
 
+### Runtime error events
+
+When harness-internal execution fails during a turn (for example a Hook
+Handler or Strategy invocation raises under an `on_error: "fail_turn"`
+policy), the failure is appended to the Log as a `:runtime_error` Event
+with payload `{source, handler, error_class, message, terminal}`.
+
+`:runtime_error` is distinct from `:provider_error`. Provider errors
+record wire-level Provider failures (HTTP errors, network timeouts,
+rate limits, malformed provider responses). Runtime errors record
+harness-internal failures.
+
+**R12.** A `:runtime_error` Event emitted for a `fail_turn` Hook or
+Strategy invocation failure MUST carry `terminal: true`. The `source`
+field MUST identify the failure category (`"hook"` or `"strategy"` in
+v0.9), and `handler` MUST identify the failing handler by manifest
+name, class name, or equivalent implementation-defined label.
+
+**R13.** Projections MUST NOT emit `:runtime_error` Events into the
+request body sent to a Provider. They are part of the Log substrate,
+not part of the agent's conversation.
+
 ### Why this design
 
 [informative]

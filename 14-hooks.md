@@ -43,9 +43,9 @@ preserving registration order. If no Handlers are registered, the
 result MUST be an empty Array.
 
 **R4.** Handler exceptions MUST NOT propagate into the calling Harnas
-code path. An implementation MUST isolate exceptions and continue
-delivering the invocation to other registered Handlers. Exceptions
-MAY be surfaced to Observation subscribers via a canonical
+code path by default. An implementation MUST isolate exceptions and
+continue delivering the invocation to other registered Handlers.
+Exceptions MAY be surfaced to Observation subscribers via a canonical
 `:hook_handler_failed` event.
 
 ## Canonical Hook Points
@@ -125,9 +125,31 @@ test and ad-hoc usage — the reference implementation exposes
 `Harnas::Hooks.scoped { ... }` which preserves the registry state
 across the block.
 
+## Manifest-Declared Hook Installation
+
+**R8.** If a Manifest declares a `hooks` field, the runtime MUST
+install each declared Handler at the named Hook Point at Session start,
+in array order. The runtime MUST resolve the manifest's `handler` name
+using its implementation-defined handler-resolution mechanism. Failure
+to resolve a Handler MUST fail manifest loading with a clear error.
+
+**R9.** A Hook installation MAY declare an `on_error` policy. The
+default `"isolate"` is the R4 behavior. The value `"fail_turn"` causes
+invocation-time exceptions to abort the turn and append a
+`:runtime_error` Event carrying handler identity and exception detail.
+Install-time failures (unresolvable handler names, invalid
+configuration, or an install method raising while the Session is being
+created) are not governed by `on_error`; they fail manifest loading
+regardless.
+
+The same `on_error` semantics apply to manifest `strategies` entries.
+Strategies are special-cased Hook installations: install-time failures
+fail manifest loading, and invocation-time failures follow the
+installation's declared `on_error` policy.
+
 ## Versioning Note
 
-**R8.** New Hook Points and payload fields MAY be added in later spec
+**R10.** New Hook Points and payload fields MAY be added in later spec
 versions. Existing Hook Point names and their required payload fields
 and expected return shapes are stable within a major spec version.
 Handlers that don't recognize a payload field MUST ignore it.
