@@ -79,10 +79,11 @@ defined here.
 
 ## Schemas and Reference Code
 
-JSON Schema files under `spec/schemas/` are the normative definitions of all
-data structures used in this specification. Prose descriptions of these
-structures in other specification documents are informative clarifications of
-the schemas; where prose and schema disagree, the schema governs.
+JSON Schema files under `schemas/` are normative for the structures they
+cover. Not every Event type has a schema in v0.9.1; when a schema exists
+for a structure, prose descriptions of that structure in other
+specification documents are informative clarifications of the schema, and
+where prose and schema disagree, the schema governs.
 
 The Ruby code under `reference/` is a reference implementation of Harnas. It
 is informative and does not constrain other implementations. A conforming
