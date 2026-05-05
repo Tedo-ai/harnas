@@ -9,6 +9,16 @@ the specification as a whole.
 
 ## [Unreleased]
 
+### v0.9.1
+
+#### Added
+
+- Added optional manifest tool `config` objects. Runtime
+  implementations must preserve the opaque JSON value in the Session's
+  manifest snapshot and make it available to the resolved handler.
+- Added an informative recommended Session metadata envelope for
+  trace, actor, workspace, and conversation identifiers.
+
 ### Specification
 
 #### Added

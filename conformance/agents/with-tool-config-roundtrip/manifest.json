@@ -1,0 +1,38 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-tool-config-roundtrip",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "configured_tool",
+      "handler": "conformance.echo_config",
+      "description": "Echoes the opaque tool config received by the handler.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" }
+        },
+        "required": ["label"]
+      },
+      "config": {
+        "operation_key": "mailbox.send",
+        "resource_binding": {
+          "mailbox_id": "mailbox_123",
+          "scopes": ["read", "write"]
+        },
+        "idempotency_policy": "key_in_payload",
+        "retryable": true,
+        "limits": { "max_recipients": 3, "timeout_ms": 2500 },
+        "tags": ["conformance", "opaque-config"]
+      }
+    }
+  ],
+
+  "strategies": []
+}

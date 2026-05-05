@@ -1,0 +1,10 @@
+{"seq":0,"type":"user_message","payload":{"text":"use the configured tool once"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":5}}}
+{"seq":2,"type":"tool_use","payload":{"id":"toolu_config_1","name":"configured_tool","arguments":{"label":"before"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_config_1","output":"[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"Config seen before reload.","stop_reason":"end_turn","usage":{"input_tokens":22,"output_tokens":6}}}
+{"seq":5,"type":"user_message","payload":{"text":"use the configured tool again"}}
+{"seq":6,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":34,"output_tokens":5}}}
+{"seq":7,"type":"tool_use","payload":{"id":"toolu_config_2","name":"configured_tool","arguments":{"label":"after"}}}
+{"seq":8,"type":"tool_result","payload":{"tool_use_id":"toolu_config_2","output":"[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]","error":null}}
+{"seq":9,"type":"assistant_message","payload":{"text":"Config seen after reload.","stop_reason":"end_turn","usage":{"input_tokens":44,"output_tokens":6}}}

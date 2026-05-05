@@ -77,6 +77,10 @@
           "input_schema": {
             "type": "object",
             "description": "JSON Schema describing the tool's argument shape."
+          },
+          "config": {
+            "type": "object",
+            "description": "Implementer-opaque JSON-serializable configuration preserved with the tool entry and made available to the resolved handler."
           }
         }
       }

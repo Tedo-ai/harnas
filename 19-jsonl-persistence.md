@@ -78,3 +78,31 @@ Round-trip conformance fixtures therefore test two things:
 2. The loaded Session remains behaviorally equivalent: after continued
    input, its provider request projection and final Log match the
    fixture's canonical expectations.
+
+## Recommended Metadata Envelope
+
+[informative]
+
+Session metadata is implementer-defined and may carry any
+JSON-serializable values. To improve cross-adopter portability of saved
+Sessions, the following field names are recommended, not normative,
+when the corresponding concept is being recorded:
+
+- `metadata.trace.trace_id` — a unique identifier for the distributed
+  trace this Session belongs to, for example an OpenTelemetry trace id.
+- `metadata.trace.parent_span_id` — the parent span if the Session was
+  triggered by another operation.
+- `metadata.trace.request_id` — a unique identifier for the inbound
+  request that initiated the Session.
+- `metadata.actor.id` — the user or service identity on whose behalf
+  the agent is acting.
+- `metadata.actor.kind` — the actor type, for example `"user"`,
+  `"api_key"`, or `"service"`.
+- `metadata.workspace_id` — the multi-tenant workspace the Session
+  belongs to, where applicable.
+- `metadata.conversation_id` — a stable identifier for the
+  conversation, distinct from the Session id.
+
+Adopters remain free to use other names, omit fields, or add new ones.
+The recommendation exists so tooling reading saved Sessions across
+adopters has a consistent place to look.

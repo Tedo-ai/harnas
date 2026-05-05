@@ -1,0 +1,5 @@
+[
+  "use the configured tool once",
+  { "save_load": true },
+  "use the configured tool again"
+]

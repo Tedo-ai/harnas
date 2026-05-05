@@ -30,6 +30,9 @@ stop_reason is not `:tool_use`.
 - `#input_schema` — a Hash describing the tool's input contract.
   Providers use this for function-calling schema validation; the
   reference implementation uses JSON Schema shape.
+- `#config` — an optional JSON-serializable object carrying
+  implementer-opaque configuration for the handler. When absent it is
+  treated as `{}`.
 - `#call(arguments)` — invoked by the Runner with the (symbol-keyed)
   arguments Hash; MUST return a String (the tool's output).
 
@@ -37,9 +40,17 @@ stop_reason is not `:tool_use`.
 catch such errors and record them as failure `ToolResult` events
 rather than propagating them into the harness.
 
+**R3.** A tool entry MAY declare an optional `config` object. The
+runtime MUST treat `config` as implementer-opaque: it MUST NOT
+interpret the value semantically, MUST preserve it through Session
+save/load byte-identically as part of the Session's manifest snapshot,
+and MUST make it available to the resolved handler at invocation. The
+exact handler calling convention is implementation-defined. `config`
+MUST be JSON-serializable.
+
 ## Registry
 
-**R3.** A Harnas implementation MUST provide a Registry mechanism that
+**R4.** A Harnas implementation MUST provide a Registry mechanism that
 stores Tools by name and supports:
 
 - registration (idempotent or erroring on duplicate — MAY differ by
@@ -53,7 +64,7 @@ missing lookup.
 
 ## Tool Use and Tool Result Events
 
-**R4.** A `:tool_use` Event's payload MUST contain:
+**R5.** A `:tool_use` Event's payload MUST contain:
 
 - `id:` — a non-empty String; the correlation identifier assigned by
   the provider (or synthesized by the Ingestor when the provider does
@@ -63,7 +74,7 @@ missing lookup.
   pass). Keys SHOULD be symbol-keyed when produced by the Ingestor for
   consistency with other Event payloads.
 
-**R5.** A `:tool_result` Event's payload MUST contain:
+**R6.** A `:tool_result` Event's payload MUST contain:
 
 - `tool_use_id:` — a non-empty String referencing the `id` of the
   `:tool_use` Event this result fulfills.
@@ -71,7 +82,7 @@ missing lookup.
   - `output:` — a String containing the tool's successful output, or
   - `error:` — a String error message describing the failure.
 
-**R6.** A `:tool_use` Event's payload `id` MUST be unique within a
+**R7.** A `:tool_use` Event's payload `id` MUST be unique within a
 Session. Implementations whose underlying provider does not supply
 unique ids (for example, providers whose function-call parts carry
 only a name) MUST synthesize ids that satisfy this requirement. The
@@ -81,7 +92,7 @@ id; correlation by id is the canonical way the AgentLoop pairs
 
 ## Runner
 
-**R7.** A Harnas implementation MUST provide a Runner that, given a
+**R8.** A Harnas implementation MUST provide a Runner that, given a
 `:tool_use` Event and a Registry, executes the named tool and appends
 a corresponding `:tool_result` Event to the Log. On any `StandardError`
 raised during execution, the Runner MUST still append a `:tool_result`
@@ -92,7 +103,7 @@ exception.
 
 ## Projection Responsibilities
 
-**R8.** A Projection that supports tools MUST:
+**R9.** A Projection that supports tools MUST:
 
 - Emit the provider-specific tool list (name, description, input
   schema) when the Session carries a non-empty Registry.
@@ -108,7 +119,7 @@ normatively by the conformance fixtures under
 
 ## Ingestor Responsibilities
 
-**R9.** An Ingestor that supports tools MUST, for each provider
+**R10.** An Ingestor that supports tools MUST, for each provider
 response that contains tool-call data, emit zero or more `:tool_use`
 Event-args in content-array order, alongside the `:assistant_message`
 event. The `:assistant_message`'s `stop_reason` MUST reflect the
@@ -149,6 +160,29 @@ records a canonical two-turn round-trip (tool call + tool result +
 terminal text) against each supported provider. Any Harnas
 implementation SHOULD be able to replay these fixtures through its own
 Mock provider and produce structurally equivalent Log contents.
+
+## Manifest Tool Config
+
+Manifest tool entries may carry `config` for implementer-specific
+tool binding data:
+
+```json
+{
+  "name": "send_email",
+  "handler": "tedo.operations.invoke",
+  "description": "Send an email via the configured operation.",
+  "input_schema": { "type": "object", "properties": {} },
+  "config": {
+    "operation_key": "mailbox.send",
+    "resource_binding": { "mailbox_id": "mailbox_123" },
+    "idempotency_policy": "key_in_payload"
+  }
+}
+```
+
+The runtime stores and preserves this object, but does not define or
+interpret its contents. Handler resolution and handler calling
+conventions remain implementation-defined.
 
 ## Out of Scope
 

@@ -1,0 +1,40 @@
+[
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_config_1",
+        "name": "configured_tool",
+        "input": { "label": "before" }
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": { "input_tokens": 12, "output_tokens": 5 }
+  },
+  {
+    "content": [
+      { "type": "text", "text": "Config seen before reload." }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 22, "output_tokens": 6 }
+  },
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_config_2",
+        "name": "configured_tool",
+        "input": { "label": "after" }
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": { "input_tokens": 34, "output_tokens": 5 }
+  },
+  {
+    "content": [
+      { "type": "text", "text": "Config seen after reload." }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 44, "output_tokens": 6 }
+  }
+]
