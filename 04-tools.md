@@ -189,12 +189,12 @@ conventions remain implementation-defined.
 The following tool-related concerns are specified elsewhere:
 
 - Tool *discovery* strategies (deferred loading, MCP routing, lazy
-  expansion by name) — `spec/14-hooks.md` (forthcoming) via
+  expansion by name) — `14-hooks.md` via
   `:pre_projection` hook handlers.
 - Tool *permission* policies (allow, deny, require approval) —
-  `spec/14-hooks.md` via `:pre_tool_use` hook handlers.
+  `14-hooks.md` via `:pre_tool_use` hook handlers.
 - Tool *concurrency* (parallel safety analysis, partition batching) —
-  `spec/14-hooks.md` via custom scheduling hook handlers.
+  `14-hooks.md` via custom scheduling hook handlers.
 
 All three are strategy concerns that plug into the Hooks layer rather
 than being part of the tool contract itself.

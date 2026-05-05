@@ -149,7 +149,7 @@ additional installation-time parameters.
 
 [informative]
 
-The Harnas Benchmark harness (forthcoming, `06-benchmarks.md`)
+The Harnas Benchmark harness (`06-benchmarks.md`)
 compares strategies by running canonical scenarios through (provider
 × compaction strategy × other hook-handler packs) matrices and
 reporting metrics collected via the Observation bus
@@ -165,7 +165,7 @@ Observation events carry the relevant signals.
 
 ## Versioning Note
 
-**R7.** The shape of `:compact` Mutation Events
+**R8.** The shape of `:compact` Mutation Events
 (`replaces: [Integer]`, `summary: String`) is normative and stable
 within a major spec version. Additional fields MAY be added;
 consumers MUST ignore unknown fields.

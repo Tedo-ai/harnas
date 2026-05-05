@@ -81,9 +81,9 @@ after they are appended.
 
 **R2.** Each Event MUST have a stable identity assigned at append time.
 This specification commits to monotonic per-Session sequence numbers as
-the canonical identity scheme; content-addressable hashes are RECOMMENDED
-as a secondary identity for cross-Session referencing and integrity
-verification.
+the canonical identity scheme. Implementations MAY also assign secondary
+ids for implementation-local debugging or integrity checks, but those
+secondary ids are not the cross-language identity contract.
 
 **R3.** The view of the Session sent to a provider on any given turn MUST
 be a **Projection** of the Log. A Projection is a pure, deterministic
@@ -201,14 +201,11 @@ construction:
 - **Cache-stable prefixes** — events whose effects are settled (no future
   Mutation references them) are safe to cache; the Projection can compute
   this.
-- **Inter-agent message passing** — events are the wire format between
-  agents; one agent's append is another agent's read.
-- **Capability security** — events carry signed capabilities; Projections
-  reject unauthorized mutations.
 
-Each of these properties is specified in its own section; this overview
-declares only that the Log/Projection/Mutation model is the substrate they
-all build on.
+This overview declares only that the Log/Projection/Mutation model is
+the substrate these properties build on. Capability systems,
+inter-agent message passing, and other orchestration-layer concerns are
+outside the current specification.
 
 ## Scope
 
@@ -221,13 +218,19 @@ The following concerns are within the scope of this specification:
 | Conventions and vocabulary | `00-conventions.md` |
 | This overview | `01-overview.md` |
 | Provider wire-format contract | `02-provider-contract.md` |
-| Core types: Event, Log, Session, Projection, Mutation | `03-core-types.md` (forthcoming) |
-| Tool contract | `04-tool-contract.md` (forthcoming) |
-| Compaction (as a Mutation family) | `05-compaction.md` (forthcoming) |
-| Deferred tool discovery | `06-deferred-tools.md` (forthcoming) |
-| Cache-aware Projection | `07-cache.md` (forthcoming) |
-| Capability-based security | `08-capabilities.md` (forthcoming) |
-| Inter-agent IPC | `09-ipc.md` (forthcoming) |
+| Core model: Event, Log, Session, Projection, Mutation | this document |
+| Tool contract | `04-tools.md` |
+| Compaction (as a Mutation family) | `05-compaction.md` |
+| Benchmark harness | `06-benchmarks.md` |
+| Permission strategies | `07-permission.md` |
+| Observation bus | `13-observation.md` |
+| Hooks | `14-hooks.md` |
+| Streaming | `15-streaming.md` |
+| Actions | `16-actions.md` |
+| Composition rules | `17-composition-rules.md` |
+| Agent manifests | `18-agent-manifest.md` |
+| JSONL persistence | `19-jsonl-persistence.md` |
+| Production embedding guidance | `20-production-embedding.md` |
 
 ## Out of Scope
 
@@ -317,9 +320,11 @@ with Harnas rather than compete with it.
 4. [`conformance/README.md`](conformance/README.md) — fixtures, mocks,
    and the reference fixture set.
 
-Sections 03 onward are forthcoming.
+Additional section numbers are intentionally left open for future
+normative surfaces. The current conformable surface is the document set
+listed in the repository README and the Scope table above.
 
 ## Version
 
-This specification is at version **0.8.0**. All normative statements
+This specification is at version **0.9.1**. All normative statements
 remain subject to change before 1.0.0.

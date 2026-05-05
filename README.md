@@ -7,7 +7,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.8.0** (released 2026-05-03). See
+**Version 0.9.1** (released 2026-05-05). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -57,9 +57,9 @@ reference earlier ones rather than modifying them.
 
 | Language | Repo | Status |
 |---|---|---|
-| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 24/24 agent conformance, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full feature set. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 24/24 agent conformance, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
-| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 24/24 agent conformance, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, live providers (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
+| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 28/28 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), 8 builtin tools, 4 compaction strategies, full conformable surface. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 28/28 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
+| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 28/28 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's

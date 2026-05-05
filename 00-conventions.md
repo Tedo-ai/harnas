@@ -68,12 +68,12 @@ defined here.
   Different Projections of the same Log MAY exist concurrently for
   different consumers (provider, UI, audit).
 
-- Work in progress: **Surface** — the environment in which a harness runs and through which it
+- **Surface** — the environment in which a harness runs and through which it
   receives input and delivers output. Examples include a command-line
   interface, a chat application, an IDE extension, and an automated pipeline.
   The specification describes behavior that adapts to the surface.
 
-- Work in progress: **Situation** — the runtime conditions under which a harness operates,
+- **Situation** — the runtime conditions under which a harness operates,
   including trust level, interactivity, resource budgets, and policy
   constraints. A harness MAY modify its behavior based on the situation.
 
@@ -156,7 +156,7 @@ In the reference implementation this separability appears as:
 ## Versioning
 
 This specification is versioned using [Semantic Versioning](https://semver.org)
-applied to the specification as a whole. The current version is **0.8.0**.
+applied to the specification as a whole. The current version is **0.9.1**.
 
 All normative statements are subject to change in any pre-1.0.0 release.
 Breaking changes to normative statements after 1.0.0 will accompany a major

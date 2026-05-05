@@ -9,6 +9,24 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.9.1] — 2026-05-05
+
+### Trust polish
+
+- Updated public version and fixture-count language to match the
+  current verified surface: 28/28 agent fixtures and 18/18
+  cross-language round-trip pairs.
+- Backfilled the missing v0.9.0 changelog entry.
+- Renumbered §05's duplicate R7 versioning rule to R8.
+- Aligned §20's production-embedding streaming guidance with §15's
+  v0.8 rule that streaming transport events are Observation-only and
+  not persisted in the durable Log.
+- Removed stale "forthcoming" markers and roadmap claims from current
+  normative docs.
+- Softened cross-language Event id language: per-Session `seq` remains
+  the canonical identity; secondary ids are implementation-local unless
+  a future version specifies canonical serialization.
+
 ### v0.9.1
 
 #### Added
@@ -18,6 +36,8 @@ the specification as a whole.
   manifest snapshot and make it available to the resolved handler.
 - Added an informative recommended Session metadata envelope for
   trace, actor, workspace, and conversation identifiers.
+
+## [0.9.0] — 2026-05-05
 
 ### Specification
 
@@ -299,6 +319,12 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.9.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.1
+[0.9.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.0
+[0.8.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.8.0
+[0.7.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.7.0
+[0.6.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.6.0
+[0.5.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.4.0
 [0.2.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.2.0
 [0.1.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.1.0

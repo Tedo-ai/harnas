@@ -20,11 +20,12 @@ Session/Log/Projection layer above can be developed and reasoned about
 independently of any specific provider.
 
 This document defines the wire-format contract that every Harnas provider
-MUST honor. A later document (`03-core-types.md`, forthcoming) will define
-the neutral types that a provider exposes on top of this contract. Keeping
-the two layers separate is deliberate: the wire-format contract pins down
-interoperability at the lowest level (what bytes flow in and out), while the
-neutral-types layer defines the harness-visible vocabulary.
+MUST honor. The neutral Session, Log, Event, Projection, and Ingestor
+vocabulary is defined in `01-overview.md` and exercised by the
+conformance fixtures. Keeping the two layers separate is deliberate: the
+wire-format contract pins down interoperability at the lowest level
+(what bytes flow in and out), while the neutral vocabulary defines the
+harness-visible model.
 
 ## The Contract
 

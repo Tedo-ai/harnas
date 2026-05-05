@@ -270,6 +270,7 @@ benchmarks become file-driven scenarios; organizations swap
 runtime languages without rewriting their agents.
 
 v0.1 is deliberately small — just enough to describe the agents
-we can already build with shipped Layer 2 strategies. The
-forthcoming fields in the next section are the open edge where
-future strategy families and capabilities will plug in.
+we can already build with shipped Layer 2 strategies. Future minor
+versions may add optional fields, but conformant runtimes must ignore
+unknown fields they do not understand unless the manifest version is
+outside their supported range.

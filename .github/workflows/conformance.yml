@@ -1,0 +1,97 @@
+name: conformance
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout spec
+        uses: actions/checkout@v5
+        with:
+          path: harnas
+      - name: Checkout Ruby implementation
+        uses: actions/checkout@v5
+        with:
+          repository: Tedo-ai/harnas-ruby
+          path: harnas-ruby
+      - name: Checkout Python implementation
+        uses: actions/checkout@v5
+        with:
+          repository: Tedo-ai/harnas-python
+          path: harnas-python
+      - name: Checkout Go implementation
+        uses: actions/checkout@v5
+        with:
+          repository: Tedo-ai/harnas-go
+          path: harnas-go
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          working-directory: harnas-ruby
+          bundler-cache: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: harnas-go/go.mod
+          cache: true
+
+      - name: Install Python package
+        working-directory: harnas-python
+        run: python -m pip install -e .[test]
+
+      - name: Ruby agent conformance
+        working-directory: harnas-ruby
+        run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" bundle exec bin/conformance.rb
+      - name: Python agent conformance
+        working-directory: harnas-python
+        run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" python bin/conformance.py
+      - name: Go agent conformance
+        working-directory: harnas-go
+        run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" bin/conformance
+
+      - name: Round-trip matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          spec="$GITHUB_WORKSPACE/harnas"
+
+          run_phase_1() {
+            fixture="$1"; lang="$2"; save="$3"
+            case "$lang" in
+              ruby) (cd harnas-ruby && HARNAS_SPEC="$spec" bundle exec bin/conformance_roundtrip.rb --fixture "$fixture" --phase 1 --save "$save") >/dev/null ;;
+              python) (cd harnas-python && HARNAS_SPEC="$spec" python bin/conformance_roundtrip.py --fixture "$fixture" --phase 1 --save "$save") >/dev/null ;;
+              go) (cd harnas-go && HARNAS_SPEC="$spec" bin/conformance-roundtrip --fixture "$fixture" --phase 1 --save "$save") >/dev/null ;;
+            esac
+          }
+
+          run_phase_2() {
+            fixture="$1"; lang="$2"; load="$3"; expected="$4"
+            case "$lang" in
+              ruby) (cd harnas-ruby && HARNAS_SPEC="$spec" bundle exec bin/conformance_roundtrip.rb --fixture "$fixture" --phase 2 --load "$load" --check "$expected") >/dev/null ;;
+              python) (cd harnas-python && HARNAS_SPEC="$spec" python bin/conformance_roundtrip.py --fixture "$fixture" --phase 2 --load "$load" --check "$expected") >/dev/null ;;
+              go) (cd harnas-go && HARNAS_SPEC="$spec" bin/conformance-roundtrip --fixture "$fixture" --phase 2 --load "$load" --check "$expected") >/dev/null ;;
+            esac
+          }
+
+          total=0
+          for fixture_dir in "$spec"/conformance/round-trips/*; do
+            fixture="$(basename "$fixture_dir")"
+            expected="$fixture_dir/expected-log.jsonl"
+            for from in ruby python go; do
+              for to in ruby python go; do
+                tmp="$(mktemp)"
+                run_phase_1 "$fixture" "$from" "$tmp"
+                run_phase_2 "$fixture" "$to" "$tmp" "$expected"
+                rm -f "$tmp"
+                total=$((total + 1))
+                echo "✓ $fixture $from->$to"
+              done
+            done
+          done
+          echo "$total round-trip pairs · $total passed · 0 failed"

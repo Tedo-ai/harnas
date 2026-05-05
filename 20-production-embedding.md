@@ -39,11 +39,18 @@ authoritative replay source.
 ## Streaming To Clients
 
 When using streaming providers, applications SHOULD forward delta
-Events to the client as they are appended. Partial deltas are real Log
-Events. If a stream fails, already-appended deltas remain in the Log;
-the application should surface the failure using the later
-`:assistant_turn_failed` / `:provider_error` Events rather than trying
-to erase the partial stream.
+Observation events to the client as they are emitted. As of §15,
+streaming transport events are Observation-only: they are visible live,
+but they are not appended to the durable Session Log. The consolidated
+semantic result, such as `:assistant_message` or `:tool_use`, is what
+lands in the Log on successful stream completion.
+
+If a stream fails, the client may have already seen partial deltas over
+Observation. Those transport details remain observable but are not part
+of the saved JSONL unless the application has attached a DeltaLogger
+sidecar as described in §13. Applications should surface the failure
+using the later runtime/provider error signal rather than trying to
+rewrite the durable Log.
 
 ## Provider Errors
 

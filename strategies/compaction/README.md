@@ -21,8 +21,8 @@ implementers can port the catalog faithfully.
 | TokenMarkerTail | Tail | Marker | TokenEstimate (% of budget) | no | [token-marker-tail.md](token-marker-tail.md) |
 | SummaryTail | Tail | LLMSummary | MessageCount | yes (via Projection + Provider + Ingestor) | [summary-tail.md](summary-tail.md) |
 | ToolOutputCap | Targeted (tool pair) | PrefixWithNote | PayloadSize | no | [tool-output-cap.md](tool-output-cap.md) |
-| *RelevanceWindow* | *Relevance (top-k)* | *Marker* | *per-turn or threshold* | *no (retrieval, not generation)* | *forthcoming — requires Embeddings + VectorStore primitives* |
-| *DocumentFold* | *FoldAll* | *StateDocument (maintained)* | *per-turn* | *yes (document update via LLM)* | *forthcoming — requires mutable-synthetic-event or external-state primitives* |
+| *RelevanceWindow* | *Relevance (top-k)* | *Marker* | *per-turn or threshold* | *no (retrieval, not generation)* | *reserved — requires Embeddings + VectorStore primitives* |
+| *DocumentFold* | *FoldAll* | *StateDocument (maintained)* | *per-turn* | *yes (document update via LLM)* | *reserved — requires mutable-synthetic-event or external-state primitives* |
 
 ## How compaction strategies are written
 

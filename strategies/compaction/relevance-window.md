@@ -1,4 +1,4 @@
-# RelevanceWindow *(forthcoming)*
+# RelevanceWindow *(reserved)*
 
 **Family:** Compaction
 

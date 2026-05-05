@@ -17,15 +17,15 @@ the numbered spec section for that family (e.g. `05-compaction.md`).
 | Family | Status | Spec section | Strategies currently in catalog |
 |---|---|---|---|
 | [Compaction](compaction/) | shipped | [05-compaction.md](../05-compaction.md) | MarkerTail, TokenMarkerTail, SummaryTail (RelevanceWindow, DocumentFold reserved) |
-| [Permission / trust](permission/) | shipped | [07-permission.md](../07-permission.md) | AlwaysAllow, DenyByName, HumanApproval (ClassifierGated, SandboxedExec, TwoTier forthcoming) |
-| Tool discovery | forthcoming | — | AllUpfront, DeferredSearch, MCPRouted, LazyByName |
-| Prompt assembly | forthcoming | — | LinearConcat, StaticDynamicBoundary, TemplateVariants |
-| Caching | forthcoming | — | SimplePrefix, DeferredToolFolding, DeepPrefixManagement |
-| Retry / recovery | forthcoming | — | SimpleRetry, Tombstone, EscalateToUser |
-| Concurrency | forthcoming | — | Serial, PartitionedBatch, RwLock |
-| Persistence | forthcoming | — | InMemory, JSONLAppendOnly, DAGWithBoundaries |
-| Memory injection | forthcoming | — | CLAUDE.md-style, AGENTS.md-style, DAGRetrieve |
-| Meta-reflection | forthcoming | — | PerTurn, OnBudget, OnFailure |
+| [Permission / trust](permission/) | shipped | [07-permission.md](../07-permission.md) | AlwaysAllow, DenyByName, HumanApproval (ClassifierGated, SandboxedExec, TwoTier reserved) |
+| Tool discovery | reserved | — | AllUpfront, DeferredSearch, MCPRouted, LazyByName |
+| Prompt assembly | reserved | — | LinearConcat, StaticDynamicBoundary, TemplateVariants |
+| Caching | reserved | — | SimplePrefix, DeferredToolFolding, DeepPrefixManagement |
+| Retry / recovery | reserved | — | SimpleRetry, Tombstone, EscalateToUser |
+| Concurrency | reserved | — | Serial, PartitionedBatch, RwLock |
+| Persistence | reserved | — | InMemory, JSONLAppendOnly, DAGWithBoundaries |
+| Memory injection | reserved | — | CLAUDE.md-style, AGENTS.md-style, DAGRetrieve |
+| Meta-reflection | reserved | — | PerTurn, OnBudget, OnFailure |
 
 The estimated maturity count is **~40–50 strategies** across all
 families. Each is a small, documented, benchmarkable artifact.
