@@ -326,5 +326,5 @@ listed in the repository README and the Scope table above.
 
 ## Version
 
-This specification is at version **0.9.1**. All normative statements
+This specification is at version **0.9.2**. All normative statements
 remain subject to change before 1.0.0.

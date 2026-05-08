@@ -9,6 +9,21 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.9.2] — 2026-05-08
+
+### Conformance
+
+- Hardened `with-tool-call-openai` to assert on the second projected
+  request (via `expect_request`), proving the OpenAI projection folds
+  `:tool_use` into the preceding assistant message's `tool_calls[]`,
+  emits `:tool_result` as `role: "tool"` with `tool_call_id`, and
+  normalizes `content` to `null` when `tool_calls[]` is present.
+  Without this assertion an implementation could silently drop
+  `:tool_use` / `:tool_result` events on outbound projection and still
+  pass the suite (the case that surfaced this round in harnas-go).
+
+No spec normative changes; informative test surface only.
+
 ## [0.9.1] — 2026-05-05
 
 ### Trust polish
@@ -319,6 +334,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.9.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.2
 [0.9.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.1
 [0.9.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.0
 [0.8.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.8.0
