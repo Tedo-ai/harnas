@@ -9,6 +9,19 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.9.3] — 2026-05-10
+
+### Informative
+
+- Added [`informative/skills.md`](informative/skills.md), a
+  non-normative convention for Claude Code-style Markdown skills loaded
+  through an ordinary `load_skill` tool.
+- Added [`informative/mcp.md`](informative/mcp.md), a non-normative
+  mapping from MCP tools, resources, and prompts onto existing Harnas
+  primitives.
+
+No normative spec changes and no conformance fixture changes.
+
 ## [0.9.2] — 2026-05-08
 
 ### Conformance
@@ -334,6 +347,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.9.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.3
 [0.9.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.2
 [0.9.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.1
 [0.9.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.0

@@ -7,7 +7,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.9.2** (released 2026-05-08). See
+**Version 0.9.3** (released 2026-05-10). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -48,9 +48,11 @@ reference earlier ones rather than modifying them.
    Session JSONL persistence format for cross-language save/load.
 8. [`20-production-embedding.md`](20-production-embedding.md) —
    recommended production embedding shape for web apps and services.
-9. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+9. [`informative/`](informative/) — non-normative ecosystem
+   conventions, including skills and MCP mapping guidance.
+10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-10. [`conformance/`](conformance/) — fixtures any conformant
+11. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations
