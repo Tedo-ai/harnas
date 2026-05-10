@@ -26,7 +26,9 @@ Use short topic branches named after the work...
 Recommended frontmatter fields:
 
 - `name` (required): string, `snake_case`, matching the filename minus
-  `.md`.
+  `.md`. The reference `load_skill` built-in rejects names not matching
+  `^[a-z][a-z0-9_]*$`; custom skill loaders SHOULD enforce the same
+  rule to prevent path traversal and keep names interoperable.
 - `description` (required): one-line string used in the system-prompt
   index.
 - `triggers` (optional): list of strings, useful as hints for
@@ -59,6 +61,9 @@ convention, leading frontmatter is stripped from the returned body
 because the frontmatter has already been represented in the system
 prompt index.
 
+Skills with no body return an empty string. This is not an error
+condition.
+
 Unknown skill names and read errors should use ordinary Harnas tool
 failure behavior: the `:tool_result` Event records the error.
 
@@ -66,22 +71,35 @@ failure behavior: the `:tool_result` Event records the error.
 
 A skills-enabled agent SHOULD use a two-part shape:
 
-1. The system prompt includes an `## Available skills` section listing
-   every skill as `name: description`.
+1. The system prompt includes a skills index listing every skill as
+   `name: description`.
 2. The agent calls `load_skill(name)` when it judges a skill relevant,
    receives the body, and uses that body in the current turn.
 
-Example system-prompt section:
+The reference implementations ship a `BuildSkillsIndex` helper (Ruby:
+`Harnas::Skills.build_index`; Python: `harnas.skills.build_index`; Go:
+`harnas.BuildSkillsIndex`) that emits this canonical system-prompt
+section:
 
 ```markdown
-## Available skills
+## Skills
 
-- git_workflow: Branching, commit, and PR description conventions for this repo
-- pdf_extract: Extract structured data from PDFs
-- sql_query: Write and explain SQL queries
+You have access to local skills. The skill index below is enough to answer what skills are available. Do not call `load_skill` just to list skills. Call `load_skill` only when a user request matches a skill and you need its full instructions.
 
-To use one, call load_skill(name).
+- `git_workflow`: Branching, commit, and PR description conventions for this repo
+- `pdf_extract`: Extract structured data from PDFs
+- `sql_query`: Write and explain SQL queries
 ```
+
+Implementations that publish a skills index in the system prompt SHOULD
+include text discouraging the model from calling `load_skill` for
+listing purposes. Without this guard, models tend to call `load_skill`
+once per indexed skill in response to "what skills do I have?".
+
+Implementations MAY include optional frontmatter fields such as
+`triggers`, `category`, or future additions in index entries beyond
+`name: description`. The model SHOULD treat unrecognized text as
+informational.
 
 ## Replay
 
@@ -104,4 +122,3 @@ seq=2  tool_use           load_skill(name="git_workflow")
 seq=3  tool_result        <body of git_workflow.md, frontmatter stripped>
 seq=4  assistant_message  "Here's a PR description following the git_workflow conventions: ..."
 ```
-

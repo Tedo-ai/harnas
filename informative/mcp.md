@@ -30,6 +30,11 @@ Recommended registration shape:
   `tools/call`, sends the request to the server, and returns the
   result.
 
+MCP server names SHOULD match `^[a-z][a-z0-9_]*$`, the same shape as
+skill names. This keeps the `<server>.<tool>` namespace cleanly
+delimited and avoids dot-confusion when servers contain numbers or
+underscores.
+
 Discovered tools SHOULD be added to the Session's manifest snapshot
 metadata before the Session starts. That keeps saved Sessions
 inspectable and makes save/load behavior predictable.
@@ -37,6 +42,25 @@ inspectable and makes save/load behavior predictable.
 If a server becomes unreachable mid-session, tool dispatch should use
 ordinary Harnas tool-failure behavior: append a `:tool_result` Event
 with `error` set. No MCP-specific Event type is needed.
+
+### Result Flattening
+
+MCP `tools/call` returns `result.content` as an array of typed items.
+Implementations SHOULD flatten this into the Harnas tool result output
+string as follows:
+
+- Concatenate text items with blank-line separators (`\n\n`).
+- Render image items as `[image: <mimeType>, <N> bytes]`. `<N>` should
+  be the decoded byte count if base64 decoding succeeds, otherwise the
+  encoded length.
+- Render resource and resource_link items as `[resource: <uri>]`.
+- Render unknown content types as `[<type>]` placeholder strings.
+- If `result.content` is missing or malformed, fall back to the
+  top-level `text` field, then to a JSON serialization of the result
+  object.
+
+A multimodal result SHOULD give the model a useful textual placeholder
+rather than failing the tool result.
 
 ## MCP Resource to Harnas Tool
 
@@ -71,6 +95,13 @@ tools, resources, or prompts mid-session.
 Freezing discovery keeps Session behavior reproducible and matches the
 general Harnas rule that configuration is bound when the Session starts.
 
+When an MCP server fails to start, fails `tools/list`, or otherwise
+cannot be discovered, implementations SHOULD continue Session startup
+with that server marked as failed rather than aborting the whole
+Session. The failed server SHOULD appear in the implementation's MCP
+status or introspection surface, and later calls to tools from that
+server should fail through ordinary `:tool_result` error behavior.
+
 ## Out of Scope
 
 This convention does not define:
@@ -80,4 +111,3 @@ This convention does not define:
   per-implementation concerns.
 - Server configuration schemas. Implementations and agents may use TOML,
   JSON, YAML, environment variables, or another local convention.
-

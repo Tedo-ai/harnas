@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"help me write a PR description"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":42,"output_tokens":7}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_skill_1","name":"load_skill","arguments":{"name":"git_workflow"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_skill_1","output":"Use short topic branches.\n\nPR descriptions should include:\n- Summary\n- Tests\n","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"Here's a PR description following the git_workflow conventions.","stop_reason":"end_turn","usage":{"input_tokens":76,"output_tokens":12}}}

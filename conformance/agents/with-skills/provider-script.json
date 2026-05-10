@@ -1,0 +1,107 @@
+[
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "system",
+          "content": "## Skills\n\nYou have access to local skills. The skill index below is enough to answer what skills are available. Do not call `load_skill` just to list skills. Call `load_skill` only when a user request matches a skill and you need its full instructions.\n\n- `git_workflow`: Branching, commit, and PR description conventions for this repo"
+        },
+        {
+          "role": "user",
+          "content": "help me write a PR description"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "load_skill",
+            "description": "Load the body of a named skill",
+            "parameters": {
+              "type": "object",
+              "properties": { "name": { "type": "string" } },
+              "required": ["name"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_skill_1",
+                "type": "function",
+                "function": { "name": "load_skill", "arguments": "{\"name\":\"git_workflow\"}" }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": { "prompt_tokens": 42, "completion_tokens": 7 }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "system",
+          "content": "## Skills\n\nYou have access to local skills. The skill index below is enough to answer what skills are available. Do not call `load_skill` just to list skills. Call `load_skill` only when a user request matches a skill and you need its full instructions.\n\n- `git_workflow`: Branching, commit, and PR description conventions for this repo"
+        },
+        {
+          "role": "user",
+          "content": "help me write a PR description"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_skill_1",
+              "type": "function",
+              "function": { "name": "load_skill", "arguments": "{\"name\":\"git_workflow\"}" }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_skill_1",
+          "content": "Use short topic branches.\n\nPR descriptions should include:\n- Summary\n- Tests\n"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "load_skill",
+            "description": "Load the body of a named skill",
+            "parameters": {
+              "type": "object",
+              "properties": { "name": { "type": "string" } },
+              "required": ["name"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "Here's a PR description following the git_workflow conventions."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 76, "completion_tokens": 12 }
+    }
+  }
+]

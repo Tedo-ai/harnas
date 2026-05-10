@@ -9,6 +9,24 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.10.0] — 2026-05-10
+
+### Added
+
+- Added `with-skills` and `with-skills-invalid-name` conformance
+  fixtures for the `load_skill` built-in and skills-index prompt
+  convention, bringing agent conformance to 30 fixtures.
+
+### Informative
+
+- Tightened [`informative/skills.md`](informative/skills.md) with the
+  canonical `## Skills` index shape, the guard text that discourages
+  listing-time `load_skill` calls, skill-name validation, optional
+  index metadata, and empty-body behavior.
+- Tightened [`informative/mcp.md`](informative/mcp.md) with MCP
+  result-content flattening guidance, server-name validation, and
+  degraded startup behavior for unavailable servers.
+
 ## [0.9.3] — 2026-05-10
 
 ### Informative
@@ -347,6 +365,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.10.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.10.0
 [0.9.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.3
 [0.9.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.2
 [0.9.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.1

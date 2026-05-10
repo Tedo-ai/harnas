@@ -1,0 +1,78 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_skill_bad",
+              "type": "function",
+              "function": { "name": "load_skill", "arguments": "{\"name\":\"foo-bar\"}" }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 36, "completion_tokens": 7 }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "system",
+          "content": "## Skills\n\nYou have access to local skills. The skill index below is enough to answer what skills are available. Do not call `load_skill` just to list skills. Call `load_skill` only when a user request matches a skill and you need its full instructions.\n\n- `git_workflow`: Branching, commit, and PR description conventions for this repo"
+        },
+        {
+          "role": "user",
+          "content": "load skill foo-bar"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_skill_bad",
+              "type": "function",
+              "function": { "name": "load_skill", "arguments": "{\"name\":\"foo-bar\"}" }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_skill_bad",
+          "content": "RuntimeError: invalid skill name: foo-bar"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "load_skill",
+            "description": "Load the body of a named skill",
+            "parameters": {
+              "type": "object",
+              "properties": { "name": { "type": "string" } },
+              "required": ["name"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "That skill name is invalid."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 62, "completion_tokens": 6 }
+    }
+  }
+]

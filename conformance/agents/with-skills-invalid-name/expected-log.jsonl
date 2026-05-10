@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"load skill foo-bar"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":36,"output_tokens":7}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_skill_bad","name":"load_skill","arguments":{"name":"foo-bar"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_skill_bad","output":null,"error":"RuntimeError: invalid skill name: foo-bar"}}
+{"seq":4,"type":"assistant_message","payload":{"text":"That skill name is invalid.","stop_reason":"end_turn","usage":{"input_tokens":62,"output_tokens":6}}}
