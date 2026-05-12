@@ -20,11 +20,11 @@ that helps the reader but does not impose requirements.
 In this specification:
 
 - Numbered requirements (e.g. **R1**, **R2**) within a section are normative.
-- JSON Schema files under `spec/schemas/` are normative.
+- JSON Schema files under `schemas/` are normative.
 - Prose paragraphs outside numbered requirements are informative unless they
   contain an RFC 2119 keyword, in which case the sentence containing that
   keyword is normative.
-- Code examples, including all files under `reference/`, are informative.
+- Code examples and implementation references are informative.
 
 When normative text and informative text appear to conflict, normative text
 governs.
@@ -85,8 +85,9 @@ for a structure, prose descriptions of that structure in other
 specification documents are informative clarifications of the schema, and
 where prose and schema disagree, the schema governs.
 
-The Ruby code under `reference/` is a reference implementation of Harnas. It
-is informative and does not constrain other implementations. A conforming
+The Ruby reference implementation lives in
+[`Tedo-ai/harnas-ruby`](https://github.com/Tedo-ai/harnas-ruby). It is
+informative and does not constrain other implementations. A conforming
 implementation MAY differ from the reference implementation in any way that
 does not violate a normative statement.
 
@@ -124,8 +125,9 @@ strategy's spec stub contains:
   when used with defaults.
 
 Implementations of canonical strategies are informative. The Ruby
-versions under `reference/lib/harnas/strategies/` are one port; a
-Python or Go port following the same pseudocode is equally
+versions under `lib/harnas/strategies/` in
+[`Tedo-ai/harnas-ruby`](https://github.com/Tedo-ai/harnas-ruby) are one
+port; a Python or Go port following the same pseudocode is equally
 conformant.
 
 ### Layer 3 — User strategy code

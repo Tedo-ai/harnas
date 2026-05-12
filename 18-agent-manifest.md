@@ -29,7 +29,7 @@ identifying the manifest spec version. v0.1 is the first
 supported version.
 
 **R2.** A manifest MUST validate against the JSON Schema at
-`spec/schemas/agent-manifest.schema.json`. Where prose in this
+`schemas/agent-manifest.schema.json`. Where prose in this
 document and the schema disagree, the schema governs.
 
 ## Fields (v0.1)

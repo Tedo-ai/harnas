@@ -141,7 +141,7 @@ Harnas::Hooks.off(:pre_projection, handler)
 ```
 
 The `install` class method is an ergonomic wrapper around
-`Harnas::Hooks.on(:pre_projection, ...)` that returns the
+`session.hooks.on(:pre_projection, ...)` that returns the
 registered handler for later removal. Strategies MAY expose
 additional installation-time parameters.
 

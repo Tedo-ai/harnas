@@ -18,6 +18,12 @@ the specification as a whole.
   is a broad permission surface, and the shape needs implementation
   experience before becoming a required built-in.
 
+### Fixed
+
+- Replaced stale pre-split `reference/` paths with the public
+  `Tedo-ai/harnas-ruby` repository layout, and updated strategy examples
+  to show session-scoped hook installation.
+
 ## [0.10.0] — 2026-05-10
 
 ### Added

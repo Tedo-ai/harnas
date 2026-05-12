@@ -11,8 +11,10 @@ Harnas specifies the coordination layer between a language model (or any
 provider that responds to model-shaped requests) and the surface a user or
 operator interacts with. It sits above provider-specific APIs and below
 application-level concerns like UI, orchestration, and policy. The same
-specification can be implemented in any language; the Ruby code under
-`reference/` is one implementation and is informative only.
+specification can be implemented in any language; the Ruby reference
+implementation in
+[`Tedo-ai/harnas-ruby`](https://github.com/Tedo-ai/harnas-ruby) is one
+implementation and is informative only.
 
 ## The Layer Picture
 

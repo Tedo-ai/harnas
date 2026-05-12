@@ -60,5 +60,5 @@ is complete as written.
 
 ## Implementation
 
-`reference/lib/harnas/strategies/permission/always_allow.rb` — plain
+`harnas-ruby/lib/harnas/strategies/permission/always_allow.rb` — plain
 Ruby, ~15 lines.

@@ -89,5 +89,5 @@ empty, non-Array, or contains a non-String element.
 
 ## Implementation
 
-`reference/lib/harnas/strategies/permission/deny_by_name.rb` — plain
+`harnas-ruby/lib/harnas/strategies/permission/deny_by_name.rb` — plain
 Ruby, ~30 lines.

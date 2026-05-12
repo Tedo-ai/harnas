@@ -85,8 +85,9 @@ compares the resulting Log to `expected-log.jsonl`, and reports
 pass/fail per fixture. A named subset can be run by passing
 fixture names: `just conformance minimal-chat with-tool-call`.
 
-Agent fixtures are also run as part of `just test` (via
-`reference/spec/harnas/conformance/runner_spec.rb`) so any
+Agent fixtures are also run as part of the Ruby reference
+implementation's `just test` (via
+`harnas-ruby/spec/harnas/conformance/runner_spec.rb`) so any
 regression in projection/ingestor/agent-loop behavior is caught
 on normal CI.
 
@@ -271,7 +272,8 @@ From the repo root:
 
 This re-runs the canonical prompt against every live provider and rewrites
 the files under `fixtures/hello-one-word/`. You must have valid API keys in
-`reference/.env` for this to work. Regeneration is expected (not exceptional)
+the implementation environment for this to work. Regeneration is expected
+(not exceptional)
 maintenance: provider APIs evolve, and fixtures should track reality.
 
 After regenerating, inspect the diff. Non-cosmetic changes to `request.json`

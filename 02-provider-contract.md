@@ -116,8 +116,8 @@ a generic response-shape source.
 In the Ruby reference implementation, the contract is expressed as a duck
 type: any object that responds to `#call(request_hash)` and returns a
 response hash (or raises `Harnas::Providers::Error` or its subclasses) is a
-provider. No base class or mixin is required. Concrete implementations live
-under `reference/lib/harnas/providers/`:
+provider. No base class or mixin is required. Concrete implementations in
+`Tedo-ai/harnas-ruby` live under `lib/harnas/providers/`:
 
 - `Harnas::Providers::Anthropic` — live Anthropic Messages API
 - `Harnas::Providers::OpenAI` — live OpenAI Chat Completions API

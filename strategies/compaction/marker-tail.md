@@ -164,5 +164,5 @@ Latest run on canonical scenarios (from `just benchmark`):
 
 ## Implementation
 
-`reference/lib/harnas/strategies/compaction/marker_tail.rb` —
+`harnas-ruby/lib/harnas/strategies/compaction/marker_tail.rb` —
 plain Ruby, ~50 lines, uses the shared Compaction helpers.

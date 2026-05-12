@@ -102,5 +102,5 @@ Harnas::Strategies::Permission::HumanApproval.install(
 
 ## Implementation
 
-`reference/lib/harnas/strategies/permission/human_approval.rb` —
+`harnas-ruby/lib/harnas/strategies/permission/human_approval.rb` —
 plain Ruby, ~30 lines.

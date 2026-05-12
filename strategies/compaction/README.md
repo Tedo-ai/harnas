@@ -3,8 +3,9 @@
 This directory is the **strategy catalog** for the compaction family.
 Each strategy is one short Markdown stub declaring its purpose,
 configuration surface, arbitrary choices, and benchmark profile.
-The implementation for each is plain Ruby — not a framework — living
-under `reference/lib/harnas/strategies/compaction/<name>.rb`.
+The Ruby reference implementation for each is plain Ruby — not a
+framework — living under
+`lib/harnas/strategies/compaction/<name>.rb` in `Tedo-ai/harnas-ruby`.
 
 The family contract (R1–R6 — what every compaction strategy MUST
 honor regardless of its implementation) is specified once in
@@ -36,17 +37,17 @@ readability:
 
 ```ruby
 class MyStrategy
-  def self.install(**config)
-    new(**config).install
+  def self.install(session, **config)
+    new(**config).install(session.hooks)
   end
 
   def initialize(**config)
     # validate config
   end
 
-  def install
+  def install(hooks)
     handler = method(:on_pre_projection)
-    Harnas::Hooks.on(:pre_projection, handler)
+    hooks.on(:pre_projection, handler)
     handler
   end
 
@@ -74,7 +75,7 @@ end
 Authors are expected to call the Compaction Helpers rather than
 reinvent them — the helpers are the family's shared safety rails.
 
-## Shared helpers (from `reference/lib/harnas/compaction/helpers.rb`)
+## Shared helpers (from `harnas-ruby/lib/harnas/compaction/helpers.rb`)
 
 | Helper | Purpose |
 |---|---|

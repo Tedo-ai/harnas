@@ -4,8 +4,9 @@ This directory is the browsable catalog of **strategies** — the
 hook-handler packs that implement the different architectural choices
 a Harnas installation can make. Every strategy has a one-page spec
 stub declaring its purpose, configuration, arbitrary choices, and
-benchmark profile. The implementations live under
-`reference/lib/harnas/strategies/`.
+benchmark profile. The Ruby reference implementations live under
+`lib/harnas/strategies/` in
+[`Tedo-ai/harnas-ruby`](https://github.com/Tedo-ai/harnas-ruby).
 
 Each family's README gives the pattern for writing strategies in
 that family and the shared helpers strategies can rely on. The
@@ -42,11 +43,12 @@ A Harnas canonical strategy is:
 2. **A "Composed of" declaration** (Hook × Predicate × Action) in
    the stub — normative, matches the pseudocode.
 3. **An implementation** in each supported language. The Ruby version
-   lives under `reference/lib/harnas/strategies/<family>/<name>.rb`
-   and is informative (one of possibly many conformant ports).
-4. **A test file** under `reference/spec/harnas/strategies/...`
-   verifying the Ruby port matches the pseudocode, including the
-   normative defaults.
+   lives under `lib/harnas/strategies/<family>/<name>.rb` in the Ruby
+   reference implementation and is informative (one of possibly many
+   conformant ports).
+4. **A test file** under `spec/harnas/strategies/...` in the Ruby
+   reference implementation verifying the Ruby port matches the
+   pseudocode, including the normative defaults.
 5. **Optionally** a benchmark profile (results of running the
    strategy on canonical scenarios via the harness in
    [`06-benchmarks.md`](../06-benchmarks.md)).
@@ -87,32 +89,33 @@ require "harnas"
 module Acme
   module Strategies
     class MyRetentionPolicy
-      def self.install(**config)
+      def self.install(session, **config)
         # construct an instance with the validated config and
-        # register its handler(s) on Harnas::Hooks.
-        # Returns the registered handler so callers can Hooks.off it.
+        # register its handler(s) on session.hooks.
+        # Returns the registered handler so callers can unsubscribe it.
       end
       # ... your strategy here, using Harnas primitives
     end
   end
 end
 
-Acme::Strategies::MyRetentionPolicy.install(...)
+Acme::Strategies::MyRetentionPolicy.install(session, ...)
 ```
 
 ### The contract is the class-level entry point
 
-A strategy MUST expose a class-level `install(**config)` (or its
+A strategy MUST expose a class-level `install(session, **config)` (or its
 language equivalent — a static method, factory function, etc.) that
-takes the manifest's `config` Hash and registers whatever Hooks the
-strategy needs. The Ruby reference also defines an instance-level
-`install` method that the class-level one delegates to; that is
-**implementation idiom, not part of the contract**. Languages that
-cannot have class-level and instance-level methods of the same name
-(Python, Rust, Go) MAY inline the registration inside the class-level
-entry. The catalog spec stubs and the Ruby reference both assume the
-two-method form for readability; readers should treat the inner
-delegation as a Ruby convenience, not a normative requirement.
+takes the target Session plus the manifest's `config` object and
+registers whatever Hooks the strategy needs on that Session. The Ruby
+reference also defines an instance-level `install` method that the
+class-level one delegates to; that is **implementation idiom, not part
+of the contract**. Languages that cannot have class-level and
+instance-level methods of the same name (Python, Rust, Go) MAY inline
+the registration inside the class-level entry. The catalog spec stubs
+and the Ruby reference both assume the two-method form for readability;
+readers should treat the inner delegation as a Ruby convenience, not a
+normative requirement.
 
 Your strategy MUST honor `17-composition-rules.md` R1 (build from
 the spec's atomic operations; no harness-internal escape-hatch

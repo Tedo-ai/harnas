@@ -251,7 +251,7 @@ keeps the *gist* where MarkerTail keeps *nothing* of the older range.
 
 ## Implementation
 
-`reference/lib/harnas/strategies/compaction/summary_tail.rb` — ~100
+`harnas-ruby/lib/harnas/strategies/compaction/summary_tail.rb` — ~100
 lines of plain Ruby. Uses the shared Compaction helpers plus the
 sub-Log pattern from `17-composition-rules.md`. Zero
 provider-specific branches.

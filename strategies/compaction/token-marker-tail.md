@@ -169,5 +169,5 @@ signature.
 
 ## Implementation
 
-`reference/lib/harnas/strategies/compaction/token_marker_tail.rb` —
+`harnas-ruby/lib/harnas/strategies/compaction/token_marker_tail.rb` —
 plain Ruby, ~60 lines, uses the shared Compaction helpers.

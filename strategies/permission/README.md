@@ -3,8 +3,9 @@
 This directory is the **strategy catalog** for the permission family.
 Each strategy is one short Markdown stub declaring its purpose,
 configuration surface, arbitrary choices, and composed-of shape.
-The implementation for each is plain Ruby — not a framework — living
-under `reference/lib/harnas/strategies/permission/<name>.rb`.
+The Ruby reference implementation for each is plain Ruby — not a
+framework — living under
+`lib/harnas/strategies/permission/<name>.rb` in `Tedo-ai/harnas-ruby`.
 
 The family contract (R1–R5 — what every permission strategy MUST
 honor regardless of its implementation) is specified once in
@@ -34,17 +35,17 @@ readability:
 
 ```ruby
 class MyStrategy
-  def self.install(**config)
-    new(**config).install
+  def self.install(session, **config)
+    new(**config).install(session.hooks)
   end
 
   def initialize(**config)
     # validate config
   end
 
-  def install
+  def install(hooks)
     handler = method(:on_pre_tool_use)
-    Harnas::Hooks.on(:pre_tool_use, handler)
+    hooks.on(:pre_tool_use, handler)
     handler
   end
 
