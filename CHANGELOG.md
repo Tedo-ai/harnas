@@ -9,6 +9,15 @@ the specification as a whole.
 
 ## [Unreleased]
 
+### Informative
+
+- Added [`informative/bash_session.md`](informative/bash_session.md), a
+  non-normative candidate convention for persistent shell-session tools
+  in sandboxed coding agents. The document records the current design
+  constraints: tool outputs remain JSON encoded as strings, shell access
+  is a broad permission surface, and the shape needs implementation
+  experience before becoming a required built-in.
+
 ## [0.10.0] — 2026-05-10
 
 ### Added

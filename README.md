@@ -49,7 +49,8 @@ reference earlier ones rather than modifying them.
 8. [`20-production-embedding.md`](20-production-embedding.md) —
    recommended production embedding shape for web apps and services.
 9. [`informative/`](informative/) — non-normative ecosystem
-   conventions, including skills and MCP mapping guidance.
+   conventions, including skills, MCP mapping guidance, and the
+   candidate `bash_session` shell-tool shape.
 10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
 11. [`conformance/`](conformance/) — fixtures any conformant
