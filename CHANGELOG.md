@@ -23,6 +23,10 @@ the specification as a whole.
 - Replaced stale pre-split `reference/` paths with the public
   `Tedo-ai/harnas-ruby` repository layout, and updated strategy examples
   to show session-scoped hook installation.
+- Updated the informative `bash_session` convention with dogfood
+  findings: command approval is the application boundary, `cwd` is not a
+  sandbox, background jobs are shell-managed, and command-local output is
+  preferred for agent reasoning.
 
 ## [0.10.0] — 2026-05-10
 
