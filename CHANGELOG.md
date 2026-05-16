@@ -27,6 +27,9 @@ the specification as a whole.
   findings: command approval is the application boundary, `cwd` is not a
   sandbox, background jobs are shell-managed, and command-local output is
   preferred for agent reasoning.
+- Noted that all three peer implementations now carry the experimental
+  `bash_session` built-in while it remains outside normative
+  conformance.
 
 ## [0.10.0] — 2026-05-10
 

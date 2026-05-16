@@ -60,9 +60,9 @@ reference earlier ones rather than modifying them.
 
 | Language | Repo | Status |
 |---|---|---|
-| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), 9 builtin tools, 4 compaction strategies, full conformable surface. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
-| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools, middleware, compaction, permissions, and CLI surface. |
+| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, 4 compaction strategies, full conformable surface. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, middleware, compaction, permissions, and CLI surface. |
+| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, middleware, compaction, permissions, and CLI surface. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's
