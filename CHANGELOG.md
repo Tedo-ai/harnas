@@ -30,6 +30,10 @@ the specification as a whole.
 - Noted that all three peer implementations now carry the experimental
   `bash_session` built-in while it remains outside normative
   conformance.
+- Added [`informative/adopter-helpers.md`](informative/adopter-helpers.md),
+  documenting the non-normative runtime assembly, transcript projection,
+  and dynamic tool snapshot helper surfaces surfaced by AgentStaple
+  integration.
 
 ## [0.10.0] — 2026-05-10
 
