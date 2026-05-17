@@ -7,7 +7,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.10.0** (released 2026-05-10). See
+**Version 0.11.0** (released 2026-05-17). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -50,7 +50,7 @@ reference earlier ones rather than modifying them.
    recommended production embedding shape for web apps and services.
 9. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
-   guidance, and the candidate `bash_session` shell-tool shape.
+   guidance, and shell-tool embedding notes.
 10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
 11. [`conformance/`](conformance/) — fixtures any conformant
@@ -60,9 +60,9 @@ reference earlier ones rather than modifying them.
 
 | Language | Repo | Status |
 |---|---|---|
-| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, 4 compaction strategies, full conformable surface. |
-| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, middleware, compaction, permissions, and CLI surface. |
-| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 30/30 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including experimental `bash_session`, middleware, compaction, permissions, and CLI surface. |
+| Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 34/34 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including normative `bash_session`, 4 compaction strategies, full conformable surface. |
+| Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 34/34 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including normative `bash_session`, middleware, compaction, permissions, and CLI surface. |
+| Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 34/34 agent conformance fixtures, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), builtin tools including normative `bash_session`, middleware, compaction, permissions, and CLI surface. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's

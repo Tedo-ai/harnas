@@ -1,0 +1,8 @@
+{"seq":0,"type":"user_message","payload":{"text":"prove shell state persists"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":16,"output_tokens":6}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_bash_state_1","name":"bash_session","arguments":{"action":"run","session_id":"state_s1","command":"export MYVAR=hello && cd /tmp"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_bash_state_1","output":"{\"session_id\":\"state_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":28,"output_tokens":6}}}
+{"seq":5,"type":"tool_use","payload":{"id":"call_bash_state_2","name":"bash_session","arguments":{"action":"run","session_id":"state_s1","command":"echo $MYVAR && pwd"}}}
+{"seq":6,"type":"tool_result","payload":{"tool_use_id":"call_bash_state_2","output":"{\"session_id\":\"state_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"hello\\n/tmp\\n\",\"stderr\":\"\",\"command_stdout\":\"hello\\n/tmp\\n\",\"command_stderr\":\"\",\"truncated\":false}","error":null}}
+{"seq":7,"type":"assistant_message","payload":{"text":"The session preserved MYVAR and the /tmp working directory.","stop_reason":"end_turn","usage":{"input_tokens":48,"output_tokens":10}}}

@@ -1,0 +1,31 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-bash-session-timeout",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "bash_session",
+      "handler": "harnas.builtin.bash_session",
+      "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "command": { "type": "string" },
+          "action": { "type": "string", "enum": ["run", "status", "kill"] },
+          "timeout_ms": { "type": "integer" }
+        }
+      },
+      "config": {
+        "shell": "bash",
+        "cwd": ".",
+        "max_output_bytes": 65536
+      }
+    }
+  ],
+  "strategies": []
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_timeout_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"timeout_s1\",\"command\":\"sleep 60\",\"timeout_ms\":500}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 16, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_timeout_2",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"kill\",\"session_id\":\"timeout_s1\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 26, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "The long-running command was killed."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 42, "completion_tokens": 8 }
+  }
+]

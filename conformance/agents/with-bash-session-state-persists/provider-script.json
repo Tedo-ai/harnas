@@ -1,0 +1,58 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_state_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"export MYVAR=hello && cd /tmp\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 16, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_state_2",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"echo $MYVAR && pwd\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 28, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "The session preserved MYVAR and the /tmp working directory."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 48, "completion_tokens": 10 }
+  }
+]

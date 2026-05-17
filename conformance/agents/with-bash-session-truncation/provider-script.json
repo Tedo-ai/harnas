@@ -1,0 +1,36 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_truncation_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"trunc_s1\",\"command\":\"printf 'hello world\\\\n'\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 14, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "The output was truncated."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 28, "completion_tokens": 7 }
+  }
+]

@@ -9,14 +9,27 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.11.0] — 2026-05-17
+
 ### Informative
 
 - Added [`informative/bash_session.md`](informative/bash_session.md), a
-  non-normative candidate convention for persistent shell-session tools
-  in sandboxed coding agents. The document records the current design
-  constraints: tool outputs remain JSON encoded as strings, shell access
-  is a broad permission surface, and the shape needs implementation
-  experience before becoming a required built-in.
+  persistent shell-session tool convention for sandboxed coding agents.
+  The document records the design constraints: tool outputs remain JSON
+  encoded as strings, shell access is a broad permission surface, and
+  command-local output is preferred for agent reasoning.
+- Added [`informative/adopter-helpers.md`](informative/adopter-helpers.md),
+  documenting the non-normative runtime assembly, transcript projection,
+  and dynamic tool snapshot helper surfaces surfaced by AgentStaple
+  integration.
+
+### Conformance
+
+- Promoted `harnas.builtin.bash_session` to the conformable surface with
+  four new fixtures: `with-bash-session-basic`,
+  `with-bash-session-state-persists`, `with-bash-session-timeout`, and
+  `with-bash-session-truncation`.
+- Agent conformance now covers 34 fixtures.
 
 ### Fixed
 
@@ -27,13 +40,6 @@ the specification as a whole.
   findings: command approval is the application boundary, `cwd` is not a
   sandbox, background jobs are shell-managed, and command-local output is
   preferred for agent reasoning.
-- Noted that all three peer implementations now carry the experimental
-  `bash_session` built-in while it remains outside normative
-  conformance.
-- Added [`informative/adopter-helpers.md`](informative/adopter-helpers.md),
-  documenting the non-normative runtime assembly, transcript projection,
-  and dynamic tool snapshot helper surfaces surfaced by AgentStaple
-  integration.
 
 ## [0.10.0] — 2026-05-10
 
@@ -391,6 +397,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.11.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.11.0
 [0.10.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.10.0
 [0.9.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.3
 [0.9.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.2
