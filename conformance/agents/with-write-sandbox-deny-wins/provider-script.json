@@ -1,0 +1,80 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_write_overlap",
+              "type": "function",
+              "function": {
+                "name": "write_file",
+                "arguments": "{\"content\":\"secret\",\"path\":\"./secrets/anything\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        { "role": "user", "content": "write the overlapping secret file" },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_write_overlap",
+              "type": "function",
+              "function": {
+                "name": "write_file",
+                "arguments": "{\"content\":\"secret\",\"path\":\"./secrets/anything\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_write_overlap",
+          "content": "denied by hook: Write to './secrets/anything' is not permitted. Allowed paths: ['./secrets']. Denied paths: ['./secrets']."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "write_file",
+            "description": "Write text content to a file at the given path.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "path": { "type": "string" },
+                "content": { "type": "string" }
+              },
+              "required": ["path", "content"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "Deny won over allow."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 32, "completion_tokens": 9 }
+    }
+  }
+]

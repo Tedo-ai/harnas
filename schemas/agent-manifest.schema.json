@@ -95,8 +95,8 @@
         "properties": {
           "name": {
             "type": "string",
-            "pattern": "^[A-Z][A-Za-z0-9]+::[A-Z][A-Za-z0-9]+$",
-            "description": "Canonical strategy name, e.g. 'Compaction::Snip'. Matches the directory structure under spec/strategies/."
+            "pattern": "^([A-Z][A-Za-z0-9]+::[A-Z][A-Za-z0-9]+|[a-z][a-z0-9_-]*/[a-z][a-z0-9_-]*)$",
+            "description": "Canonical strategy name, e.g. 'Compaction::Snip' or 'sandbox/write'. Matches the directory structure under spec/strategies/."
           },
           "config": {
             "type": "object",

@@ -1,0 +1,11 @@
+{"seq":0,"type":"user_message","payload":{"text":"run the failing command"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_fail_1","name":"run_shell","arguments":{"command":"failing-cmd"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_fail_1","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":4,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":20,"output_tokens":8}}}
+{"seq":5,"type":"tool_use","payload":{"id":"call_fail_2","name":"run_shell","arguments":{"command":"failing-cmd"}}}
+{"seq":6,"type":"tool_result","payload":{"tool_use_id":"call_fail_2","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":7,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":30,"output_tokens":8}}}
+{"seq":8,"type":"tool_use","payload":{"id":"call_fail_3","name":"run_shell","arguments":{"command":"failing-cmd"}}}
+{"seq":9,"type":"tool_result","payload":{"tool_use_id":"call_fail_3","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":10,"type":"runtime_error","payload":{"source":"strategy","handler":"guard/repetition","error_class":"Harnas::RepetitionGuard","message":"repetition_guard","reason":"repetition_guard","trigger":"consecutive_failures","tool":"run_shell","count":3,"terminal":true}}

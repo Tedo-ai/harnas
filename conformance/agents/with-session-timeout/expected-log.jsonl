@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"Hello.","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2}}}
+{"seq":2,"type":"user_message","payload":{"text":"are you still there?"}}
+{"seq":3,"type":"runtime_error","payload":{"source":"strategy","handler":"guard/timeout","error_class":"Harnas::TimeoutGuard","message":"timeout","reason":"timeout","terminal":true}}

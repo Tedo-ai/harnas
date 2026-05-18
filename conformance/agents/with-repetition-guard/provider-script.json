@@ -1,0 +1,68 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fail_1",
+              "type": "function",
+              "function": {
+                "name": "run_shell",
+                "arguments": "{\"command\":\"failing-cmd\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fail_2",
+              "type": "function",
+              "function": {
+                "name": "run_shell",
+                "arguments": "{\"command\":\"failing-cmd\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 20, "completion_tokens": 8 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fail_3",
+              "type": "function",
+              "function": {
+                "name": "run_shell",
+                "arguments": "{\"command\":\"failing-cmd\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 30, "completion_tokens": 8 }
+  }
+]

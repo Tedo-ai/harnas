@@ -9,6 +9,26 @@ the specification as a whole.
 
 ## [Unreleased]
 
+## [0.12.0] — 2026-05-18
+
+### Informative
+
+- Added [`informative/exit-codes.md`](informative/exit-codes.md), a
+  recommended CLI exit-code taxonomy for successful runs, agent
+  failures, invocation errors, approval rejection, and sandbox
+  violations.
+
+### Conformance
+
+- Added `sandbox/write`, a tool-boundary write strategy with allow/deny
+  path enforcement for `write_file` and `edit_file`, plus fixtures for
+  allowed writes, denied writes, and deny-wins overlap.
+- Added `guard/repetition`, an anti-loop strategy for repeated failing
+  tool calls, plus `with-repetition-guard`.
+- Added `guard/timeout`, a wall-clock session timeout guard, plus
+  `with-session-timeout`.
+- Agent conformance now covers 39 fixtures.
+
 ## [0.11.0] — 2026-05-17
 
 ### Informative
@@ -397,6 +417,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.12.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.12.0
 [0.11.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.11.0
 [0.10.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.10.0
 [0.9.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.9.3

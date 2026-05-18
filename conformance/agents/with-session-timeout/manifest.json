@@ -1,0 +1,18 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-session-timeout",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": [
+    {
+      "name": "guard/timeout",
+      "config": {
+        "timeout_seconds": 0
+      }
+    }
+  ]
+}

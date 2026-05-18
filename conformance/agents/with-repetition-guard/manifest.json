@@ -1,0 +1,32 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-repetition-guard",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "run_shell",
+      "handler": "conformance.raise_error",
+      "description": "Run a shell command.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "command": { "type": "string" }
+        },
+        "required": ["command"]
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "guard/repetition",
+      "config": {
+        "max_consecutive_failures": 3,
+        "max_identical_calls": 5
+      }
+    }
+  ]
+}

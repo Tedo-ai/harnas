@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"write the allowed file"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_write_allowed","name":"write_file","arguments":{"content":"ok","path":"./allowed/output.txt"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_write_allowed","output":"wrote 2 bytes to ./allowed/output.txt","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"Wrote the allowed file.","stop_reason":"end_turn","usage":{"input_tokens":30,"output_tokens":8}}}
