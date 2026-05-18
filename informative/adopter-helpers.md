@@ -47,6 +47,14 @@ The purpose is replay cleanliness: a saved Session should say which dynamic
 tools were available when the run began, even if the external source changes
 later.
 
+## Dependency-light embedding
+
+Keep the core implementation dependency-light. The agent runtime should embed
+into any host application -- a Rails app, a Sinatra app, a background job, a CLI
+script -- without conflicting with the host's web stack. Web inspector,
+dashboard, and operator UI dependencies must be optional. A consumer who does
+not use the web inspector should never need to install a web server.
+
 ## Still downstream for now
 
 The following are intentionally not pulled into core yet:
