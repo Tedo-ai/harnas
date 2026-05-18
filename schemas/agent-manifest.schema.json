@@ -29,7 +29,7 @@
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["anthropic", "openai", "gemini", "mock"],
+          "enum": ["anthropic", "openai", "gemini", "ollama", "mock"],
           "description": "Selects the Projection + Provider + Ingestor triplet."
         },
         "model": {
@@ -41,6 +41,11 @@
           "type": "integer",
           "minimum": 1,
           "description": "Upper bound on response length, in tokens."
+        },
+        "base_url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional provider base URL. Used by local or compatible providers such as Ollama."
         }
       },
       "allOf": [

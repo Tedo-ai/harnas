@@ -7,7 +7,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
-## [Unreleased]
+## [0.13.0] — 2026-05-18
+
+### Added
+
+- Added `guard/health`, a pre-provider health-check strategy, plus the
+  `with-health-guard-failure` conformance fixture.
+- Extended `guard/repetition` to detect approval-denial loops via
+  `tool_result.payload.approval.decision == "rejected"`, plus the
+  `with-repetition-guard-rejections` conformance fixture.
+- Added Ollama as an OpenAI-compatible local provider kind in the manifest
+  schema.
+- Added [`informative/worktree.md`](informative/worktree.md), documenting the
+  worktree-per-agent convention for coding agents.
+- Agent conformance now covers 41 fixtures.
 
 ## [0.12.0] — 2026-05-18
 
@@ -417,6 +430,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.13.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.13.0
 [0.12.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.12.0
 [0.11.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.11.0
 [0.10.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.10.0

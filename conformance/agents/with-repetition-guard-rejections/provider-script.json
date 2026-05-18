@@ -1,0 +1,69 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_reject_1",
+              "type": "function",
+              "function": {
+                "name": "dangerous_tool",
+                "arguments": "{\"target\":\"same-file\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_reject_2",
+              "type": "function",
+              "function": {
+                "name": "dangerous_tool",
+                "arguments": "{\"target\":\"same-file\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 20, "completion_tokens": 8 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_reject_3",
+              "type": "function",
+              "function": {
+                "name": "dangerous_tool",
+                "arguments": "{\"target\":\"same-file\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 30, "completion_tokens": 8 }
+  }
+]
+

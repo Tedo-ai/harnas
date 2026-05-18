@@ -1,5 +1,5 @@
 {"seq":0,"type":"user_message","payload":{"text":"write the overlapping secret file"}}
 {"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8}}}
 {"seq":2,"type":"tool_use","payload":{"id":"call_write_overlap","name":"write_file","arguments":{"content":"secret","path":"./secrets/anything"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_write_overlap","output":null,"error":"denied by hook: Write to './secrets/anything' is not permitted. Allowed paths: ['./secrets']. Denied paths: ['./secrets']."}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_write_overlap","output":null,"error":"denied by hook: Write to './secrets/anything' is not permitted. Allowed paths: ['./secrets']. Denied paths: ['./secrets'].","approval":{"decision":"rejected","reason":"Write to './secrets/anything' is not permitted. Allowed paths: ['./secrets']. Denied paths: ['./secrets']."}}}
 {"seq":4,"type":"assistant_message","payload":{"text":"Deny won over allow.","stop_reason":"end_turn","usage":{"input_tokens":32,"output_tokens":9}}}
