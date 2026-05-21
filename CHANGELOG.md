@@ -7,6 +7,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.18.0] — 2026-05-21
+
+### Added
+
+- Added subagent delegation events: `agent_spawn`, `agent_status`, and
+  `agent_result`.
+- Added Session header metadata for delegation correlation:
+  `parent_session_id`, `root_session_id`, `spawn_id`,
+  `spawned_by_event_id`, and `delegation_chain`.
+- Added capability manifest reference guidance for child Sessions.
+- Added [`informative/subagents.md`](informative/subagents.md),
+  documenting spawn receipts, parent/child Session edges, join policies,
+  capability inheritance, and non-goals.
+- Added five subagent conformance fixtures covering success, failure,
+  parallel children, nested delegation, and orphan/open-child state.
+- Added `expected-projections.jsonl` as a conformance fixture sidecar
+  for cross-session projection assertions.
+
+### Changed
+
+- Updated [`informative/log-and-events.md`](informative/log-and-events.md)
+  with the v0.18.0 delegation event vocabulary and Session metadata.
+- Fixture version is now `0.18.0`.
+- Agent conformance now covers 59 fixtures.
+
 ## [0.17.0] — 2026-05-21
 
 ### Added
@@ -515,6 +540,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.18.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.0
 [0.17.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.17.0
 [0.16.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.16.0
 [0.14.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.1
