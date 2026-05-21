@@ -89,3 +89,36 @@ Session save produced from that view use the canonical `content` shape.
 See [`multimodal.md`](multimodal.md) for the full content block schema,
 attachment source kinds, provider projection behavior, and capability
 mismatch policy.
+
+## Delegation Session Metadata
+
+Subagent-capable runtimes use top-level Session header fields to make
+parent/child correlation explicit:
+
+```json
+{
+  "__session__": true,
+  "id": "ses_child_xyz",
+  "metadata": {},
+  "parent_session_id": "ses_parent_abc",
+  "root_session_id": "ses_root_001",
+  "spawn_id": "spn_a1b2c3",
+  "spawned_by_event_id": "evt_parent_cause",
+  "delegation_chain": [
+    { "session_id": "ses_root_001", "spawn_id": null },
+    { "session_id": "ses_parent_abc", "spawn_id": "spn_parent" }
+  ]
+}
+```
+
+A root Session has these fields omitted or set to `null` / `[]`. A
+child Session has them populated. The immediate edge is
+`parent_session_id` plus `spawn_id`; `root_session_id` and
+`delegation_chain` are denormalized for fast projections and robust
+ancestry queries.
+
+Cross-session integrity is reciprocal: a child header references a
+parent Session whose Log contains a matching `agent_spawn`, and the
+parent `agent_spawn` references a child whose header points back at the
+same parent and spawn id. See [`subagents.md`](subagents.md) for the
+delegation model and projection helpers.

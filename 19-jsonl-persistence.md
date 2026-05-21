@@ -25,6 +25,23 @@ The header fields are:
 - `id`: the Session id as a string.
 - `metadata`: an object. Empty metadata MUST be represented as `{}`.
 
+Delegation-aware sessions MAY also include:
+
+- `parent_session_id`: the immediate parent Session id, or `null`.
+- `root_session_id`: the root Session id for this delegation tree, or
+  `null` for a root Session.
+- `spawn_id`: the parent `agent_spawn` id that created or attached
+  this Session, or `null`.
+- `spawned_by_event_id`: the parent Event id that caused the spawn, or
+  `null`.
+- `delegation_chain`: an array of ancestor links of the form
+  `{ "session_id": "...", "spawn_id": "..." }`. The root link's
+  `spawn_id` is `null`.
+
+Root sessions MAY omit these fields or set them to `null` / `[]`.
+Child sessions SHOULD populate all five fields. `parent_session_id` plus
+`spawn_id` is the canonical immediate edge.
+
 **J3.** Every following non-blank line MUST be an Event row object:
 
 ```json
