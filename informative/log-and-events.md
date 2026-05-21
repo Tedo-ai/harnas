@@ -122,3 +122,33 @@ parent Session whose Log contains a matching `agent_spawn`, and the
 parent `agent_spawn` references a child whose header points back at the
 same parent and spawn id. See [`subagents.md`](subagents.md) for the
 delegation model and projection helpers.
+
+## Capability Manifest References
+
+`agent_spawn.payload.capabilities.manifest_ref` names the resolved
+capability manifest the child received. The ref format is
+`cap_sha256_<hash>`, where the hash is computed over a canonical JSON
+serialization of the manifest content. Implementations may store the
+manifest content in an AttachmentStore, side table, filesystem
+directory, or database row.
+
+The spawn event carries high-signal overrides inline so operators can
+see what changed without expanding the full manifest:
+
+```json
+{
+  "capabilities": {
+    "inherit": true,
+    "manifest_ref": "cap_sha256_...",
+    "overrides": {
+      "tools_deny": ["bash_session"]
+    }
+  }
+}
+```
+
+By default, children receive equal or fewer capabilities than their
+parent. Capability escalation is a product policy decision. If a child
+receives more capability than the parent, the escalation MUST be visible
+in the spawn event's `overrides`, and implementations SHOULD warn or log
+at spawn time.
