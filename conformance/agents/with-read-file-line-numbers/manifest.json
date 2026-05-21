@@ -1,5 +1,6 @@
 {
   "harnas_version": "0.1",
+  "fixture_version_added": "0.14.0",
   "name": "with-read-file-line-numbers",
   "provider": {
     "kind": "openai",

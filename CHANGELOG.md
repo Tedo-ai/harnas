@@ -7,6 +7,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.14.1] — 2026-05-21
+
+### Added
+
+- Added `VERSION` with separate `harnas_version` and
+  `fixtures_version` fields. Fixture version is now `0.14.1`.
+- Added [`informative/conformance-process.md`](informative/conformance-process.md),
+  documenting fixture versioning, spec-first PR flow, conformance
+  verification, and packed-artifact testing.
+- Added [`informative/provider-implementation.md`](informative/provider-implementation.md),
+  recording that the current implementations use direct HTTP rather
+  than provider SDKs.
+- Added [`informative/log-and-projection.md`](informative/log-and-projection.md),
+  clarifying the distinction between the durable Log and derived
+  Projections.
+
+### Changed
+
+- Updated `informative/bash_session.md` with the sentinel format and
+  explicit non-PTY guidance.
+
 ## [0.14.0] — 2026-05-21
 
 ### Added
@@ -450,6 +471,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.14.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.1
 [0.14.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.0
 [0.13.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.13.0
 [0.12.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.12.0

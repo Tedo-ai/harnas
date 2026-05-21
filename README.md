@@ -7,7 +7,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.14.0** (released 2026-05-21). See
+**Version 0.14.1** (released 2026-05-21). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -50,7 +50,9 @@ reference earlier ones rather than modifying them.
    recommended production embedding shape for web apps and services.
 9. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
-   guidance, shell-tool embedding notes, and worktree-per-agent runs.
+   guidance, shell-tool embedding notes, provider implementation
+   guidance, conformance process, Log/Projection framing, and
+   worktree-per-agent runs.
 10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
 11. [`conformance/`](conformance/) — fixtures any conformant

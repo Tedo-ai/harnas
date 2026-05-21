@@ -1,5 +1,6 @@
 {
   "harnas_version": "0.1",
+  "fixture_version_added": "0.14.0",
   "name": "with-bash-session-per-command-env",
   "provider": {
     "kind": "openai",

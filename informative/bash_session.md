@@ -65,6 +65,12 @@ apply only to that command and do not persist in the shell session. To
 persist state, the agent should use ordinary shell commands such as
 `export NAME=value`.
 
+`bash_session` is not a PTY. It uses pipes, with stdin connected to
+`/dev/null`. Full-screen TUIs, interactive password prompts, and
+programs that require terminal control are out of scope for this tool.
+A future PTY tool, if one is needed, should be a separate tool with its
+own semantics.
+
 The tool result is a JSON object encoded as a string, because
 `:tool_result.payload.output` is currently a string in the Harnas Event
 model:
@@ -95,6 +101,25 @@ SHOULD keep the tail and drop the head. If truncation drops content from
 before the current command, `command_stdout` and `command_stderr` can
 still be complete. If truncation drops content produced by the current
 command, the command-local fields also contain only the retained tail.
+
+## Sentinel Format
+
+Reference implementations delimit command completion with stdout and
+stderr sentinels generated inside the persistent shell. The framing is:
+
+```sh
+{ <command>
+} </dev/null; __harnas_status=$?; printf '__HARNAS_ERR_DONE_<token>\n' >&2; printf '__HARNAS_DONE_<token>:%s\n' "$__harnas_status"
+```
+
+The stdout sentinel is `__HARNAS_DONE_<token>:<exit_code>\n`. The stderr
+sentinel is `__HARNAS_ERR_DONE_<token>\n`. The `<token>` is an
+implementation-generated opaque identifier scoped to one command.
+
+Implementations strip the sentinel markers from returned output. Text
+before a sentinel on the same line remains command output. This format
+is an implementation convention for the reference built-ins, not a Log
+event shape.
 
 ## Semantics
 
