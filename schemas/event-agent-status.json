@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-agent-status.json",
+  "title": "Harnas agent_status Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spawn_id", "child_session_id", "status"],
+  "properties": {
+    "spawn_id": { "type": "string", "minLength": 1 },
+    "child_session_id": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["queued", "running", "waiting", "succeeded", "failed", "canceled", "orphaned"]
+    },
+    "summary": { "type": "string" },
+    "progress": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "completed": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "details": { "type": "object", "additionalProperties": true }
+  }
+}

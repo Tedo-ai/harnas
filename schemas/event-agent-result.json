@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-agent-result.json",
+  "title": "Harnas agent_result Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spawn_id", "child_session_id", "status"],
+  "properties": {
+    "spawn_id": { "type": "string", "minLength": 1 },
+    "child_session_id": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["succeeded", "failed", "canceled"] },
+    "result": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "text": { "type": "string" },
+        "structured": true,
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "kind": { "type": "string" },
+              "uri": { "type": "string" },
+              "summary": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "usage": { "type": "object", "additionalProperties": true },
+    "last_child_event_id": { "type": ["string", "null"] },
+    "error": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "retryable": { "type": "boolean" },
+        "child_event_id": { "type": "string" }
+      }
+    }
+  }
+}

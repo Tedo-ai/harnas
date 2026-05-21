@@ -7,6 +7,29 @@ immutable Event with a type and payload. Event payloads may evolve
 additively across Harnas releases, but loaders preserve old Session
 JSONL files so saved conversations remain replayable.
 
+## Event Vocabulary
+
+Core persisted Event types include:
+
+- `user_message`
+- `assistant_message`
+- `tool_use`
+- `tool_result`
+- `compact`
+- `revert`
+- `summary`
+- `annotation`
+- `provider_error`
+- `runtime_error`
+- `agent_spawn`
+- `agent_status`
+- `agent_result`
+
+`agent_spawn`, `agent_status`, and `agent_result` are the delegation
+events introduced in v0.18.0. A parent Log records spawn edges,
+operator-visible status updates, and terminal child outcomes; child
+internals stay in the child Session's own Log.
+
 ## Message Payloads
 
 Harnas v0.17.0 introduces typed `content` blocks for `:user_message`

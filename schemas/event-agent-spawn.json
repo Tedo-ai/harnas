@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-agent-spawn.json",
+  "title": "Harnas agent_spawn Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spawn_id", "child_session_id", "task"],
+  "properties": {
+    "spawn_id": { "type": "string", "minLength": 1 },
+    "child_session_id": { "type": "string", "minLength": 1 },
+    "spawned_by_event_id": { "type": ["string", "null"] },
+    "spawn_mode": { "type": "string", "enum": ["new", "attach"], "default": "new" },
+    "task": { "type": "string", "minLength": 1 },
+    "context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "mode": { "type": "string" },
+        "refs": { "type": "array" }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "inherit": { "type": "boolean", "default": true },
+        "manifest_ref": { "type": "string" },
+        "overrides": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "join_policy": { "type": "string", "enum": ["async", "wait", "detached"], "default": "async" },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "budget": { "type": "object", "additionalProperties": true },
+    "retry_of_spawn_id": { "type": ["string", "null"] }
+  }
+}
