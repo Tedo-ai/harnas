@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/content-block.json",
+  "title": "Harnas multimodal content block",
+  "description": "Canonical typed content blocks for user_message and assistant_message payloads.",
+  "oneOf": [
+    { "$ref": "#/$defs/text" },
+    { "$ref": "#/$defs/image" },
+    { "$ref": "#/$defs/document" }
+  ],
+  "$defs": {
+    "source": {
+      "oneOf": [
+        { "$ref": "#/$defs/source_base64" },
+        { "$ref": "#/$defs/source_ref" },
+        { "$ref": "#/$defs/source_url" }
+      ]
+    },
+    "source_base64": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "data"],
+      "properties": {
+        "kind": { "const": "base64" },
+        "data": {
+          "type": "string",
+          "description": "Base64-encoded bytes for the content block."
+        }
+      }
+    },
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "uri"],
+      "properties": {
+        "kind": { "const": "ref" },
+        "uri": {
+          "type": "string",
+          "pattern": "^attachment://.+",
+          "description": "Opaque AttachmentStore URI. Consumers MUST NOT parse the id portion."
+        }
+      }
+    },
+    "source_url": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "url"],
+      "properties": {
+        "kind": { "const": "url" },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "description": "External URL for provider or store resolution."
+        }
+      }
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "const": "text" },
+        "text": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "media_type", "source"],
+      "properties": {
+        "type": { "const": "image" },
+        "media_type": {
+          "type": "string",
+          "enum": ["image/jpeg", "image/png", "image/gif", "image/webp"]
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "media_type", "source"],
+      "properties": {
+        "type": { "const": "document" },
+        "media_type": { "const": "application/pdf" },
+        "source": { "$ref": "#/$defs/source" },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

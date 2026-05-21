@@ -4,9 +4,12 @@
   "title": "Harnas assistant_message Event payload",
   "type": "object",
   "additionalProperties": false,
-  "required": ["text", "stop_reason", "usage"],
+  "required": ["content", "stop_reason", "usage"],
   "properties": {
-    "text": { "type": "string" },
+    "content": {
+      "type": "array",
+      "items": { "$ref": "content-block.json" }
+    },
     "stop_reason": {
       "type": "string",
       "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]

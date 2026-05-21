@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-user-message.json",
+  "title": "Harnas user_message Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["content"],
+  "properties": {
+    "content": {
+      "type": "array",
+      "items": { "$ref": "content-block.json" }
+    }
+  }
+}

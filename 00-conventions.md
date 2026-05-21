@@ -54,6 +54,10 @@ defined here.
 - **Event** — a single, immutable entry in a Log. Carries a payload
   describing one observation, action, request, response, or mutation.
 
+- **Content block** — a typed piece of message content inside a
+  `:user_message` or `:assistant_message` Event payload. Content
+  blocks are defined by `schemas/content-block.json`.
+
 - **Log** — the append-only, monotonic sequence of Events that constitutes
   a Session. Events are never modified, removed, or reordered after they
   are appended.
