@@ -28,7 +28,9 @@ Core persisted Event types include:
 `agent_spawn`, `agent_status`, and `agent_result` are the delegation
 events introduced in v0.18.0. A parent Log records spawn edges,
 operator-visible status updates, and terminal child outcomes; child
-internals stay in the child Session's own Log.
+internals stay in the child Session's own Log. Their payload shapes,
+status enums, spawn modes, join policies, and non-goals are described in
+[`subagents.md`](subagents.md).
 
 ## Message Payloads
 
