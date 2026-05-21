@@ -1,0 +1,30 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-spawn-agent-reciprocity",
+  "fixture_version_added": "0.18.1",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "spawn_agent",
+      "handler": "harnas.builtin.spawn_agent",
+      "description": "Create a child agent Session receipt for a delegated task.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "task": { "type": "string" },
+          "label": { "type": "string" },
+          "role": { "type": "string" }
+        },
+        "required": ["task"]
+      }
+    }
+  ],
+
+  "strategies": []
+}

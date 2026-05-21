@@ -1,0 +1,5 @@
+[
+  "before save",
+  { "save_load": true },
+  "after load"
+]

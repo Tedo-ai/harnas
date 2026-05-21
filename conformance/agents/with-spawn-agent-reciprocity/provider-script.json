@@ -1,0 +1,25 @@
+[
+  {
+    "content": [
+      {
+        "type": "tool_use",
+        "id": "toolu_spawn_recip",
+        "name": "spawn_agent",
+        "input": {
+          "task": "test",
+          "label": "reciprocity child",
+          "role": "explorer"
+        }
+      }
+    ],
+    "stop_reason": "tool_use",
+    "usage": { "input_tokens": 8, "output_tokens": 4 }
+  },
+  {
+    "content": [
+      { "type": "text", "text": "Child spawned." }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 20, "output_tokens": 3 }
+  }
+]

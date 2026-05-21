@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"before save"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"Before save response.","stop_reason":"end_turn","usage":{"input_tokens":4,"output_tokens":3}}}
+{"seq":2,"type":"user_message","payload":{"text":"after load"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"After load response.","stop_reason":"end_turn","usage":{"input_tokens":9,"output_tokens":4}}}

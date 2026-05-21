@@ -125,6 +125,14 @@ parent `agent_spawn` references a child whose header points back at the
 same parent and spawn id. See [`subagents.md`](subagents.md) for the
 delegation model and projection helpers.
 
+## Event Identity Preservation
+
+Implementations MUST preserve `event_id` across Session save/load
+cycles. `event_id` is the canonical cross-session reference used by
+`spawned_by_event_id`, `last_child_event_id`, and any cross-session
+correlation field. It is NOT regenerated on load. Round-trip identity is
+a conformance requirement.
+
 The reference helper projections are:
 
 - `delegation_tree(session_id)`

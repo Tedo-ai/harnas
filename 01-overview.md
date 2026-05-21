@@ -205,9 +205,11 @@ construction:
   this.
 
 This overview declares only that the Log/Projection/Mutation model is
-the substrate these properties build on. Capability systems,
-inter-agent message passing, and other orchestration-layer concerns are
-outside the current specification.
+the substrate these properties build on. Session edges (spawn, status,
+result) are substrate primitives: the Log records who delegated to whom,
+what was asked, and what came back. Scheduling, orchestration policy,
+task queues, role taxonomies, and inter-agent messaging are out of
+scope; products build those on top.
 
 ## Scope
 
@@ -274,12 +276,11 @@ The following concerns are explicitly NOT specified:
   underlying model-and-harness combination actually solves a given
   task well is a model-and-task concern above this specification;
   Harnas does not specify task-quality evaluation protocols.
-- **Multi-agent orchestration.** Harnas specifies single-agent Session
-  state. Patterns where one agent spawns, delegates to, or hands off
-  to another are orchestrator-layer concerns. Sub-agent delegation
-  MAY be expressed as a Tool whose return value is a Log fragment to
-  splice, but this specification does not normatively bless that
-  pattern in 0.1.
+- **Multi-agent orchestration policy.** Session edges (spawn, status,
+  result) are substrate primitives: the Log records who delegated to
+  whom, what was asked, and what came back. Scheduling, orchestration
+  policy, task queues, role taxonomies, and inter-agent messaging are
+  out of scope; products build those on top.
 - **Runtime environment integration.** Bridges into IDEs, terminals,
   browsers, or filesystems are a Surface or Orchestrator concern.
   See *Adjacent specifications* below for how MCP composes with
@@ -328,5 +329,6 @@ listed in the repository README and the Scope table above.
 
 ## Version
 
-This specification is at version **0.10.0**. All normative statements
-remain subject to change before 1.0.0.
+The canonical spec version is defined in the `VERSION` file at the root
+of this repository. All normative statements remain subject to change
+before 1.0.0.

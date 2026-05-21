@@ -58,6 +58,31 @@ Each implementation's CI runs the conformance suite against a pinned
 fixtures version. CI failure on conformance blocks the release. Release
 notes should include both the fixture count and fixture version.
 
+## Conformance Vs Feature Parity
+
+Conformance has three distinct axes:
+
+**Fixture conformance.** All conformance fixtures pass byte-identically
+against the implementation. This is the load-bearing claim. An
+implementation is "conformant at v0.X.Y" when all v0.X.Y fixtures pass.
+
+**Live provider compatibility.** Smoke tests against real Anthropic,
+OpenAI, Gemini, and Ollama endpoints. These are recommended for every
+implementation but are NOT required for the conformance claim. A new
+implementation may pass fixture conformance well before all live
+providers are validated.
+
+**Surface parity.** Optional implementation surfaces include operator
+CLI commands (`inspect`, `fork`, `diff`, `project`), the full set of
+AttachmentStore implementations beyond filesystem, and optional helper
+built-ins such as `spawn_agent`. These are useful but do not gate the
+conformance claim. A new implementation can ship "conformant at
+v0.18.0" with 59/59 fixtures even if its CLI lacks `inspect`.
+
+When announcing a new implementation, the claim "conformant at v0.X.Y"
+specifically means fixtures pass. Live provider readiness and surface
+parity should be reported separately.
+
 ## Packed Artifact Testing
 
 Each implementation also tests the packed or built artifact, not just

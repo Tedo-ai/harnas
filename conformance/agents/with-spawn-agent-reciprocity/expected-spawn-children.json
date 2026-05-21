@@ -1,0 +1,5 @@
+{
+  "task": "test",
+  "parent_user_text": "spawn a child",
+  "child_initial_user_text": "test"
+}

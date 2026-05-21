@@ -1,0 +1,14 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-event-id-preservation-roundtrip",
+  "fixture_version_added": "0.18.1",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [],
+  "strategies": []
+}

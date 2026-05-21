@@ -7,6 +7,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.18.1] — 2026-05-22
+
+### Added
+
+- Promoted the public docs drafts into `docs/` with foundational concept
+  pages for logs, projections, strategies, sandboxes, skills, MCP,
+  sessions, providers, and tools.
+- Added `with-event-id-preservation-roundtrip`, locking the requirement
+  that event identities survive Session save/load.
+- Added `with-spawn-agent-reciprocity`, locking the optional
+  `harnas.builtin.spawn_agent` guarantee that child Sessions reciprocate
+  the parent `agent_spawn` edge.
+- Added a "Conformance vs feature parity" section to
+  [`informative/conformance-process.md`](informative/conformance-process.md).
+
+### Changed
+
+- Removed stale static version references from the conventions and
+  overview docs in favor of the root `VERSION` file.
+- Updated the overview's multi-agent framing to reflect v0.18.0's
+  delegation substrate while keeping orchestration policy out of scope.
+- Documented that implementations MUST preserve `event_id` across
+  Session save/load cycles.
+- Updated public roadmap/ecosystem docs for shipped v0.16-v0.18 work
+  and AgentStaple CLI/chat approval flow.
+- Audited capability manifest hashing across Go, Ruby, and Python using
+  the v0.18.1 sample manifest. All three produce
+  `cap_sha256_ca038c67460e90058675e7b0b9f1ac54323ebb77f903cdbddbb2919fefa90934`;
+  explicit RFC 8785/JCS conformance is deferred to v0.19 if needed.
+- Fixture version is now `0.18.1`.
+- Agent conformance now covers 61 fixtures.
+
 ## [0.18.0] — 2026-05-21
 
 ### Added
@@ -540,6 +572,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.18.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.1
 [0.18.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.0
 [0.17.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.17.0
 [0.16.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.16.0

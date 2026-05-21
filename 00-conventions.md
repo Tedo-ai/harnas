@@ -84,7 +84,7 @@ defined here.
 ## Schemas and Reference Code
 
 JSON Schema files under `schemas/` are normative for the structures they
-cover. Not every Event type has a schema in v0.10.0; when a schema exists
+cover. Not every Event type has a schema in every release; when a schema exists
 for a structure, prose descriptions of that structure in other
 specification documents are informative clarifications of the schema, and
 where prose and schema disagree, the schema governs.
@@ -163,9 +163,9 @@ In the reference implementation this separability appears as:
 ## Versioning
 
 This specification is versioned using [Semantic Versioning](https://semver.org)
-applied to the specification as a whole. The current version is **0.10.0**.
+applied to the specification as a whole. The canonical spec version is defined
+in the `VERSION` file at the root of this repository.
 
 All normative statements are subject to change in any pre-1.0.0 release.
 Breaking changes to normative statements after 1.0.0 will accompany a major
-version increment. The current specification version is recorded in
-`spec/VERSION`.
+version increment.
