@@ -7,6 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.17.0] — 2026-05-21
+
+### Added
+
+- Added typed multimodal content blocks for `:user_message` and
+  `:assistant_message`: text, image, and PDF document blocks with
+  `base64`, `ref`, and `url` source kinds.
+- Added AttachmentStore guidance and default store conventions for
+  filesystem, memory, and inline attachment storage.
+- Added capability mismatch policy for provider projections, including
+  default `metadata_fallback` and opt-in strict `error` behavior.
+- Added [`informative/multimodal.md`](informative/multimodal.md),
+  documenting content blocks, source kinds, AttachmentStore, provider
+  projections, and graceful capability fallback.
+- Added eight multimodal conformance fixtures covering Anthropic,
+  OpenAI, Gemini, reference-store resolution, metadata fallback, and
+  strict capability errors.
+
+### Changed
+
+- Updated [`informative/log-and-events.md`](informative/log-and-events.md)
+  with the v0.17.0 message payload shape and legacy `text` migration
+  rule.
+- Fixture version is now `0.17.0`.
+- Agent conformance now covers 54 fixtures.
+
 ## [0.16.0] — 2026-05-21
 
 ### Added
@@ -489,6 +515,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.17.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.17.0
 [0.16.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.16.0
 [0.14.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.1
 [0.14.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.0
