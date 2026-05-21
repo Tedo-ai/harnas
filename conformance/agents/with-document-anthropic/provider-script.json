@@ -1,0 +1,29 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-3-5-sonnet-20240620",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            { "type": "text", "text": "what does this PDF say?" },
+            {
+              "type": "document",
+              "source": {
+                "type": "base64",
+                "media_type": "application/pdf",
+                "data": "cGRmLWJ5dGVz"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "content": [{ "type": "text", "text": "It is a PDF." }],
+      "stop_reason": "end_turn",
+      "usage": { "input_tokens": 12, "output_tokens": 4 }
+    }
+  }
+]

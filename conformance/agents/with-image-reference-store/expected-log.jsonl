@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"content":[{"type":"text","text":"what is in this stored image?"},{"type":"image","media_type":"image/png","name":"stored.png","source":{"kind":"ref","uri":"attachment://ee3817dfb56f4a224c71738c73ec5e3b023dec8ee561796b061aa702dddc0ffa"}}]}}
+{"seq":1,"type":"assistant_message","payload":{"text":"It is a stored image.","stop_reason":"end_turn","usage":{"input_tokens":13,"output_tokens":5}}}

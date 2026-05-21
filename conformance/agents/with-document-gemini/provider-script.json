@@ -1,0 +1,33 @@
+[
+  {
+    "expect_request": {
+      "model": "gemini-1.5-pro",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            { "text": "what does this PDF say?" },
+            {
+              "inline_data": {
+                "mime_type": "application/pdf",
+                "data": "cGRmLWJ5dGVz"
+              }
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "thinkingConfig": { "thinkingBudget": 0 }
+      }
+    },
+    "response": {
+      "candidates": [
+        {
+          "content": { "parts": [{ "text": "It is a PDF." }] },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": { "promptTokenCount": 12, "candidatesTokenCount": 4 }
+    }
+  }
+]

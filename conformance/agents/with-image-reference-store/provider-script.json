@@ -1,0 +1,29 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-3-5-sonnet-20240620",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            { "type": "text", "text": "what is in this stored image?" },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/png",
+                "data": "aW1hZ2UtcmVmLWJ5dGVzCg=="
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "content": [{ "type": "text", "text": "It is a stored image." }],
+      "stop_reason": "end_turn",
+      "usage": { "input_tokens": 13, "output_tokens": 5 }
+    }
+  }
+]

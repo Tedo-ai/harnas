@@ -1,0 +1,2 @@
+{"seq":0,"type":"user_message","payload":{"content":[{"type":"text","text":"what does this PDF say?"},{"type":"document","media_type":"application/pdf","name":"report.pdf","source":{"kind":"base64","data":"cGRmLWJ5dGVz"}}]}}
+{"seq":1,"type":"runtime_error","payload":{"source":"projection","handler":"openai","error_class":"CapabilityMismatchError","message":"openai/gpt-4o does not support document content blocks","reason":"capability_mismatch","terminal":true}}

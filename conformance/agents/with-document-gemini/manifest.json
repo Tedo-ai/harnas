@@ -1,0 +1,12 @@
+{
+  "harnas_version": "0.1",
+  "fixture_version_added": "0.17.0",
+  "name": "with-document-gemini",
+  "provider": {
+    "kind": "gemini",
+    "model": "gemini-1.5-pro",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}

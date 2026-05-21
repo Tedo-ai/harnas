@@ -1,0 +1,33 @@
+[
+  {
+    "expect_request": {
+      "model": "gemini-1.5-pro",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            { "text": "what is in this image?" },
+            {
+              "inline_data": {
+                "mime_type": "image/png",
+                "data": "aW1hZ2UtYnl0ZXM="
+              }
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "thinkingConfig": { "thinkingBudget": 0 }
+      }
+    },
+    "response": {
+      "candidates": [
+        {
+          "content": { "parts": [{ "text": "It is an image." }] },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": { "promptTokenCount": 11, "candidatesTokenCount": 4 }
+    }
+  }
+]

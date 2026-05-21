@@ -1,0 +1,27 @@
+[
+  {
+    "expect_request": {
+      "model": "gpt-4o",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            { "type": "text", "text": "what is in this image?" },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "data:image/png;base64,aW1hZ2UtYnl0ZXM="
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        { "message": { "content": "It is an image." }, "finish_reason": "stop" }
+      ],
+      "usage": { "prompt_tokens": 11, "completion_tokens": 4 }
+    }
+  }
+]

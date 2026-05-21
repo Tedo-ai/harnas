@@ -1,0 +1,25 @@
+[
+  {
+    "expect_request": {
+      "model": "gpt-4o",
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            { "type": "text", "text": "what does this PDF say?" },
+            {
+              "type": "text",
+              "text": "[Note: A document was attached to this message but cannot be viewed by this provider. Name: report.pdf. Type: application/pdf. Size: 9 bytes. Use available tools to access the content.]"
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        { "message": { "content": "I see the PDF metadata." }, "finish_reason": "stop" }
+      ],
+      "usage": { "prompt_tokens": 14, "completion_tokens": 6 }
+    }
+  }
+]

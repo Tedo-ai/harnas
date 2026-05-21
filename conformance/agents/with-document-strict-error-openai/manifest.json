@@ -1,0 +1,13 @@
+{
+  "harnas_version": "0.1",
+  "fixture_version_added": "0.17.0",
+  "name": "with-document-strict-error-openai",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-4o",
+    "max_tokens": 1024,
+    "capability_mismatch_behavior": "error"
+  },
+  "tools": [],
+  "strategies": []
+}

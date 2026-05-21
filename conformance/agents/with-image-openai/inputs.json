@@ -1,0 +1,13 @@
+[
+  {
+    "content": [
+      { "type": "text", "text": "what is in this image?" },
+      {
+        "type": "image",
+        "media_type": "image/png",
+        "name": "image.png",
+        "source": { "kind": "base64", "data": "aW1hZ2UtYnl0ZXM=" }
+      }
+    ]
+  }
+]
