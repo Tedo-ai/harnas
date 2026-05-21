@@ -257,6 +257,21 @@ The built-in records a spawn receipt and returns generated ids. Products
 remain responsible for scheduling, supervising, joining, and persisting
 the child according to their own runtime policy.
 
+## Backward Compatibility
+
+Sessions written before v0.18.0 do not contain subagent events or
+delegation header fields. A v0.18.0 implementation treats such Sessions
+as root Sessions with no children. `delegation_tree` returns the root
+with an empty `children` array, `open_children` returns an empty array,
+and descendant projections only include the root Session.
+
+Older implementations reading a v0.18.0 Session may encounter unknown
+event types. The forward-compatible behavior is to preserve unknown
+events on load/save and skip them in projections that do not understand
+them, preferably with a warning. Implementations that reject unknown
+events should surface a clear version-compatibility error rather than
+silently dropping data.
+
 ## Non-goals
 
 The following are intentionally outside the substrate:
