@@ -1,0 +1,2 @@
+{"projection":"delegation_tree","input":"ses_parent_orphan","output":{"session_id":"ses_parent_orphan","children":[{"spawn_id":"spn_orphan","child_session_id":"ses_child_orphan","task":"Keep working after parent exits.","join_policy":"detached","metadata":{"label":"Detached child"},"status":"open","result":null,"error":null,"children":[]}]}}
+{"projection":"open_children","input":"ses_parent_orphan","output":["spn_orphan"]}

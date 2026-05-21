@@ -1,0 +1,1 @@
+{"harnas_version":"0.18","name":"with-subagent-orphan","fixture_version_added":"0.18.0","provider":{"kind":"openai","model":"gpt-4o","api_key":"fixture"},"system":"Conformance fixture.","tools":[],"strategies":[]}

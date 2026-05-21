@@ -1,0 +1,2 @@
+{"projection":"delegation_tree","input":"ses_parent_failure","output":{"session_id":"ses_parent_failure","children":[{"spawn_id":"spn_failure","child_session_id":"ses_child_failure","task":"Run a tool-budgeted child task.","join_policy":"wait","metadata":{"label":"Budgeted child"},"status":"failed","result":null,"error":{"type":"runtime_error","message":"Child exceeded tool budget.","retryable":true,"child_event_id":"evt_child_failure_1"},"children":[]}]}}
+{"projection":"open_children","input":"ses_parent_failure","output":[]}
