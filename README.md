@@ -52,7 +52,8 @@ reference earlier ones rather than modifying them.
    conventions, including adopter helper surfaces, skills, MCP mapping
    guidance, multimodal content blocks, shell-tool embedding notes, provider implementation
    guidance, shell isolation guidance, conformance process,
-   Log/Projection framing, and worktree-per-agent runs.
+   Log/Projection framing, subagent delegation, and worktree-per-agent
+   runs.
 10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
 11. [`conformance/`](conformance/) — fixtures any conformant
