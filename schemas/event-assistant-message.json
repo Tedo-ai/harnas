@@ -2,22 +2,53 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://harnas.dev/schemas/event-assistant-message.json",
   "title": "Harnas assistant_message Event payload",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["content", "stop_reason", "usage"],
-  "properties": {
-    "content": {
-      "type": "array",
-      "items": { "$ref": "content-block.json" }
-    },
-    "stop_reason": {
-      "type": "string",
-      "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
-    },
-    "usage": {
+  "oneOf": [
+    {
+      "title": "Canonical content-block payload",
       "type": "object",
-      "additionalProperties": true
+      "additionalProperties": false,
+      "required": ["content", "stop_reason", "usage"],
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": { "$ref": "content-block.json" }
+        },
+        "stop_reason": {
+          "type": "string",
+          "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
+        },
+        "usage": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "reasoning": {
+          "$ref": "#/$defs/reasoning"
+        }
+      }
     },
+    {
+      "title": "Legacy text payload",
+      "description": "Read-only compatibility shape. New runtimes write content instead.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "stop_reason", "usage"],
+      "properties": {
+        "text": { "type": "string" },
+        "stop_reason": {
+          "type": "string",
+          "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
+        },
+        "usage": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "reasoning": {
+          "$ref": "#/$defs/reasoning"
+        }
+      }
+    }
+  ],
+  "$defs": {
     "reasoning": {
       "type": "array",
       "items": {

@@ -2,13 +2,28 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://harnas.dev/schemas/event-user-message.json",
   "title": "Harnas user_message Event payload",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["content"],
-  "properties": {
-    "content": {
-      "type": "array",
-      "items": { "$ref": "content-block.json" }
+  "oneOf": [
+    {
+      "title": "Canonical content-block payload",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["content"],
+      "properties": {
+        "content": {
+          "type": "array",
+          "items": { "$ref": "content-block.json" }
+        }
+      }
+    },
+    {
+      "title": "Legacy text payload",
+      "description": "Read-only compatibility shape. New runtimes write content instead.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string" }
+      }
     }
-  }
+  ]
 }
