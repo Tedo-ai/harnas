@@ -1,0 +1,32 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-network-sandbox-deny",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "fetch_url",
+      "handler": "harnas.builtin.fetch_url",
+      "description": "Fetch a URL over HTTP(S).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" }
+        },
+        "required": ["url"]
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "sandbox/network",
+      "config": {
+        "allow": ["api.github.com"],
+        "deny": []
+      }
+    }
+  ]
+}

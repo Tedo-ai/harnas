@@ -1,0 +1,58 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_env_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"env_s1\",\"command\":\"echo $MYVAR\",\"env\":{\"MYVAR\":\"hello\"}}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 14, "completion_tokens": 7 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_env_2",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"session_id\":\"env_s1\",\"command\":\"echo $MYVAR\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 28, "completion_tokens": 6 }
+  },
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": "MYVAR was available for one command and did not persist."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": { "prompt_tokens": 44, "completion_tokens": 10 }
+  }
+]

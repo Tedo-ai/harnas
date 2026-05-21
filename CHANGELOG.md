@@ -7,6 +7,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.14.0] — 2026-05-21
+
+### Added
+
+- Added `sandbox/network`, a tool-boundary network strategy with exact
+  host allow/deny enforcement for `fetch_url`, plus
+  `with-network-sandbox-allow` and `with-network-sandbox-deny`
+  conformance fixtures.
+- Extended `harnas.builtin.bash_session` so the `run` action accepts an
+  optional per-command `env` object. Environment variables apply only to
+  that command and do not persist in the shell session. Covered by
+  `with-bash-session-per-command-env`.
+
+### Changed
+
+- Updated `harnas.builtin.read_file` to accept `offset` and `limit`,
+  return `cat -n` style line-numbered output, and reject binary files.
+  Covered by `with-read-file-line-numbers`.
+- Agent conformance now covers 45 fixtures.
+
 ## [0.13.0] — 2026-05-18
 
 ### Added
@@ -430,6 +450,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.14.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.0
 [0.13.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.13.0
 [0.12.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.12.0
 [0.11.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.11.0

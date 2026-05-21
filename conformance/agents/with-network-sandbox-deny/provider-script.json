@@ -1,0 +1,79 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fetch_denied",
+              "type": "function",
+              "function": {
+                "name": "fetch_url",
+                "arguments": "{\"url\":\"https://evil.example.com/\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 11, "completion_tokens": 7 }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        { "role": "user", "content": "fetch the disallowed URL" },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fetch_denied",
+              "type": "function",
+              "function": {
+                "name": "fetch_url",
+                "arguments": "{\"url\":\"https://evil.example.com/\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_fetch_denied",
+          "content": "denied by hook: Network call to 'evil.example.com' is not permitted. Allowed hosts: ['api.github.com']."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "fetch_url",
+            "description": "Fetch a URL over HTTP(S).",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "url": { "type": "string" }
+              },
+              "required": ["url"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The sandbox blocked the disallowed host."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 30, "completion_tokens": 9 }
+    }
+  }
+]

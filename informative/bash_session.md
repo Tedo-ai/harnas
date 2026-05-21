@@ -43,7 +43,11 @@ separate permission decisions per capability.
       "session_id": { "type": "string" },
       "command": { "type": "string" },
       "action": { "type": "string", "enum": ["run", "status", "kill"] },
-      "timeout_ms": { "type": "integer", "minimum": 1 }
+      "timeout_ms": { "type": "integer", "minimum": 1 },
+      "env": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+      }
     }
   },
   "config": {
@@ -55,6 +59,11 @@ separate permission decisions per capability.
 ```
 
 `action` defaults to `"run"` when `command` is present.
+
+For `run`, callers MAY pass an `env` object. These environment variables
+apply only to that command and do not persist in the shell session. To
+persist state, the agent should use ordinary shell commands such as
+`export NAME=value`.
 
 The tool result is a JSON object encoded as a string, because
 `:tool_result.payload.output` is currently a string in the Harnas Event
@@ -157,7 +166,11 @@ decides whether the command is allowed before dispatch.
       "session_id": { "type": "string" },
       "command": { "type": "string" },
       "action": { "type": "string", "enum": ["run", "status", "kill"] },
-      "timeout_ms": { "type": "integer", "minimum": 1 }
+      "timeout_ms": { "type": "integer", "minimum": 1 },
+      "env": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+      }
     }
   },
   "config": {

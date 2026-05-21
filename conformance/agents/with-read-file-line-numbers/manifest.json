@@ -1,0 +1,26 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-read-file-line-numbers",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "read_file",
+      "handler": "harnas.builtin.read_file",
+      "description": "Read text content from a file.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "offset": { "type": "integer" },
+          "limit": { "type": "integer" }
+        },
+        "required": ["path"]
+      }
+    }
+  ],
+  "strategies": []
+}

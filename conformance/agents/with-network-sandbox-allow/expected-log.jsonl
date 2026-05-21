@@ -1,0 +1,5 @@
+{"seq":0,"type":"user_message","payload":{"text":"fetch the allowed repository metadata"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":7}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_fetch_allowed","name":"fetch_url","arguments":{"url":"https://api.github.com/repos/foo"}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_fetch_allowed","output":"[conformance stub: harnas.builtin.fetch_url({\"url\":\"https://api.github.com/repos/foo\"})]","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"The allowed fetch completed.","stop_reason":"end_turn","usage":{"input_tokens":32,"output_tokens":8}}}

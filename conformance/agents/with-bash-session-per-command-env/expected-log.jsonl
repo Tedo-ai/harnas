@@ -1,0 +1,8 @@
+{"seq":0,"type":"user_message","payload":{"text":"prove per-command environment variables do not persist"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":7}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_bash_env_1","name":"bash_session","arguments":{"action":"run","session_id":"env_s1","command":"echo $MYVAR","env":{"MYVAR":"hello"}}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_bash_env_1","output":"{\"session_id\":\"env_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"hello\\n\",\"stderr\":\"\",\"command_stdout\":\"hello\\n\",\"command_stderr\":\"\",\"truncated\":false}","error":null}}
+{"seq":4,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":28,"output_tokens":6}}}
+{"seq":5,"type":"tool_use","payload":{"id":"call_bash_env_2","name":"bash_session","arguments":{"action":"run","session_id":"env_s1","command":"echo $MYVAR"}}}
+{"seq":6,"type":"tool_result","payload":{"tool_use_id":"call_bash_env_2","output":"{\"session_id\":\"env_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"hello\\n\\n\",\"stderr\":\"\",\"command_stdout\":\"\\n\",\"command_stderr\":\"\",\"truncated\":false}","error":null}}
+{"seq":7,"type":"assistant_message","payload":{"text":"MYVAR was available for one command and did not persist.","stop_reason":"end_turn","usage":{"input_tokens":44,"output_tokens":10}}}

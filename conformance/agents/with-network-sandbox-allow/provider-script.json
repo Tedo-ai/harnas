@@ -1,0 +1,79 @@
+[
+  {
+    "choices": [
+      {
+        "message": {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fetch_allowed",
+              "type": "function",
+              "function": {
+                "name": "fetch_url",
+                "arguments": "{\"url\":\"https://api.github.com/repos/foo\"}"
+              }
+            }
+          ]
+        },
+        "finish_reason": "tool_calls"
+      }
+    ],
+    "usage": { "prompt_tokens": 12, "completion_tokens": 7 }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        { "role": "user", "content": "fetch the allowed repository metadata" },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fetch_allowed",
+              "type": "function",
+              "function": {
+                "name": "fetch_url",
+                "arguments": "{\"url\":\"https://api.github.com/repos/foo\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_fetch_allowed",
+          "content": "[conformance stub: harnas.builtin.fetch_url({\"url\":\"https://api.github.com/repos/foo\"})]"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "fetch_url",
+            "description": "Fetch a URL over HTTP(S).",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "url": { "type": "string" }
+              },
+              "required": ["url"]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The allowed fetch completed."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 32, "completion_tokens": 8 }
+    }
+  }
+]
