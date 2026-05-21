@@ -1,0 +1,52 @@
+{
+  "harnas_version": "0.1",
+  "fixture_version_added": "0.16.0",
+  "name": "with-credential-proxy-injection",
+  "provider": {
+    "kind": "openai",
+    "model": "gpt-test",
+    "max_tokens": 1024
+  },
+  "tools": [
+    {
+      "name": "fetch_url",
+      "handler": "harnas.builtin.fetch_url",
+      "description": "Fetch a URL over HTTP(S).",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "headers": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        },
+        "required": ["url"]
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "name": "credential/proxy",
+      "config": {
+        "credentials": {
+          "test_cred": {
+            "from": "literal",
+            "value": "SECRET-DO-NOT-LOG"
+          }
+        },
+        "routes": [
+          {
+            "tool": "fetch_url",
+            "match": { "url_host": "api.example.com" },
+            "inject": {
+              "into": "headers",
+              "key": "Authorization",
+              "value": "Bearer {credential.test_cred}"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

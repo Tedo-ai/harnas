@@ -7,6 +7,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.16.0] — 2026-05-21
+
+### Added
+
+- Added `credential/proxy`, a `:pre_tool_use` strategy that injects
+  credentials into tool arguments immediately before execution without
+  persisting credential values in the Log.
+- Added the `with-credential-proxy-injection` conformance fixture,
+  covering `fetch_url` header injection and credential redaction.
+- Added [`informative/isolation.md`](informative/isolation.md),
+  clarifying the difference between Harnas tool-boundary guards and
+  OS-level isolation.
+
+### Changed
+
+- Fixture version is now `0.16.0`.
+- Agent conformance now covers 46 fixtures.
+
 ## [0.14.1] — 2026-05-21
 
 ### Added
@@ -471,6 +489,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.16.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.16.0
 [0.14.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.1
 [0.14.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.14.0
 [0.13.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.13.0

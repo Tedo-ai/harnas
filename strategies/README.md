@@ -19,6 +19,7 @@ the numbered spec section for that family (e.g. `05-compaction.md`).
 |---|---|---|---|
 | [Compaction](compaction/) | shipped | [05-compaction.md](../05-compaction.md) | MarkerTail, TokenMarkerTail, SummaryTail (RelevanceWindow, DocumentFold reserved) |
 | [Permission / trust](permission/) | shipped | [07-permission.md](../07-permission.md) | AlwaysAllow, DenyByName, HumanApproval (ClassifierGated, SandboxedExec, TwoTier reserved) |
+| [Credential](credential/) | shipped | — | credential/proxy |
 | Tool discovery | reserved | — | AllUpfront, DeferredSearch, MCPRouted, LazyByName |
 | Prompt assembly | reserved | — | LinearConcat, StaticDynamicBoundary, TemplateVariants |
 | Caching | reserved | — | SimplePrefix, DeferredToolFolding, DeepPrefixManagement |

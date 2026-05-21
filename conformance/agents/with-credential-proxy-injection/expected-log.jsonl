@@ -1,0 +1,6 @@
+{"seq":0,"type":"user_message","payload":{"text":"fetch data"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":7}}}
+{"seq":2,"type":"tool_use","payload":{"id":"call_fetch_secret","name":"fetch_url","arguments":{"url":"https://api.example.com/data"}}}
+{"seq":3,"type":"annotation","payload":{"kind":"credential_injected","tool":"fetch_url","route_index":0,"credentials_used":["test_cred"]}}
+{"seq":4,"type":"tool_result","payload":{"tool_use_id":"call_fetch_secret","output":"fetched OK","error":null}}
+{"seq":5,"type":"assistant_message","payload":{"text":"Fetched the data.","stop_reason":"end_turn","usage":{"input_tokens":30,"output_tokens":6}}}
