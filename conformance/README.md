@@ -31,6 +31,8 @@ Each directory under `agents/` is one fixture:
         ├── provider-script-stream.json
         │                           # ordered streaming provider events
         ├── expected-deltas.jsonl   # optional Observation sidecar trace
+        ├── expected-projections.jsonl
+        │                           # optional cross-session projection assertions
         ├── inputs.json            # ordered user message strings or actions
         └── expected-log.jsonl     # the Log any conformant impl must produce
 
@@ -75,6 +77,22 @@ directly:
 
 `expected-log.jsonl` carries `seq`, `type`, and `payload` fields
 with canonical values per the spec.
+
+Since v0.18, fixtures that involve multiple Sessions may include a
+`sessions/` directory containing persisted Session JSONL files. In that
+case `expected-log.jsonl` is the expected parent Log and
+`expected-projections.jsonl` may assert cross-session projections. Each
+projection assertion is one JSON object per line:
+
+```json
+{"projection":"delegation_tree","input":"ses_parent","output":{"session_id":"ses_parent","children":[]}}
+{"projection":"open_children","input":"ses_parent","output":[]}
+{"projection":"descendant_usage","input":"ses_parent","output":{"prompt_tokens":0,"completion_tokens":0,"total_tokens":0}}
+```
+
+Projection assertions are normative when present. They are evaluated
+after all Session files in the fixture bundle are loaded and
+cross-session integrity has been checked.
 
 ### Running the reference implementation's conformance suite
 

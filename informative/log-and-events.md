@@ -123,6 +123,16 @@ parent `agent_spawn` references a child whose header points back at the
 same parent and spawn id. See [`subagents.md`](subagents.md) for the
 delegation model and projection helpers.
 
+The reference helper projections are:
+
+- `delegation_tree(session_id)`
+- `descendant_timeline(session_id)`
+- `open_children(session_id)`
+- `descendant_usage(session_id)`
+
+They are computed on demand from separately persisted Session Logs.
+Harnas does not persist a global interleaved Log.
+
 ## Capability Manifest References
 
 `agent_spawn.payload.capabilities.manifest_ref` names the resolved
