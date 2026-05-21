@@ -47,6 +47,42 @@ The purpose is replay cleanliness: a saved Session should say which dynamic
 tools were available when the run began, even if the external source changes
 later.
 
+## Attachment storage
+
+Agents that accept images, PDFs, or other binary inputs need a place to
+store bytes outside the Log while keeping the Log replayable. The
+reference implementations expose an AttachmentStore-style helper with
+this language-neutral shape:
+
+```text
+AttachmentStore {
+  put(bytes, media_type) -> AttachmentReference
+  get(uri) -> (bytes, media_type)
+  delete(uri) -> void
+  exists(uri) -> bool
+  list_referenced(log) -> [uri, ...]
+}
+
+AttachmentReference {
+  uri: string
+  media_type: string
+  byte_size: int
+  sha256: string
+}
+```
+
+Attachment URIs use the `attachment://<id>` scheme. The id portion is
+opaque: consumers must not parse it or assume it is a hash, UUID, or
+filename. Only the configured store resolves the URI.
+
+Runtime helpers should accept an optional `attachment_store` parameter.
+If none is supplied, local CLI-style runtimes use a filesystem-backed
+store rooted next to the Session file. Provider Projections receive the
+store as a dependency so they can resolve `source.kind: "ref"` content
+blocks at projection time. Future ingestors that produce attached
+assistant content use the same store to persist bytes and emit
+`attachment://` references.
+
 ## Dependency-light embedding
 
 Keep the core implementation dependency-light. The agent runtime should embed
