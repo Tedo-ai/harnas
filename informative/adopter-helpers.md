@@ -83,6 +83,25 @@ blocks at projection time. Future ingestors that produce attached
 assistant content use the same store to persist bytes and emit
 `attachment://` references.
 
+## Cross-session projections
+
+Delegating agents create multiple persisted Sessions connected by
+`agent_spawn` and `agent_result` edges. Reference implementations should
+ship helpers that compute the common operator views from those Session
+Logs:
+
+- `delegation_tree(session_id)` for recursive parent/child structure
+- `descendant_timeline(session_id)` for a timestamp-ordered event stream
+  across the session and its descendants
+- `open_children(session_id)` for spawn ids without terminal results
+- `descendant_usage(session_id)` for aggregate token usage
+
+These helpers load child Sessions through the host application's
+persistence backend. Filesystem runners usually keep children alongside
+the parent Session file; database-backed adopters usually resolve by
+foreign key. The helpers are views only: they do not create a global Log
+and they do not copy child internals into the parent.
+
 ## Dependency-light embedding
 
 Keep the core implementation dependency-light. The agent runtime should embed
@@ -99,7 +118,7 @@ The following are intentionally not pulled into core yet:
 - approval UI flows
 - product-specific introspection tools
 - artifact runtime conventions
-- subagent orchestration events
+- product-specific subagent orchestration policies
 
 These need more cross-agent evidence before becoming reference helpers or
 normative spec text.
