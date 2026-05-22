@@ -7,6 +7,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.18.2] — 2026-05-22
+
+### Added
+
+- Added `with-bash-session-shell-type`, locking that `bash_session`
+  exposes an effective `shell_type` in its tool descriptor config on
+  Unix conformance runners.
+- Added a portability section to
+  [`informative/bash_session.md`](informative/bash_session.md), separating
+  cross-OS semantics from OS-specific shell and process cleanup behavior.
+- Added cross-platform discipline guidance to
+  [`informative/conformance-process.md`](informative/conformance-process.md).
+
+### Changed
+
+- Updated the manifest schema to allow `shell_type` in tool config with
+  values `auto`, `posix`, `powershell`, or `cmd`.
+- Credited the AgentStaple Windows packaging work that surfaced the
+  `bash_session` portability gap.
+- Fixture version is now `0.18.2`.
+- Agent conformance now covers 62 fixtures.
+
 ## [0.18.1] — 2026-05-22
 
 ### Added
@@ -572,6 +594,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.18.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.2
 [0.18.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.1
 [0.18.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.0
 [0.17.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.17.0

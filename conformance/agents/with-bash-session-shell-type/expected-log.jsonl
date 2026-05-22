@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"hello"}}
+{"seq":1,"type":"assistant_message","payload":{"text":"Hi there!","stop_reason":"end_turn","usage":{"input_tokens":9,"output_tokens":3}}}
+{"seq":2,"type":"user_message","payload":{"text":"how are you?"}}
+{"seq":3,"type":"assistant_message","payload":{"text":"I'm doing well, thanks for asking.","stop_reason":"end_turn","usage":{"input_tokens":21,"output_tokens":9}}}

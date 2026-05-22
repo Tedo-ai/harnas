@@ -98,3 +98,25 @@ the source tree:
 
 This catches packaging bugs such as missing bundled schemas, missing
 exports, and incomplete package data that source-only tests can miss.
+
+## Cross-Platform Discipline
+
+Each implementation's CI MUST compile-check on its target platforms.
+The default target platforms for reference implementations are:
+
+- `harnas-go`: linux/amd64, linux/arm64, darwin/amd64, darwin/arm64,
+  windows/amd64. Compile-only is acceptable for Windows until a runtime
+  conformance suite exists there.
+- `harnas-ruby`: any platform with Ruby 3.1 or newer.
+- `harnas-python`: any platform with Python 3.10 or newer.
+- `harnas-ts`: Node 20+, Bun, and Deno.
+
+When a built-in tool or strategy uses platform-specific APIs such as
+process groups, signals, or filesystem semantics, the implementation
+MUST isolate the OS-specific code: build tags in Go, platform checks in
+Ruby and Python, and runtime adapters in TypeScript. Platform-specific
+behavior should be surfaced in the tool's `config` so agents can adapt.
+
+When the spec mandates behavior that is not portable across OSes, the
+spec doc MUST mark which parts are normative cross-OS and which are
+OS-specific.

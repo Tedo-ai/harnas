@@ -1,0 +1,25 @@
+[
+  {
+    "name": "bash_session",
+    "handler": "harnas.builtin.bash_session",
+    "description": "Run a command in a persistent shell session.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "session_id": { "type": "string" },
+        "command": { "type": "string" },
+        "action": { "type": "string", "enum": ["run", "status", "kill"] },
+        "timeout_ms": { "type": "integer" },
+        "env": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "config": {
+      "shell": "auto",
+      "shell_type": "posix",
+      "max_output_bytes": 65536
+    }
+  }
+]

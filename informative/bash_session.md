@@ -51,7 +51,8 @@ separate permission decisions per capability.
     }
   },
   "config": {
-    "shell": "bash",
+    "shell": "auto",
+    "shell_type": "auto",
     "cwd": ".",
     "max_output_bytes": 65536
   }
@@ -70,6 +71,54 @@ persist state, the agent should use ordinary shell commands such as
 programs that require terminal control are out of scope for this tool.
 A future PTY tool, if one is needed, should be a separate tool with its
 own semantics.
+
+## Portability
+
+`bash_session` is intentionally NOT a PTY. It is a persistent shell
+session with per-call `run`, `status`, and `kill` semantics. The
+protocol is portable across operating systems; OS-specific details are
+surfaced via configuration and capability fields.
+
+### Normative Across All OSes
+
+- The shell process persists across `run` calls within a `session_id`.
+- Working directory and environment variables set in one `run` persist
+  to subsequent runs in the same session.
+- `run` returns stdout, stderr, exit_code, and status; `status` returns
+  lifecycle state; `kill` terminates the session.
+- `stdin` is `/dev/null` or the platform equivalent. Interactive
+  programs are not supported.
+- The `env` per-command field, when provided, scopes the env vars to
+  that single command, not the session.
+
+### OS-Specific Implementation Freedom
+
+- **Default shell:** bash on Unix-like systems (Linux, macOS), `pwsh`,
+  `powershell.exe`, or `cmd.exe` on Windows. Implementations SHOULD
+  document their detection order and allow override via the `shell`
+  config field.
+- **Process cleanup:** implementations SHOULD kill the process group on
+  Unix by signaling `-pgid`. On Windows, implementations SHOULD
+  terminate the shell process; full process-tree cleanup is
+  OS-version-dependent.
+- **Command semantics:** agents MUST NOT assume POSIX shell semantics on
+  Windows by default. The `shell_type` capability field exposes the
+  active shell family so the agent can adapt.
+
+### The `shell_type` Capability Field
+
+The `bash_session` tool's `config` map MUST include `shell_type` with
+one of: `posix` (bash, sh, zsh, etc.), `powershell` (`pwsh`,
+`powershell.exe`), or `cmd` (`cmd.exe`). Manifests MAY use
+`shell_type: "auto"` to ask the runtime to resolve the value from the
+active shell. Implementations SHOULD detect this from the resolved shell
+at session start and surface it in the tool descriptor's effective
+config.
+
+Agents should use `shell_type` to adapt command syntax: POSIX shells
+expect `ls`, `grep`, `cd`, and `find`; PowerShell expects
+`Get-ChildItem`, `Select-String`, `Set-Location`, and
+`Get-ChildItem -Recurse`.
 
 The tool result is a JSON object encoded as a string, because
 `:tool_result.payload.output` is currently a string in the Harnas Event

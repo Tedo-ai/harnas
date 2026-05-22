@@ -1,0 +1,39 @@
+{
+  "harnas_version": "0.1",
+  "fixture_version_added": "0.18.2",
+  "name": "with-bash-session-shell-type",
+
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "bash_session",
+      "handler": "harnas.builtin.bash_session",
+      "description": "Run a command in a persistent shell session.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "session_id": { "type": "string" },
+          "command": { "type": "string" },
+          "action": { "type": "string", "enum": ["run", "status", "kill"] },
+          "timeout_ms": { "type": "integer" },
+          "env": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      },
+      "config": {
+        "shell": "auto",
+        "shell_type": "auto",
+        "max_output_bytes": 65536
+      }
+    }
+  ],
+
+  "strategies": []
+}
