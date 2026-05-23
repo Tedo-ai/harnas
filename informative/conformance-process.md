@@ -115,8 +115,19 @@ When a built-in tool or strategy uses platform-specific APIs such as
 process groups, signals, or filesystem semantics, the implementation
 MUST isolate the OS-specific code: build tags in Go, platform checks in
 Ruby and Python, and runtime adapters in TypeScript. Platform-specific
-behavior should be surfaced in the tool's `config` so agents can adapt.
+behavior MUST be surfaced in the tool's `config` so agents can adapt.
 
 When the spec mandates behavior that is not portable across OSes, the
 spec doc MUST mark which parts are normative cross-OS and which are
 OS-specific.
+
+Reference implementations MUST compile and pass core fixtures on Linux,
+macOS, and Windows. Until a Windows runtime conformance suite exists,
+compile-only Windows CI is acceptable only for fixtures that require
+Unix-specific shell or filesystem behavior.
+
+Fixtures that rely on Unix-only behavior SHOULD declare `platform:
+unix` in their manifest. Cross-platform fixtures SHOULD use `platform:
+any` or omit the field. A fixture's platform marker is conformance
+metadata; it does not weaken the underlying spec requirement for
+portable implementation surfaces.

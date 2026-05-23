@@ -1,5 +1,5 @@
 {"seq":0,"type":"user_message","payload":{"text":"write the secret file"}}
 {"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8}}}
 {"seq":2,"type":"tool_use","payload":{"id":"call_write_secret","name":"write_file","arguments":{"content":"secret","path":"./secrets/key.pem"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_write_secret","output":null,"error":"denied by hook: Write to './secrets/key.pem' is not permitted. Allowed paths: ['.']. Denied paths: ['./secrets'].","approval":{"decision":"rejected","reason":"Write to './secrets/key.pem' is not permitted. Allowed paths: ['.']. Denied paths: ['./secrets']."}}}
+{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_write_secret","output":null,"error":"denied by hook: Write to './secrets/key.pem' is not permitted. Allowed paths: ['.']. Denied paths: ['./secrets'].","approval":{"decision":"rejected","rule_matched":"Write to './secrets/key.pem' is not permitted. Allowed paths: ['.']. Denied paths: ['./secrets'].","applied_diff":null}}}
 {"seq":4,"type":"assistant_message","payload":{"text":"The sandbox blocked the secret write.","stop_reason":"end_turn","usage":{"input_tokens":32,"output_tokens":9}}}

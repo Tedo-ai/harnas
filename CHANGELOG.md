@@ -7,6 +7,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.19.0] — 2026-05-24
+
+### Added
+
+- Added canonical Event timestamps. New Events now carry UTC ISO 8601
+  timestamps, and implementations preserve them across save/load.
+- Added canonical assistant usage metadata with total/cache/reasoning
+  token fields, raw provider usage, and provenance.
+- Added provider/model identity on assistant provider-response events.
+- Added optional `tool_result.payload.approval` metadata with decisions
+  `accepted`, `rejected`, `auto_accepted`, `yolo`, and
+  `edited_then_accepted`.
+- Added `usage.json` and `event-tool-result.json` schemas.
+- Added three conformance fixtures:
+  `with-tool-result-approval-metadata`,
+  `with-assistant-usage-identity`, and
+  `streaming-with-usage-identity`.
+- Mirrored AgentStaple downstream feedback into
+  [`feedback/agentstaple-2026-05-16.md`](feedback/agentstaple-2026-05-16.md).
+
+### Changed
+
+- Promoted portability discipline from informative guidance to a
+  normative conformance-process requirement.
+- Fixture version is now `0.19.0`.
+- Agent conformance now covers 65 fixtures.
+
 ## [0.18.2] — 2026-05-22
 
 ### Added
@@ -594,6 +621,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.19.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.0
 [0.18.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.2
 [0.18.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.1
 [0.18.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.0

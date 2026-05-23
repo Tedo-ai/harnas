@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/event-tool-result.json",
+  "title": "Harnas tool_result Event payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tool_use_id", "output", "error"],
+  "properties": {
+    "tool_use_id": { "type": "string", "minLength": 1 },
+    "output": { "type": ["string", "null"] },
+    "error": { "type": ["string", "null"] },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "rule_matched", "applied_diff"],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["accepted", "rejected", "auto_accepted", "yolo", "edited_then_accepted"]
+        },
+        "rule_matched": { "type": ["string", "null"] },
+        "applied_diff": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

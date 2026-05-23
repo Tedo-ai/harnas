@@ -1,0 +1,8 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-assistant-usage-identity",
+  "fixture_version_added": "0.19.0",
+  "provider": { "kind": "openai", "model": "gpt-test-v019", "max_tokens": 1024 },
+  "tools": [],
+  "strategies": []
+}

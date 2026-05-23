@@ -1,0 +1,2 @@
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"stream usage please"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"stream ok","stop_reason":"end_turn","usage":{"input_tokens":13,"output_tokens":5,"total_tokens":18,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":13,"output_tokens":5,"total_tokens":18},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-stream-v019"}}

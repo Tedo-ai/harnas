@@ -18,8 +18,20 @@
           "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
         },
         "usage": {
-          "type": "object",
-          "additionalProperties": true
+          "oneOf": [
+            { "$ref": "usage.json" },
+            {
+              "description": "Legacy pre-v0.19 usage payload.",
+              "type": "object",
+              "additionalProperties": true
+            }
+          ]
+        },
+        "provider": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
         },
         "reasoning": {
           "$ref": "#/$defs/reasoning"
@@ -39,8 +51,20 @@
           "enum": ["end_turn", "max_tokens", "tool_use", "stop_sequence", "refusal", "other"]
         },
         "usage": {
-          "type": "object",
-          "additionalProperties": true
+          "oneOf": [
+            { "$ref": "usage.json" },
+            {
+              "description": "Legacy pre-v0.19 usage payload.",
+              "type": "object",
+              "additionalProperties": true
+            }
+          ]
+        },
+        "provider": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
         },
         "reasoning": {
           "$ref": "#/$defs/reasoning"

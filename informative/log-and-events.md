@@ -7,6 +7,28 @@ immutable Event with a type and payload. Event payloads may evolve
 additively across Harnas releases, but loaders preserve old Session
 JSONL files so saved conversations remain replayable.
 
+## Event Envelope
+
+Every persisted Event has a canonical envelope:
+
+```json
+{
+  "seq": 1,
+  "id": "evt_1_...",
+  "timestamp": "2026-05-24T10:15:30.123Z",
+  "type": "assistant_message",
+  "payload": {}
+}
+```
+
+`timestamp` is the UTC time at which the Event was appended, serialized
+as ISO 8601 / RFC 3339. Implementations MUST preserve the timestamp
+across save/load cycles. Legacy rows without `timestamp` remain valid
+and load as pre-v0.19 Events, but new Events written by v0.19.0 and
+later runtimes MUST include it. Downstream projections that answer
+"today", "this week", or chart usage over time MUST use Event
+timestamps rather than filenames or filesystem mtimes.
+
 ## Event Vocabulary
 
 Core persisted Event types include:
@@ -56,7 +78,18 @@ alongside it:
     { "type": "text", "text": "The PDF is a quarterly report." }
   ],
   "stop_reason": "end_turn",
-  "usage": { "input_tokens": 120, "output_tokens": 16 },
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 16,
+    "total_tokens": 136,
+    "cache_read_input_tokens": null,
+    "cache_write_input_tokens": null,
+    "reasoning_tokens": null,
+    "provider_raw": null,
+    "provenance": "provider_reported"
+  },
+  "provider": "anthropic",
+  "model": "claude-...",
   "reasoning": []
 }
 ```
@@ -91,6 +124,74 @@ Session save produced from that view use the canonical `content` shape.
 See [`multimodal.md`](multimodal.md) for the full content block schema,
 attachment source kinds, provider projection behavior, and capability
 mismatch policy.
+
+## Assistant Usage And Identity
+
+Every `assistant_message` produced from a provider response SHOULD carry
+the provider and model used for that response:
+
+```json
+{
+  "provider": "openai",
+  "model": "gpt-4o"
+}
+```
+
+These fields live on each assistant/provider response event, not only
+in the Session header, because a single Session may switch models over
+time. If the provider reports a resolved model name in its response, the
+Event SHOULD record that resolved value. Otherwise the Event records the
+model from the request or manifest.
+
+The canonical usage object is:
+
+```json
+{
+  "input_tokens": 120,
+  "output_tokens": 16,
+  "total_tokens": 136,
+  "cache_read_input_tokens": null,
+  "cache_write_input_tokens": null,
+  "reasoning_tokens": null,
+  "provider_raw": null,
+  "provenance": "provider_reported"
+}
+```
+
+`provenance` is one of `provider_reported`, `runtime_estimated`, or
+`unavailable`. Harnas reports usage and identity only; pricing tables,
+discounts, and local-model cost policy remain product concerns.
+
+Streaming providers MUST preserve final usage. The terminal
+`assistant_message` emitted after a stream MUST carry the final usage
+object and provider/model identity. An implementation MAY also expose
+the same usage on transient stream observation events, but persisted
+usage cannot be lost simply because the provider used streaming.
+
+## Tool Result Approval Metadata
+
+`tool_result.payload.approval` is optional metadata recording an
+approval decision that already happened in the product layer:
+
+```json
+{
+  "approval": {
+    "decision": "accepted",
+    "rule_matched": "manual-review",
+    "applied_diff": null
+  }
+}
+```
+
+Allowed `decision` values are `accepted`, `rejected`, `auto_accepted`,
+`yolo`, and `edited_then_accepted`. `rule_matched` is the product's
+stable rule identifier or `null`. `applied_diff` is a unified diff when
+the approved operation was edited before acceptance, otherwise `null`.
+
+Harnas does not own approval prompts, callbacks, policies, or rule
+engines. It only standardizes the persisted metadata shape so replay,
+fork, audit, and UI timelines can interpret approval decisions
+consistently.
 
 ## Delegation Session Metadata
 

@@ -1,0 +1,5 @@
+{"seq":0,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_accepted","output":"accepted output","error":null,"approval":{"decision":"accepted","rule_matched":"manual-review","applied_diff":null}}}
+{"seq":1,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_rejected","output":null,"error":"denied by approval gate","approval":{"decision":"rejected","rule_matched":"dangerous-write","applied_diff":null}}}
+{"seq":2,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_auto","output":"auto accepted output","error":null,"approval":{"decision":"auto_accepted","rule_matched":"read-only","applied_diff":null}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_yolo","output":"yolo output","error":null,"approval":{"decision":"yolo","rule_matched":null,"applied_diff":null}}}
+{"seq":4,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_edited","output":"edited output","error":null,"approval":{"decision":"edited_then_accepted","rule_matched":"human-edit","applied_diff":"--- before\n+++ after\n@@\n-old\n+new\n"}}}
