@@ -1,3 +1,5 @@
+![Harnas cover](docs/assets/harnas-cover.jpg)
+
 # Harnas
 
 A spec-first, language-portable specification for LLM agent harnesses.
