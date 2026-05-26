@@ -13,7 +13,7 @@ of it.
   │  Integrations:  harnas-rails (planned)  ·  Custom integrations    │
   ├──────────────────────────────────────────────────────────────────┤
   │  Reference impls:  harnas-go · harnas-ruby · harnas-python ·     │
-  │                    harnas-ts (in dev)                             │
+  │                    harnas-typescript (in development)             │
   ├──────────────────────────────────────────────────────────────────┤
   │              Harnas spec + conformance fixtures                   │
   └──────────────────────────────────────────────────────────────────┘
@@ -97,8 +97,9 @@ JSONL.
   other.
 - **harnas-rails** (when it exists) will sit between Rails apps and
   harnas-ruby, providing the ergonomic Rails-side glue.
-- **All four reference implementations** target the same spec. Choosing a
-  language is a deployment decision, not a feature decision.
+- **All released reference implementations** target the same spec. The
+  TypeScript implementation is in development against the same conformance
+  suite and joins the lockstep process when it cuts v1.0.0.
 
 ## Where you fit
 

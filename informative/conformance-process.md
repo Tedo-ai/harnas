@@ -2,9 +2,9 @@
 
 [informative]
 
-Harnas currently has three reference implementations: `harnas-go`,
-`harnas-ruby`, and `harnas-python`. The process is designed for those
-implementations and for the forthcoming `harnas-ts` implementation to
+Harnas currently has three released reference implementations: `harnas-go`,
+`harnas-ruby`, and `harnas-python`, with `harnas-typescript` in active
+development. The process is designed for all reference implementations to
 pass the same conformance suite against a specific fixtures version.
 Spec changes must propagate through a deterministic process to prevent
 drift.
@@ -93,7 +93,7 @@ the source tree:
   conformance from the installed gem path.
 - `harnas-python`: build the wheel, install it in a fresh virtualenv,
   run conformance from the installed package.
-- `harnas-ts`: `npm pack`, install the tarball in a throwaway project,
+- `harnas-typescript`: `npm pack`, install the tarball in a throwaway project,
   run conformance from the installed package.
 
 This catches packaging bugs such as missing bundled schemas, missing
@@ -109,7 +109,7 @@ The default target platforms for reference implementations are:
   conformance suite exists there.
 - `harnas-ruby`: any platform with Ruby 3.1 or newer.
 - `harnas-python`: any platform with Python 3.10 or newer.
-- `harnas-ts`: Node 20+, Bun, and Deno.
+- `harnas-typescript`: Node 20+, Bun, and Deno.
 
 When a built-in tool or strategy uses platform-specific APIs such as
 process groups, signals, or filesystem semantics, the implementation

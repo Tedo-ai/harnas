@@ -5,6 +5,9 @@ page is updated when priorities shift; it's not a fixed calendar.
 
 ## Recently shipped
 
+- **v0.19.0 — approval, usage, and portability hardening** — canonical
+  timestamps, per-message provider/model identity, cross-provider usage
+  shape, approval metadata on `tool_result`, and portability discipline.
 - **v0.18.0 — subagent events and cross-session projections** —
   `agent_spawn`, `agent_status`, and `agent_result` events, reciprocal
   parent/child Session metadata, and delegation projections for operator
@@ -25,10 +28,9 @@ page is updated when priorities shift; it's not a fixed calendar.
 
 ## In flight
 
-- **harnas-ts scaffolding** — TypeScript reference implementation in
-  planning. Day-one decisions on build tooling, runtime support (Bun
-  default, Node 20+, Deno), and conformance discipline are made; first
-  commits pending.
+- **harnas-typescript reference implementation** — TypeScript port targeting
+  v0.19.0 conformance. The development runner covers the 65-fixture suite;
+  v1.0.0 waits on cross-language round-trip verification and release review.
 
 ## Queued
 
@@ -37,9 +39,6 @@ page is updated when priorities shift; it's not a fixed calendar.
 - **`propose_edit` promotion to a built-in tool.** Currently lives in
   AgentStaple. Once the TUI approval prompt lands and the diff-first editing
   pattern is proven in production, it gets lifted to `harnas.builtin.propose_edit`.
-- **harnas-ts reference implementation.** TypeScript port matching the
-  Go/Ruby/Python conformance discipline. Runs on Bun (default), Node 20+,
-  and Deno. ESM-only, direct HTTP, discriminated-union events.
 - **Parallel tool execution.** Allow the AgentLoop to dispatch multiple
   `tool_use` events from one turn concurrently. Architecturally non-trivial;
   high value for long-running tasks.

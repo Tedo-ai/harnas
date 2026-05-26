@@ -111,7 +111,7 @@ on normal CI.
 
 ### For cross-language implementors
 
-To verify a `harnas-py` / `harnas-go` / `harnas-ts` port is
+To verify a `harnas-python` / `harnas-go` / `harnas-typescript` port is
 conformant on the agent layer:
 
 1. Implement a ScriptedProvider in your language: for buffered fixtures,
