@@ -87,6 +87,18 @@ separate Event. Projections MUST round-trip captured reasoning back to
 providers that require it on later turns. Providers that do not require
 reasoning round-trip MAY omit it from outbound requests.
 
+**R7a.** A Projection MUST preserve all content that co-occurs on a single
+assistant turn. When an `:assistant_message` Event carries text, that text
+MUST appear in the projected request whenever the same turn's reasoning
+blocks or `tool_use` blocks are also projected. An implementation MUST NOT
+omit assistant text on the grounds that reasoning or tool calls are present.
+
+The canonical failure this prevents: an assistant turn that both reasons and
+answers (or answers and calls a tool), projected on a later turn with the
+reasoning or tool call preserved but the answer text silently removed. The
+assistant's text is conversation content and MUST round-trip on equal footing
+with reasoning and tool calls.
+
 Reasoning is conversation content, not purely opaque derived state. It
 therefore belongs on the assistant turn itself. Purely opaque provider tokens
 whose contents are not human-readable remain annotative Events; Gemini's

@@ -1,0 +1,57 @@
+[
+  {
+    "content": [
+      {
+        "type": "thinking",
+        "thinking": "Reduce to the known result.",
+        "signature": "sig_text_reasoning_1"
+      },
+      {
+        "type": "text",
+        "text": "The answer is 42."
+      }
+    ],
+    "stop_reason": "end_turn",
+    "usage": { "input_tokens": 17, "output_tokens": 9 }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "think, then answer in one line."
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Reduce to the known result.",
+              "signature": "sig_text_reasoning_1"
+            },
+            {
+              "type": "text",
+              "text": "The answer is 42."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "continue."
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Done."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": { "input_tokens": 23, "output_tokens": 4 }
+    }
+  }
+]

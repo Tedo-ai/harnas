@@ -1,0 +1,4 @@
+{"seq":0,"type":"user_message","payload":{"text":"think, then answer in one line."}}
+{"seq":1,"type":"assistant_message","payload":{"text":"The answer is 42.","stop_reason":"end_turn","usage":{"input_tokens":17,"output_tokens":9},"reasoning":[{"type":"text","text":"Reduce to the known result.","signature":"sig_text_reasoning_1"}]}}
+{"seq":2,"type":"user_message","payload":{"text":"continue."}}
+{"seq":3,"type":"assistant_message","payload":{"text":"Done.","stop_reason":"end_turn","usage":{"input_tokens":23,"output_tokens":4}}}

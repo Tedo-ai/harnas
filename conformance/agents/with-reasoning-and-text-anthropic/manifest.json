@@ -1,0 +1,12 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-reasoning-and-text-anthropic",
+  "fixture_version_added": "0.19.1",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "max_tokens": 1024
+  },
+  "tools": [],
+  "strategies": []
+}
