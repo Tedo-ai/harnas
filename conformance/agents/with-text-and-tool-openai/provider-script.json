@@ -1,0 +1,91 @@
+[
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tell me you're checking, then get the time."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "get_current_time",
+            "description": "Returns the current UTC time.",
+            "parameters": { "type": "object", "properties": {}, "required": [] }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "Let me check the time.",
+            "tool_calls": [
+              {
+                "id": "call_text_tool_1",
+                "type": "function",
+                "function": { "name": "get_current_time", "arguments": "{}" }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": { "prompt_tokens": 16, "completion_tokens": 8 }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tell me you're checking, then get the time."
+        },
+        {
+          "role": "assistant",
+          "content": "Let me check the time.",
+          "tool_calls": [
+            {
+              "id": "call_text_tool_1",
+              "type": "function",
+              "function": { "name": "get_current_time", "arguments": "{}" }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_text_tool_1",
+          "content": "[conformance stub: conformance.get_current_time({})]"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "get_current_time",
+            "description": "Returns the current UTC time.",
+            "parameters": { "type": "object", "properties": {}, "required": [] }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "It is 2026-04-21 22:15 UTC."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": { "prompt_tokens": 28, "completion_tokens": 13 }
+    }
+  }
+]

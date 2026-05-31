@@ -6,7 +6,7 @@
         {
           "role": "user",
           "parts": [
-            { "text": "what time is it?" }
+            { "text": "Tell me you're checking, then get the time." }
           ]
         }
       ],
@@ -31,13 +31,14 @@
           "content": {
             "role": "model",
             "parts": [
+              { "text": "Let me check the time." },
               { "functionCall": { "name": "get_current_time", "args": {} } }
             ]
           },
           "finishReason": "STOP"
         }
       ],
-      "usageMetadata": { "promptTokenCount": 14, "candidatesTokenCount": 8 }
+      "usageMetadata": { "promptTokenCount": 16, "candidatesTokenCount": 8 }
     }
   },
   {
@@ -47,12 +48,13 @@
         {
           "role": "user",
           "parts": [
-            { "text": "what time is it?" }
+            { "text": "Tell me you're checking, then get the time." }
           ]
         },
         {
           "role": "model",
           "parts": [
+            { "text": "Let me check the time." },
             { "functionCall": { "name": "get_current_time", "args": {} } }
           ]
         },
@@ -95,7 +97,7 @@
           "finishReason": "STOP"
         }
       ],
-      "usageMetadata": { "promptTokenCount": 26, "candidatesTokenCount": 13 }
+      "usageMetadata": { "promptTokenCount": 28, "candidatesTokenCount": 13 }
     }
   }
 ]

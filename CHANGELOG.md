@@ -7,6 +7,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.19.2] — 2026-06-01
+
+### Added
+
+- Added provider-contract rule R7b requiring projections to preserve
+  prior `:tool_use` Events in later provider requests.
+- Added text-plus-tool conformance fixtures for Anthropic, OpenAI, and
+  Gemini:
+  `with-text-and-tool-anthropic`,
+  `with-text-and-tool-openai`, and
+  `with-text-and-tool-gemini`.
+
+### Changed
+
+- Strengthened `with-tool-call-gemini` so its second provider call now
+  asserts that the prior Gemini `functionCall` projects back before the
+  tool result.
+- Spec version is now `0.19.2`.
+- Fixture version is now `0.19.2`.
+- Agent conformance now covers 69 fixtures.
+
 ## [0.19.1] — 2026-05-31
 
 ### Added
@@ -637,6 +658,8 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.19.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.2
+[0.19.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.2
 [0.19.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.1
 [0.19.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.0
 [0.18.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.18.2

@@ -99,6 +99,13 @@ reasoning or tool call preserved but the answer text silently removed. The
 assistant's text is conversation content and MUST round-trip on equal footing
 with reasoning and tool calls.
 
+**R7b.** A Projection MUST preserve `:tool_use` Events when projecting later
+turns. If a provider's wire format represents tool calls as blocks, parts,
+function calls, or an assistant-side `tool_calls` field, the projected request
+MUST include the prior tool call in that provider's canonical shape. It is
+non-conformant to project a later `:tool_result` or user turn while omitting
+the assistant tool call that caused it.
+
 Reasoning is conversation content, not purely opaque derived state. It
 therefore belongs on the assistant turn itself. Purely opaque provider tokens
 whose contents are not human-readable remain annotative Events; Gemini's
