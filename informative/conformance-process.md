@@ -65,6 +65,10 @@ Conformance has three distinct axes:
 **Fixture conformance.** All conformance fixtures pass byte-identically
 against the implementation. This is the load-bearing claim. An
 implementation is "conformant at v0.X.Y" when all v0.X.Y fixtures pass.
+Some fixtures exercise production-shaped execution, such as running
+multiple independent Sessions in one long-lived process, so conformance
+guards both the event vocabulary and the process-safety assumptions
+needed by embedded hosts.
 
 **Live provider compatibility.** Smoke tests against real Anthropic,
 OpenAI, Gemini, and Ollama endpoints. These are recommended for every

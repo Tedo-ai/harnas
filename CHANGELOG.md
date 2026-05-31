@@ -7,6 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.19.3] — 2026-06-01
+
+### Added
+
+- Added `with-session-isolation-repeat-gemini`, a production-shape
+  conformance fixture that runs the same Gemini tool-call scenario twice
+  in one process and requires both Sessions to match the canonical Log.
+  This guards against process-global mutable state leaking across
+  unrelated Sessions.
+
+### Changed
+
+- Spec version is now `0.19.3`.
+- Fixture version is now `0.19.3`.
+- Agent conformance now covers 70 fixtures.
+
 ## [0.19.2] — 2026-06-01
 
 ### Added
@@ -658,7 +674,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
-[0.19.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.2
+[0.19.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.3
 [0.19.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.2
 [0.19.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.1
 [0.19.0]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.0

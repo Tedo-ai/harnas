@@ -1,0 +1,22 @@
+{
+  "harnas_version": "0.1",
+  "name": "with-session-isolation-repeat-gemini",
+  "fixture_version_added": "0.19.3",
+
+  "provider": {
+    "kind": "gemini",
+    "model": "gemini-test",
+    "max_tokens": 1024
+  },
+
+  "tools": [
+    {
+      "name": "get_current_time",
+      "handler": "conformance.get_current_time",
+      "description": "Returns the current UTC time.",
+      "input_schema": { "type": "object", "properties": {}, "required": [] }
+    }
+  ],
+
+  "strategies": []
+}

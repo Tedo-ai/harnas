@@ -1,0 +1,103 @@
+[
+  {
+    "expect_request": {
+      "model": "gemini-test",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            { "text": "Tell me you're checking, then get the time." }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "thinkingConfig": { "thinkingBudget": 0 }
+      },
+      "tools": [
+        {
+          "functionDeclarations": [
+            {
+              "name": "get_current_time",
+              "description": "Returns the current UTC time.",
+              "parameters": { "type": "object", "properties": {}, "required": [] }
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "candidates": [
+        {
+          "content": {
+            "role": "model",
+            "parts": [
+              { "text": "Let me check the time." },
+              { "functionCall": { "name": "get_current_time", "args": {} } }
+            ]
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": { "promptTokenCount": 16, "candidatesTokenCount": 8 }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gemini-test",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            { "text": "Tell me you're checking, then get the time." }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            { "text": "Let me check the time." },
+            { "functionCall": { "name": "get_current_time", "args": {} } }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "functionResponse": {
+                "name": "get_current_time",
+                "response": { "content": "[conformance stub: conformance.get_current_time({})]" }
+              }
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "thinkingConfig": { "thinkingBudget": 0 }
+      },
+      "tools": [
+        {
+          "functionDeclarations": [
+            {
+              "name": "get_current_time",
+              "description": "Returns the current UTC time.",
+              "parameters": { "type": "object", "properties": {}, "required": [] }
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "candidates": [
+        {
+          "content": {
+            "role": "model",
+            "parts": [
+              { "text": "It is 2026-04-21 22:15 UTC." }
+            ]
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": { "promptTokenCount": 28, "candidatesTokenCount": 13 }
+    }
+  }
+]

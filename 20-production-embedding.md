@@ -26,6 +26,13 @@ SHOULD avoid sharing hook registries, observation subscribers,
 strategy instances with mutable state, or tool permission decisions
 across unrelated Sessions.
 
+Session-local runtime state MUST be isolated even when many Sessions run
+inside one long-lived host process. Provider ingestors, generated tool
+call ids, pending tool state, strategy counters, and mutable tool
+registries must be scoped to the Session or runtime instance that owns
+them. It is non-conformant for a fresh Session's Log to depend on
+another Session that happened to run earlier in the same process.
+
 ## Persistence Boundary
 
 Session JSONL is the recommended persistence boundary. Store it as the
