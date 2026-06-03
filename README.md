@@ -9,7 +9,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.19.0** (released 2026-05-24). See
+**Version 0.19.4** (released 2026-06-03). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -50,15 +50,17 @@ reference earlier ones rather than modifying them.
    Session JSONL persistence format for cross-language save/load.
 8. [`20-production-embedding.md`](20-production-embedding.md) —
    recommended production embedding shape for web apps and services.
-9. [`informative/`](informative/) — non-normative ecosystem
+9. [`21-storage-adapters.md`](21-storage-adapters.md) — pluggable
+   Session persistence laws, including `EventDraft` → `EventRow`.
+10. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
    guidance, multimodal content blocks, shell-tool embedding notes, provider implementation
    guidance, shell isolation guidance, conformance process,
    Log/Projection framing, subagent delegation, and worktree-per-agent
    runs.
-10. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+11. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-11. [`conformance/`](conformance/) — fixtures any conformant
+12. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations
@@ -68,7 +70,7 @@ reference earlier ones rather than modifying them.
 | Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 70/70 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, sandbox, guard, and credential strategies, full conformable surface. |
 | Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 70/70 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, middleware, compaction, permissions, sandbox/guard/credential strategies, and CLI surface. |
 | Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 70/70 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, middleware, compaction, permissions, sandbox/guard/credential strategies, and CLI surface. |
-| TypeScript | [Tedo-ai/harnas-typescript](https://github.com/Tedo-ai/harnas-typescript) | In development. Targets the v0.19.3 70-fixture suite across Node 20+, Bun, and Deno; joins the released reference implementation set after v1.0.0 and cross-language round-trip verification. |
+| TypeScript | [Tedo-ai/harnas-typescript](https://github.com/Tedo-ai/harnas-typescript) | In development. Targets the v0.19.4 70-fixture suite across Node 20+, Bun, and Deno; joins the released reference implementation set after v1.0.0 and cross-language round-trip verification. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's

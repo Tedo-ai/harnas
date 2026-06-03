@@ -7,6 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [0.19.4] — 2026-06-03
+
+### Added
+
+- Added §21 Storage Adapters, defining the `EventDraft` → `EventRow`
+  persistence seam and storage laws S1-S9 for persisted Session
+  behavior and any adapter interface an implementation exposes.
+
+### Changed
+
+- Updated §19 JSONL Persistence to make Event-level `timestamp`
+  normative, including preservation and legacy-row tolerance rules.
+- Spec version is now `0.19.4`.
+- Fixture version is now `0.19.4`.
+- Agent conformance remains at 70 fixtures.
+
 ## [0.19.3] — 2026-06-01
 
 ### Added
@@ -674,6 +690,7 @@ Carryovers and deferred decisions, captured for posterity:
   wrapping, which covers most cases — the lifecycle mixin would
   be motivated by a concrete use case we haven't found yet.
 
+[0.19.4]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.4
 [0.19.3]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.3
 [0.19.2]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.2
 [0.19.1]: https://github.com/Tedo-ai/harnas/releases/tag/v0.19.1

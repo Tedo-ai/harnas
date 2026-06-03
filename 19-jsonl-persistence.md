@@ -45,13 +45,15 @@ Child sessions SHOULD populate all five fields. `parent_session_id` plus
 **J3.** Every following non-blank line MUST be an Event row object:
 
 ```json
-{"seq":0,"id":"evt_...","type":"user_message","payload":{"text":"hello"}}
+{"seq":0,"id":"evt_...","timestamp":"2026-05-24T10:15:30.123Z","type":"user_message","payload":{"text":"hello"}}
 ```
 
 The Event row fields are:
 
 - `seq`: the Event sequence number.
 - `id`: the Event id as a string.
+- `timestamp`: the UTC time at which the Event was appended,
+  serialized as ISO 8601 / RFC 3339 using UTC and a trailing `Z`.
 - `type`: the Event type without a leading colon.
 - `payload`: the Event payload object.
 
@@ -59,8 +61,8 @@ The Event row fields are:
 be dense and monotonic starting at `0`.
 
 **J5.** Consumers MUST preserve the Session id, metadata, Event seq,
-Event id, Event type, Event payload, and append order when loading and
-re-saving a Session.
+Event id, Event timestamp, Event type, Event payload, and append order
+when loading and re-saving a Session.
 
 **J6.** Producers SHOULD emit compact JSON with no insignificant
 whitespace. Consumers MUST NOT rely on object key ordering or
@@ -80,6 +82,15 @@ JSONL files. These Events are Observation-only (§13, §15).
 that contain streaming transport Events. Loaders MAY preserve those
 rows as historical noise, but projections, mutation strategies, and
 new saves MUST NOT require them for correct behavior.
+
+**J10.** Consumers MUST tolerate legacy Event rows without
+`timestamp`. When re-saving a legacy row, consumers MAY preserve the
+missing timestamp or backfill one, but MUST NOT change `seq`, `id`,
+`type`, `payload`, or append order. A backfilled timestamp is a
+compatibility value, not the original append time, and loaders /
+projections MUST NOT treat it as historical truth. New Event rows
+produced by v0.19.0 or later implementations MUST include
+`timestamp`.
 
 ## Relationship To Log Conformance
 
