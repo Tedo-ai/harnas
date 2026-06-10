@@ -13,6 +13,9 @@ Two layers of conformance:
   phase 1 and saves a Session as JSONL; a second implementation loads
   that JSONL, runs phase 2, and diffs the final Log. This is the
   cross-language wire-compatibility contract for Session persistence.
+- **`oracle-corpus/`** — runner checks. These are not agent scenarios;
+  they are actual/expected artifact pairs that prove the runner's
+  differ rejects known invalid matches.
 
 Both are **normative**. Any Harnas implementation in any language
 SHOULD pass every agent fixture, SHOULD pass every round-trip fixture,
@@ -130,12 +133,28 @@ conformant on the agent layer:
       event
     - Diff against `expected-log.jsonl`
 4. All fixtures MUST match byte-for-byte after canonical
-   normalization (string keys, sorted hashes).
+   normalization (string keys, sorted hashes). Runners MUST compare the
+   full actual artifact; filtering actual payloads down to expected keys
+   is non-conformant. See
+   [`../23-conformance-runner.md`](../23-conformance-runner.md).
 
 A port that passes every fixture under `agents/` is, by the spec's
 definition, conformant on those cases. Add new fixtures as the
 catalog grows; every new canonical strategy should come with at
 least one fixture that exercises it.
+
+## `oracle-corpus/` — runner conformance
+
+Each directory under `oracle-corpus/` documents one required runner
+check. Implementations SHOULD include fast unit tests that load these
+pairs and assert the documented outcome before running the larger agent
+suite.
+
+The `strict-diff-extra-payload-field` oracle has an `actual-log.jsonl`
+with an extra payload field and an `expected-log.jsonl` without it. A
+strict differ MUST report a mismatch. If this oracle passes, the runner
+is hiding extra actual fields and its conformance count is not
+trustworthy.
 
 ## `round-trips/` — persistence conformance
 

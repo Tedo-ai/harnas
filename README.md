@@ -52,15 +52,18 @@ reference earlier ones rather than modifying them.
    recommended production embedding shape for web apps and services.
 9. [`21-storage-adapters.md`](21-storage-adapters.md) — pluggable
    Session persistence laws, including `EventDraft` → `EventRow`.
-10. [`informative/`](informative/) — non-normative ecosystem
+10. [`23-conformance-runner.md`](23-conformance-runner.md) —
+   conformance runner laws, strict artifact diffing, and oracle-corpus
+   checks for the measurement system.
+11. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
    guidance, multimodal content blocks, shell-tool embedding notes, provider implementation
    guidance, shell isolation guidance, conformance process,
    Log/Projection framing, subagent delegation, and worktree-per-agent
    runs.
-11. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+12. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-12. [`conformance/`](conformance/) — fixtures any conformant
+13. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations
