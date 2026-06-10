@@ -1,4 +1,4 @@
-{"seq":0,"type":"user_message","payload":{"text":"hello"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"Hello.","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2}}}
-{"seq":2,"type":"user_message","payload":{"text":"are you still there?"}}
-{"seq":3,"type":"runtime_error","payload":{"source":"strategy","handler":"guard/timeout","error_class":"Harnas::TimeoutGuard","message":"timeout","reason":"timeout","terminal":true}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"hello"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"Hello.","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2,"total_tokens":7,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":5,"completion_tokens":2},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"user_message","payload":{"text":"are you still there?"}}
+{"seq":3,"timestamp":"<generated>","type":"runtime_error","payload":{"source":"strategy","handler":"guard/timeout","error_class":"Harnas::TimeoutGuard","message":"timeout","reason":"timeout","terminal":true}}

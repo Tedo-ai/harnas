@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"Tell me you're checking, then get the time."}}
-{"seq":1,"type":"assistant_message","payload":{"text":"Let me check the time.","stop_reason":"tool_use","usage":{"input_tokens":16,"output_tokens":8}}}
-{"seq":2,"type":"tool_use","payload":{"id":"toolu_text_tool_1","name":"get_current_time","arguments":{}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_text_tool_1","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
-{"seq":4,"type":"assistant_message","payload":{"text":"It is 2026-04-21 22:15 UTC.","stop_reason":"end_turn","usage":{"input_tokens":26,"output_tokens":13}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"Tell me you're checking, then get the time."}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"Let me check the time.","stop_reason":"tool_use","usage":{"input_tokens":16,"output_tokens":8,"total_tokens":24,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":16,"output_tokens":8},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"toolu_text_tool_1","name":"get_current_time","arguments":{}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"toolu_text_tool_1","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"It is 2026-04-21 22:15 UTC.","stop_reason":"end_turn","usage":{"input_tokens":26,"output_tokens":13,"total_tokens":39,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":26,"output_tokens":13},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}

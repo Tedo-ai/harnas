@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"run a check"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8}}}
-{"seq":2,"type":"tool_use","payload":{"id":"call_health_1","name":"check_marker","arguments":{"ok":true}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_health_1","output":"[conformance stub: conformance.echo({\"ok\":true})]","error":null}}
-{"seq":4,"type":"runtime_error","payload":{"source":"strategy","handler":"guard/health","error_class":"Harnas::HealthGuard","message":"health_check_failed","reason":"health_check_failed","output":"","exit_code":1,"terminal":true}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"run a check"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":10,"output_tokens":8,"total_tokens":18,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":10,"completion_tokens":8},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"call_health_1","name":"check_marker","arguments":{"ok":true}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_health_1","output":"[conformance stub: conformance.echo({\"ok\":true})]","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"runtime_error","payload":{"source":"strategy","handler":"guard/health","error_class":"Harnas::HealthGuard","message":"health_check_failed","reason":"health_check_failed","output":"","exit_code":1,"terminal":true}}

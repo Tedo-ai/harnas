@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"help me write a PR description"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":42,"output_tokens":7}}}
-{"seq":2,"type":"tool_use","payload":{"id":"call_skill_1","name":"load_skill","arguments":{"name":"git_workflow"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_skill_1","output":"Use short topic branches.\n\nPR descriptions should include:\n- Summary\n- Tests\n","error":null}}
-{"seq":4,"type":"assistant_message","payload":{"text":"Here's a PR description following the git_workflow conventions.","stop_reason":"end_turn","usage":{"input_tokens":76,"output_tokens":12}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"help me write a PR description"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":42,"output_tokens":7,"total_tokens":49,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":42,"completion_tokens":7},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"call_skill_1","name":"load_skill","arguments":{"name":"git_workflow"}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_skill_1","output":"Use short topic branches.\n\nPR descriptions should include:\n- Summary\n- Tests\n","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"Here's a PR description following the git_workflow conventions.","stop_reason":"end_turn","usage":{"input_tokens":76,"output_tokens":12,"total_tokens":88,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":76,"completion_tokens":12},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}

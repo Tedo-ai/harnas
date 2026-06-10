@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"read the sample file"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":6}}}
-{"seq":2,"type":"tool_use","payload":{"id":"call_read_sample","name":"read_file","arguments":{"path":"fixtures/sample.txt"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_read_sample","output":"     1\talpha\n     2\tbravo\n     3\tcharlie\n     4\tdelta\n     5\techo\n","error":null}}
-{"seq":4,"type":"assistant_message","payload":{"text":"The sample file has five numbered lines.","stop_reason":"end_turn","usage":{"input_tokens":36,"output_tokens":8}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"read the sample file"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":6,"total_tokens":18,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":12,"completion_tokens":6},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"call_read_sample","name":"read_file","arguments":{"path":"fixtures/sample.txt"}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_read_sample","output":"     1\talpha\n     2\tbravo\n     3\tcharlie\n     4\tdelta\n     5\techo\n","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"The sample file has five numbered lines.","stop_reason":"end_turn","usage":{"input_tokens":36,"output_tokens":8,"total_tokens":44,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":36,"completion_tokens":8},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}

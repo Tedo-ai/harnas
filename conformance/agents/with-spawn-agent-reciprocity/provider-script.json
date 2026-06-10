@@ -83,7 +83,7 @@
             {
               "type": "tool_result",
               "tool_use_id": "toolu_spawn_recip",
-              "content": "{\"spawn_id\":\"spn_5db0fda4-f704-4bfb-8c5b-b50424b08d04\",\"child_session_id\":\"ses_b4803087-dffd-4176-be74-4901c1da5392\",\"status\":\"spawned\"}"
+              "content": "<generated>"
             }
           ]
         }

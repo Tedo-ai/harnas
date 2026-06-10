@@ -1,6 +1,6 @@
-{"seq":0,"type":"user_message","payload":{"text":"spawn a child"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":8,"output_tokens":4}}}
-{"seq":2,"type":"tool_use","payload":{"id":"toolu_spawn_recip","name":"spawn_agent","arguments":{"task":"test","label":"reciprocity child","role":"explorer"}}}
-{"seq":3,"type":"agent_spawn","payload":{"spawn_id":"<generated>","child_session_id":"<generated>","spawned_by_event_id":"<generated>","spawn_mode":"new","task":"test","capabilities":{"inherit":true,"overrides":{}},"join_policy":"async","metadata":{"label":"reciprocity child","role":"explorer"},"retry_of_spawn_id":null}}
-{"seq":4,"type":"tool_result","payload":{"tool_use_id":"toolu_spawn_recip","output":"<generated>","error":null}}
-{"seq":5,"type":"assistant_message","payload":{"text":"Child spawned.","stop_reason":"end_turn","usage":{"input_tokens":20,"output_tokens":3}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"spawn a child"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":8,"output_tokens":4,"total_tokens":12,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":8,"output_tokens":4},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"toolu_spawn_recip","name":"spawn_agent","arguments":{"task":"test","label":"reciprocity child","role":"explorer"}}}
+{"seq":3,"timestamp":"<generated>","type":"agent_spawn","payload":{"spawn_id":"<generated>","child_session_id":"<generated>","spawned_by_event_id":"<generated>","spawn_mode":"new","task":"test","capabilities":{"inherit":true,"overrides":{}},"join_policy":"async","metadata":{"label":"reciprocity child","role":"explorer"},"retry_of_spawn_id":null}}
+{"seq":4,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"toolu_spawn_recip","output":"<generated>","error":null}}
+{"seq":5,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"Child spawned.","stop_reason":"end_turn","usage":{"input_tokens":20,"output_tokens":3,"total_tokens":23,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":20,"output_tokens":3},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}

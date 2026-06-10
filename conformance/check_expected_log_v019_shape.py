@@ -27,6 +27,9 @@ def main() -> int:
     failures: list[str] = []
 
     for expected_path in sorted(AGENTS.glob("*/expected-log.jsonl")):
+        fixture = expected_path.parent
+        if not (fixture / "inputs.json").exists():
+            continue
         for line_number, event in enumerate(read_jsonl(expected_path), start=1):
             rel = expected_path.relative_to(ROOT)
             if "timestamp" not in event:

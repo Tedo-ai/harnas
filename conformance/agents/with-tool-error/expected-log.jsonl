@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"please run the failing tool"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":6}}}
-{"seq":2,"type":"tool_use","payload":{"id":"toolu_error_1","name":"explode","arguments":{"reason":"fixture"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"toolu_error_1","output":null,"error":"RuntimeError: conformance tool error"}}
-{"seq":4,"type":"assistant_message","payload":{"text":"The tool failed as expected.","stop_reason":"end_turn","usage":{"input_tokens":24,"output_tokens":7}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"please run the failing tool"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":6,"total_tokens":20,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":14,"output_tokens":6},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"toolu_error_1","name":"explode","arguments":{"reason":"fixture"}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"toolu_error_1","output":null,"error":"RuntimeError: conformance tool error"}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"The tool failed as expected.","stop_reason":"end_turn","usage":{"input_tokens":24,"output_tokens":7,"total_tokens":31,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":24,"output_tokens":7},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}

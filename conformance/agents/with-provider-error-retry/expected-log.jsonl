@@ -1,4 +1,4 @@
-{"seq":0,"type":"user_message","payload":{"text":"hello with provider trouble"}}
-{"seq":1,"type":"provider_error","payload":{"provider":"unknown","status":503,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 503: Service Unavailable","attempt":1,"terminal":false}}
-{"seq":2,"type":"provider_error","payload":{"provider":"unknown","status":503,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 503: Service Unavailable","attempt":2,"terminal":false}}
-{"seq":3,"type":"assistant_message","payload":{"text":"Recovered after retry.","stop_reason":"end_turn","usage":{"input_tokens":11,"output_tokens":5}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"hello with provider trouble"}}
+{"seq":1,"timestamp":"<generated>","type":"provider_error","payload":{"provider":"unknown","status":503,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 503: Service Unavailable","attempt":1,"terminal":false}}
+{"seq":2,"timestamp":"<generated>","type":"provider_error","payload":{"provider":"unknown","status":503,"error_class":"Harnas::Providers::HTTPError","message":"HTTP 503: Service Unavailable","attempt":2,"terminal":false}}
+{"seq":3,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"Recovered after retry.","stop_reason":"end_turn","usage":{"input_tokens":11,"output_tokens":5,"total_tokens":16,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":11,"output_tokens":5},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}

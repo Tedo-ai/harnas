@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"what time is it?"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":8}}}
-{"seq":2,"type":"tool_use","payload":{"id":"call_abc123","name":"get_current_time","arguments":{}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_abc123","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
-{"seq":4,"type":"assistant_message","payload":{"text":"It is 2026-04-21 22:15 UTC.","stop_reason":"end_turn","usage":{"input_tokens":26,"output_tokens":13}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"what time is it?"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":14,"output_tokens":8,"total_tokens":22,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":14,"completion_tokens":8},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"call_abc123","name":"get_current_time","arguments":{}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_abc123","output":"[conformance stub: conformance.get_current_time({})]","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"It is 2026-04-21 22:15 UTC.","stop_reason":"end_turn","usage":{"input_tokens":26,"output_tokens":13,"total_tokens":39,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":26,"completion_tokens":13},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}

@@ -1,5 +1,5 @@
-{"seq":0,"type":"user_message","payload":{"text":"fetch the allowed repository metadata"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":7}}}
-{"seq":2,"type":"tool_use","payload":{"id":"call_fetch_allowed","name":"fetch_url","arguments":{"url":"https://api.github.com/repos/foo"}}}
-{"seq":3,"type":"tool_result","payload":{"tool_use_id":"call_fetch_allowed","output":"[conformance stub: harnas.builtin.fetch_url({\"url\":\"https://api.github.com/repos/foo\"})]","error":null}}
-{"seq":4,"type":"assistant_message","payload":{"text":"The allowed fetch completed.","stop_reason":"end_turn","usage":{"input_tokens":32,"output_tokens":8}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"fetch the allowed repository metadata"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"","stop_reason":"tool_use","usage":{"input_tokens":12,"output_tokens":7,"total_tokens":19,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":12,"completion_tokens":7},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
+{"seq":2,"timestamp":"<generated>","type":"tool_use","payload":{"id":"call_fetch_allowed","name":"fetch_url","arguments":{"url":"https://api.github.com/repos/foo"}}}
+{"seq":3,"timestamp":"<generated>","type":"tool_result","payload":{"tool_use_id":"call_fetch_allowed","output":"[conformance stub: harnas.builtin.fetch_url({\"url\":\"https://api.github.com/repos/foo\"})]","error":null}}
+{"seq":4,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"The allowed fetch completed.","stop_reason":"end_turn","usage":{"input_tokens":32,"output_tokens":8,"total_tokens":40,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"prompt_tokens":32,"completion_tokens":8},"provenance":"provider_reported"},"provider":"openai","model":"gpt-test"}}
