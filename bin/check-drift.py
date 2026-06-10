@@ -55,7 +55,9 @@ def main() -> None:
     for language in ("Ruby", "Python", "Go", "TypeScript"):
         require_contains(readme, f"| {language}")
     require_contains(readme, f"{count}/{count} agent conformance fixtures")
-    require_contains(readme, "Ruby, Python, Go, and TypeScript")
+    require_contains(readme, "Ruby, Python, and Go")
+    require_contains(readme, "TypeScript")
+    require_contains(readme, "disclosed gaps")
 
     stale_patterns = [
         r"\b70/70\b",
@@ -66,6 +68,8 @@ def main() -> None:
         r"harnas-typescript \(in development\)",
         r"TypeScript implementation is in development",
         r"and \(soon\)\s+TypeScript",
+        r"Ruby, Python, Go, and TypeScript\s+implementations are the existence proof",
+        r"4 impls, same fixtures",
     ]
     for relative in (
         "README.md",

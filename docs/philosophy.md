@@ -1,8 +1,9 @@
 # Harnas
 
-Harnas is the substrate underneath an AI agent: a specification, plus reference
-implementations in Go, Ruby, Python, and TypeScript, for how an agent loop, its tools, its
-providers, and its persistence layer fit together.
+Harnas is the substrate underneath an AI agent: a specification, plus
+conforming reference implementations in Go, Ruby, and Python, with
+TypeScript in hardening, for how an agent loop, its tools, its providers,
+and its persistence layer fit together.
 
 It is not a framework. Harnas does not have an opinion about your CLI, your UI,
 your authentication model, your deployment target, your billing system, or the

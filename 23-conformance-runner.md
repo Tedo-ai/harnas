@@ -63,14 +63,31 @@ the fixture format as generated. For example, an expected value of
 position. A generated wildcard does not relax sibling keys, parent
 object keys, array length, or unrelated values.
 
-**C5. Generated fields.** Fixture authors SHOULD prefer explicit
+**C5. No fixture-aware implementation behavior.** Implementation code
+MUST NOT condition behavior on fixture-specific literals, including user
+text, command strings, handler names, provider payload fragments, or
+hard-coded mutation targets. A strategy implements its strategy
+specification; a hook engine invokes configured hooks; a Session API
+performs its persistence operation. Reproducing expected outputs by
+recognizing fixture inputs is non-conformance wherever the recognition
+lives, whether in a runner, helper, test adapter, library module, or
+runtime path.
+
+Conformance-only helpers remain permitted when explicitly declared by the
+fixture format, but they MUST be generic for that helper class. For
+example, a conformance tool stub may return deterministic output for a
+declared `conformance.*` tool handler; a compaction strategy may not
+special-case one fixture's user prompt to emit one fixture's expected
+`replaces` array.
+
+**C6. Generated fields.** Fixture authors SHOULD prefer explicit
 generated sentinels over omission when a field is required by the spec
 but implementation-minted, such as event ids or timestamps. When legacy
 fixtures omit a generated top-level field, runners MAY ignore that field
 for that fixture until the fixture is refreshed. Runners MUST NOT extend
 this tolerance to payload fields or nested data.
 
-**C6. Honest reporting.** A runner report MUST distinguish executed
+**C7. Honest reporting.** A runner report MUST distinguish executed
 implementation behavior from simulation. If a runner uses simulation for
 any fixture family, the report MUST label that claim with the word
 `SIMULATION` in the same sentence as the count.
@@ -83,7 +100,7 @@ Published conformance claims SHOULD include:
 - whether round-trip and packed-artifact checks were run
 - the command that produced the claim
 
-**C7. Red is valid signal.** A strict runner that turns a previously
+**C8. Red is valid signal.** A strict runner that turns a previously
 green suite red is behaving correctly when the failures expose fixture
 or implementation gaps. Implementations MUST NOT reintroduce filtering,
 fixture-name branches, or runner-side synthesis to restore a green

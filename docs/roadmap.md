@@ -28,10 +28,10 @@ page is updated when priorities shift; it's not a fixed calendar.
 
 ## In flight
 
-- **harnas-typescript v1.0 release review** — TypeScript now runs the
-  71-fixture suite and cross-language round-trip matrix through the real
-  runtime path. v1.0.0 waits on release review, packaging, and disclosed
-  footnote cleanup.
+- **harnas-typescript hardening** — TypeScript runs the 71-fixture suite
+  and cross-language round-trip matrix, but fixture-aware implementation
+  shims still need to be replaced by real MarkerTail, hook, and fork
+  behavior before v1.0.0.
 
 ## Queued
 

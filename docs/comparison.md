@@ -8,7 +8,7 @@ choice for every use case.
 
 | Project | Type | Languages | Provider model | Persistence | Multi-impl conformance |
 |---|---|---|---|---|---|
-| **Harnas** | Substrate (spec + impls) | Go, Ruby, Python, TypeScript | Direct HTTP, all major providers | Append-only Log (JSONL) | 4 impls, same fixtures |
+| **Harnas** | Substrate (spec + impls) | Go, Ruby, Python; TypeScript hardening | Direct HTTP, all major providers | Append-only Log (JSONL) | 3 conforming impls + TS in hardening |
 | LangChain / LangChain.js | Framework | Python, TS | Provider abstraction via wrappers | None built-in; bring your own | Independent Python and TS |
 | OpenAI Agents SDK | SDK | Python (primary), JS | OpenAI-first | Limited | Single-vendor |
 | Anthropic Claude Agent SDK | SDK | Python, TS | Anthropic-first | Limited | Single-vendor |
@@ -53,9 +53,10 @@ Log, the projection model, and a few primitives (strategies, hooks, tools).
 You build your product on top.
 
 **Conformance across language implementations.** Same spec, same fixtures,
-same versioned protocol. Port your agent between Go, Ruby, Python, and
-TypeScript by exchanging Logs. No other framework on this list takes this
-discipline.
+same versioned protocol. Port your agent between Go, Ruby, and Python by
+exchanging Logs. TypeScript is the fourth implementation and is being
+hardened under the same fixtures before it rejoins the conforming claim. No
+other framework on this list takes this discipline.
 
 **The Log is the source of truth.** Every event — user message, tool call,
 tool result, provider error — is in the append-only Log. Everything else

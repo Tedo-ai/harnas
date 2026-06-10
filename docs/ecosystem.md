@@ -12,8 +12,8 @@ of it.
   ├──────────────────────────────────────────────────────────────────┤
   │  Integrations:  harnas-rails (planned)  ·  Custom integrations    │
   ├──────────────────────────────────────────────────────────────────┤
-  │  Reference impls:  harnas-go · harnas-ruby · harnas-python ·     │
-  │                    harnas-typescript                              │
+  │  Reference impls:  harnas-go · harnas-ruby · harnas-python        │
+  │  Hardening:        harnas-typescript                              │
   ├──────────────────────────────────────────────────────────────────┤
   │              Harnas spec + conformance fixtures                   │
   └──────────────────────────────────────────────────────────────────┘
@@ -97,9 +97,10 @@ JSONL.
   other.
 - **harnas-rails** (when it exists) will sit between Rails apps and
   harnas-ruby, providing the ergonomic Rails-side glue.
-- **All reference implementations** target the same spec. TypeScript now
-  runs the same conformance suite and cross-language round-trip matrix; its
-  v1.0.0 release is pending packaging and final review.
+- **All conforming reference implementations** target the same spec.
+  TypeScript runs the same conformance suite and cross-language round-trip
+  matrix, but remains in hardening until its disclosed fixture-aware
+  implementation gaps close.
 
 ## Where you fit
 

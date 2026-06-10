@@ -19,6 +19,8 @@ the specification as a whole.
   `backend`, and sanitized `detail`.
 - Added a drift check that keeps current README/status claims aligned with
   the root `VERSION` file and live agent fixture count.
+- Added §23 C5, forbidding fixture-aware implementation behavior outside the
+  runner as well as inside it.
 
 ### Changed
 
@@ -31,6 +33,9 @@ the specification as a whole.
   v0.20 default flip remains gated on a leak-prevention fixture and
   release-note framing.
 - Agent conformance covers 71 fixtures in this Unreleased set.
+- Public implementation-status docs now pin the claim at Ruby, Python, and
+  Go conforming, with TypeScript disclosed as hardening until its
+  fixture-aware shims are replaced.
 
 ## [0.19.4] — 2026-06-03
 

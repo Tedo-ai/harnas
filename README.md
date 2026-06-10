@@ -73,13 +73,15 @@ reference earlier ones rather than modifying them.
 | Ruby     | [Tedo-ai/harnas-ruby](https://github.com/Tedo-ai/harnas-ruby) | Reference implementation. 71/71 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, sandbox, guard, and credential strategies, full conformable surface. |
 | Python   | [Tedo-ai/harnas-python](https://github.com/Tedo-ai/harnas-python) | 71/71 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, middleware, compaction, permissions, sandbox/guard/credential strategies, and CLI surface. |
 | Go       | [Tedo-ai/harnas-go](https://github.com/Tedo-ai/harnas-go) | 71/71 agent conformance fixtures, multimodal image/PDF content blocks, subagent delegation events and projections, reasoning capture/round-trip, Observation-only streaming deltas, round-trip persistence matrix, weekly live-provider liveness smoke (Anthropic, OpenAI, Gemini), local Ollama provider, builtin tools including normative `bash_session`, middleware, compaction, permissions, sandbox/guard/credential strategies, and CLI surface. |
-| TypeScript | [Tedo-ai/harnas-typescript](https://github.com/Tedo-ai/harnas-typescript) | 71/71 agent conformance fixtures across Node 20+, Bun, and Deno, with cross-language round-trip verification. Disclosed footnotes before v1.0.0: Windows `bash_session` behavior and receipt-only `spawn_agent`. |
+| TypeScript | [Tedo-ai/harnas-typescript](https://github.com/Tedo-ai/harnas-typescript) | 71/71 agent conformance fixtures across Node 20+, Bun, and Deno, with cross-language round-trip verification. Disclosed gaps before v1.0.0: fixture-aware implementations for MarkerTail tool-pair safety, manifest hooks, and fork/save-load handling; Windows `bash_session` behavior; receipt-only `spawn_agent`. |
 
 A second implementation that passes every fixture under
 [`conformance/agents/`](conformance/agents/) is, by the spec's
-definition, conformant on those cases. The Ruby, Python, Go, and TypeScript
-implementations are the existence proof that Harnas is genuinely
-portable; new ports in any language are welcome.
+definition, conformant on those cases. The Ruby, Python, and Go
+implementations are the current fully conforming reference set. TypeScript
+is the fourth implementation under active hardening; it runs the suite but
+has disclosed gaps that must close before it rejoins the conforming claim.
+New ports in any language are welcome.
 
 ## License
 
