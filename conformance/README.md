@@ -110,18 +110,20 @@ cross-session integrity has been checked.
 
 ### Running the reference implementation's conformance suite
 
-    just conformance
+Each implementation ships its own conformance runner. For example, from a
+Ruby implementation checkout:
 
-Replays every fixture under `agents/` against Ruby's Harnas,
-compares the resulting Log to `expected-log.jsonl`, and reports
-pass/fail per fixture. A named subset can be run by passing
-fixture names: `just conformance minimal-chat with-tool-call`.
+    HARNAS_SPEC=/path/to/Tedo-ai/harnas bundle exec bin/conformance.rb
 
-Agent fixtures are also run as part of the Ruby reference
-implementation's `just test` (via
-`harnas-ruby/spec/harnas/conformance/runner_spec.rb`) so any
-regression in projection/ingestor/agent-loop behavior is caught
-on normal CI.
+Replays every fixture under `agents/`, compares the resulting Log to
+`expected-log.jsonl`, and reports pass/fail per fixture. A named subset can
+be run by passing fixture names to the implementation runner, for example:
+
+    HARNAS_SPEC=/path/to/Tedo-ai/harnas bundle exec bin/conformance.rb minimal-chat with-tool-call
+
+Agent fixtures are also run as part of each reference implementation's
+normal CI so regressions in projection, ingestor, agent-loop, strategy, and
+tool behavior are caught before release.
 
 To verify request assertion coverage across the fixture corpus:
 

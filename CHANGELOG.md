@@ -17,6 +17,8 @@ the specification as a whole.
 - Added Unreleased v0.20 draft material for an informative
   execution-evidence vocabulary using `enforced`, `contained`,
   `backend`, and sanitized `detail`.
+- Added a drift check that keeps current README/status claims aligned with
+  the root `VERSION` file and live agent fixture count.
 
 ### Changed
 
@@ -28,8 +30,7 @@ the specification as a whole.
   environment behavior unless they explicitly opt into scrubbing; the
   v0.20 default flip remains gated on a leak-prevention fixture and
   release-note framing.
-- Agent conformance will cover 71 fixtures once this Unreleased set is
-  versioned.
+- Agent conformance covers 71 fixtures in this Unreleased set.
 
 ## [0.19.4] — 2026-06-03
 

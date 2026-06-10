@@ -28,9 +28,10 @@ page is updated when priorities shift; it's not a fixed calendar.
 
 ## In flight
 
-- **harnas-typescript reference implementation** — TypeScript port targeting
-  v0.19.0 conformance. The development runner covers the 65-fixture suite;
-  v1.0.0 waits on cross-language round-trip verification and release review.
+- **harnas-typescript v1.0 release review** — TypeScript now runs the
+  71-fixture suite and cross-language round-trip matrix through the real
+  runtime path. v1.0.0 waits on release review, packaging, and disclosed
+  footnote cleanup.
 
 ## Queued
 

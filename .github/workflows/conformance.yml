@@ -45,6 +45,10 @@ jobs:
         working-directory: harnas-python
         run: python -m pip install -e .[test]
 
+      - name: Drift check
+        working-directory: harnas
+        run: python3 bin/check-drift.py
+
       - name: Ruby agent conformance
         working-directory: harnas-ruby
         run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" bundle exec bin/conformance.rb
