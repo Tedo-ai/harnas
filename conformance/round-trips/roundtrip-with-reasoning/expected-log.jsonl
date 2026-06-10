@@ -1,4 +1,4 @@
-{"seq":0,"type":"user_message","payload":{"text":"think and answer"}}
-{"seq":1,"type":"assistant_message","payload":{"text":"first answer","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":4},"reasoning":[{"type":"text","text":"Consider the prompt carefully.","signature":"sig_roundtrip_reasoning"}]}}
-{"seq":2,"type":"user_message","payload":{"text":"continue"}}
-{"seq":3,"type":"assistant_message","payload":{"text":"continued","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2}}}
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"think and answer"}}
+{"seq":1,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"first answer","stop_reason":"end_turn","usage":{"input_tokens":3,"output_tokens":4,"total_tokens":7,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":3,"output_tokens":4},"provenance":"provider_reported"},"provider":"anthropic","reasoning":[{"type":"text","text":"Consider the prompt carefully.","signature":"sig_roundtrip_reasoning"}],"model":"claude-test"}}
+{"seq":2,"timestamp":"<generated>","type":"user_message","payload":{"text":"continue"}}
+{"seq":3,"timestamp":"<generated>","type":"assistant_message","payload":{"text":"continued","stop_reason":"end_turn","usage":{"input_tokens":5,"output_tokens":2,"total_tokens":7,"cache_read_input_tokens":null,"cache_write_input_tokens":null,"reasoning_tokens":null,"provider_raw":{"input_tokens":5,"output_tokens":2},"provenance":"provider_reported"},"provider":"anthropic","model":"claude-test"}}
