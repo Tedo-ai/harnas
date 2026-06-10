@@ -28,10 +28,11 @@ page is updated when priorities shift; it's not a fixed calendar.
 
 ## In flight
 
-- **harnas-typescript hardening** — TypeScript runs the 71-fixture suite
-  and cross-language round-trip matrix, but fixture-aware implementation
-  shims still need to be replaced by real MarkerTail, hook, and fork
-  behavior before v1.0.0.
+- **harnas-typescript v1.0 release review** — TypeScript runs the
+  75-fixture suite and cross-language round-trip matrix. Remaining
+  pre-v1.0 work is release hardening around the disclosed Windows
+  `bash_session` and receipt-only `spawn_agent` footnotes, not fixture
+  conformance.
 
 ## Queued
 

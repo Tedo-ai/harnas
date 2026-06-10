@@ -1,0 +1,93 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "original branch root"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "root answer"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 5,
+        "output_tokens": 2
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "original branch root"
+        },
+        {
+          "role": "assistant",
+          "content": "root answer"
+        },
+        {
+          "role": "user",
+          "content": "discard this branch"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "discarded answer"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 6,
+        "output_tokens": 2
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "original branch root"
+        },
+        {
+          "role": "assistant",
+          "content": "root answer"
+        },
+        {
+          "role": "user",
+          "content": "continue on fork after divergence"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "fork answer after divergence"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 7,
+        "output_tokens": 3
+      }
+    }
+  }
+]

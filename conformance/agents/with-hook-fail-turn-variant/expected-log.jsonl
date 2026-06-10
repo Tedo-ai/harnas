@@ -1,0 +1,2 @@
+{"seq":0,"timestamp":"<generated>","type":"user_message","payload":{"text":"hello from the variant"}}
+{"seq":1,"timestamp":"<generated>","type":"runtime_error","payload":{"source":"hook","handler":"conformance.raise_hook_variant","error_class":"RuntimeError","message":"conformance hook failure","terminal":true}}

@@ -21,6 +21,10 @@ the specification as a whole.
   the root `VERSION` file and live agent fixture count.
 - Added §23 C5, forbidding fixture-aware implementation behavior outside the
   runner as well as inside it.
+- Added four fixture-aware-implementation canaries:
+  `with-marker-tail-and-tool-output-cap-variant`,
+  `with-manifest-hooks-variant`, `with-hook-fail-turn-variant`, and
+  `with-fork-after-divergence`.
 
 ### Changed
 
@@ -32,10 +36,10 @@ the specification as a whole.
   environment behavior unless they explicitly opt into scrubbing; the
   v0.20 default flip remains gated on a leak-prevention fixture and
   release-note framing.
-- Agent conformance covers 71 fixtures in this Unreleased set.
-- Public implementation-status docs now pin the claim at Ruby, Python, and
-  Go conforming, with TypeScript disclosed as hardening until its
-  fixture-aware shims are replaced.
+- Agent conformance covers 75 fixtures in this Unreleased set.
+- Public implementation-status docs now identify Ruby, Python, Go, and
+  TypeScript as the current conforming reference set, with
+  implementation-specific footnotes disclosed per repository.
 
 ## [0.19.4] — 2026-06-03
 

@@ -1,0 +1,10 @@
+[
+  "original branch root",
+  "discard this branch",
+  {
+    "fork": {
+      "at_seq": 1
+    }
+  },
+  "continue on fork after divergence"
+]

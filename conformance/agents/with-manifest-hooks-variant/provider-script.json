@@ -1,0 +1,97 @@
+[
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "please check the fixture clock"
+        }
+      ],
+      "tools": [
+        {
+          "name": "get_current_time",
+          "description": "Returns the current UTC time.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_variant_01",
+          "name": "get_current_time",
+          "input": {}
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 12,
+        "output_tokens": 5
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "please check the fixture clock"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_variant_01",
+              "name": "get_current_time",
+              "input": {}
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_variant_01",
+              "content": "[conformance stub: conformance.get_current_time({})]"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "get_current_time",
+          "description": "Returns the current UTC time.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Variant hook observed."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 23,
+        "output_tokens": 4
+      }
+    }
+  }
+]

@@ -53,10 +53,9 @@ Log, the projection model, and a few primitives (strategies, hooks, tools).
 You build your product on top.
 
 **Conformance across language implementations.** Same spec, same fixtures,
-same versioned protocol. Port your agent between Go, Ruby, and Python by
-exchanging Logs. TypeScript is the fourth implementation and is being
-hardened under the same fixtures before it rejoins the conforming claim. No
-other framework on this list takes this discipline.
+same versioned protocol. Port your agent between Go, Ruby, Python, and
+TypeScript by exchanging Logs. No other framework on this list takes this
+discipline.
 
 **The Log is the source of truth.** Every event — user message, tool call,
 tool result, provider error — is in the append-only Log. Everything else

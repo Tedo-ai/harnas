@@ -98,9 +98,9 @@ JSONL.
 - **harnas-rails** (when it exists) will sit between Rails apps and
   harnas-ruby, providing the ergonomic Rails-side glue.
 - **All conforming reference implementations** target the same spec.
-  TypeScript runs the same conformance suite and cross-language round-trip
-  matrix, but remains in hardening until its disclosed fixture-aware
-  implementation gaps close.
+  Ruby, Python, Go, and TypeScript run the same conformance suite and
+  cross-language round-trip matrix, with implementation-specific footnotes
+  disclosed in their repositories.
 
 ## Where you fit
 

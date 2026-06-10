@@ -55,11 +55,11 @@ def main() -> None:
     for language in ("Ruby", "Python", "Go", "TypeScript"):
         require_contains(readme, f"| {language}")
     require_contains(readme, f"{count}/{count} agent conformance fixtures")
-    require_contains(readme, "Ruby, Python, and Go")
-    require_contains(readme, "TypeScript")
-    require_contains(readme, "disclosed gaps")
+    require_contains(readme, "Ruby, Python, Go, and TypeScript")
+    require_contains(readme, "Disclosed v1.0 footnotes")
 
     stale_patterns = [
+        r"\b71/71\b",
         r"\b70/70\b",
         r"\b65-fixture\b",
         r"\b70-fixture\b",
@@ -70,6 +70,9 @@ def main() -> None:
         r"and \(soon\)\s+TypeScript",
         r"Ruby, Python, Go, and TypeScript\s+implementations are the existence proof",
         r"4 impls, same fixtures",
+        r"Ruby, Python, and Go\s+implementations are the current fully conforming reference set",
+        r"fixture-aware implementations for MarkerTail",
+        r"fixture-aware shims",
     ]
     for relative in (
         "README.md",
