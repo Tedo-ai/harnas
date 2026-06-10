@@ -1,0 +1,1 @@
+{"seq":0,"type":"assistant_message","payload":{"text":"ok","stop_reason":"end_turn","usage":{"input_tokens":1,"output_tokens":1,"total_tokens":2},"garbage":"must fail strict diff"}}
