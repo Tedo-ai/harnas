@@ -1,18 +1,38 @@
 [
   {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "reasoning_details": [
-            { "type": "reasoning.text", "text": "Inspect the failing behavior." },
-            { "type": "reasoning.text", "text": "Patch the smallest shared surface." }
-          ]
-        },
-        "finish_reason": "stop"
+    "expect_request": {
+      "model": "moonshotai/kimi-k2.6",
+      "messages": [
+        {
+          "role": "user",
+          "content": "plan the fix"
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "reasoning_details": [
+              {
+                "type": "reasoning.text",
+                "text": "Inspect the failing behavior."
+              },
+              {
+                "type": "reasoning.text",
+                "text": "Patch the smallest shared surface."
+              }
+            ]
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 15,
+        "completion_tokens": 9
       }
-    ],
-    "usage": { "prompt_tokens": 15, "completion_tokens": 9 }
+    }
   }
 ]

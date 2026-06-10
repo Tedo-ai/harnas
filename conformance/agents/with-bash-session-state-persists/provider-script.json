@@ -1,8 +1,80 @@
 [
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "prove shell state persists"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_bash_state_1",
+                "type": "function",
+                "function": {
+                  "name": "bash_session",
+                  "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"export MYVAR=hello && cd /tmp\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 6
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "prove shell state persists"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -11,20 +83,103 @@
               "type": "function",
               "function": {
                 "name": "bash_session",
-                "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"export MYVAR=hello && cd /tmp\"}"
+                "arguments": "{\"action\":\"run\",\"command\":\"export MYVAR=hello && cd /tmp\",\"session_id\":\"state_s1\"}"
               }
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_state_1",
+          "content": "{\"session_id\":\"state_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_bash_state_2",
+                "type": "function",
+                "function": {
+                  "name": "bash_session",
+                  "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"echo $MYVAR && pwd\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 28,
+        "completion_tokens": 6
       }
-    ],
-    "usage": { "prompt_tokens": 16, "completion_tokens": 6 }
+    }
   },
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "prove shell state persists"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_state_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"command\":\"export MYVAR=hello && cd /tmp\",\"session_id\":\"state_s1\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_state_1",
+          "content": "{\"session_id\":\"state_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -33,26 +188,63 @@
               "type": "function",
               "function": {
                 "name": "bash_session",
-                "arguments": "{\"action\":\"run\",\"session_id\":\"state_s1\",\"command\":\"echo $MYVAR && pwd\"}"
+                "arguments": "{\"action\":\"run\",\"command\":\"echo $MYVAR && pwd\",\"session_id\":\"state_s1\"}"
               }
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_state_2",
+          "content": "{\"session_id\":\"state_s1\",\"status\":\"completed\",\"exit_code\":0,\"stdout\":\"hello\\n/tmp\\n\",\"stderr\":\"\",\"command_stdout\":\"hello\\n/tmp\\n\",\"command_stderr\":\"\",\"truncated\":false}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The session preserved MYVAR and the /tmp working directory."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 48,
+        "completion_tokens": 10
       }
-    ],
-    "usage": { "prompt_tokens": 28, "completion_tokens": 6 }
-  },
-  {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": "The session preserved MYVAR and the /tmp working directory."
-        },
-        "finish_reason": "stop"
-      }
-    ],
-    "usage": { "prompt_tokens": 48, "completion_tokens": 10 }
+    }
   }
 ]

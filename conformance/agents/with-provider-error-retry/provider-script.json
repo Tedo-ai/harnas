@@ -1,27 +1,63 @@
 [
   {
-    "error": {
-      "status": 503,
-      "body": "Service Unavailable"
-    }
-  },
-  {
-    "error": {
-      "status": 503,
-      "body": "Service Unavailable"
-    }
-  },
-  {
-    "content": [
-      {
-        "type": "text",
-        "text": "Recovered after retry."
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello with provider trouble"
+        }
+      ]
+    },
+    "response": {
+      "error": {
+        "status": 503,
+        "body": "Service Unavailable"
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 11,
-      "output_tokens": 5
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello with provider trouble"
+        }
+      ]
+    },
+    "response": {
+      "error": {
+        "status": 503,
+        "body": "Service Unavailable"
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello with provider trouble"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Recovered after retry."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 11,
+        "output_tokens": 5
+      }
     }
   }
 ]

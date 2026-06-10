@@ -1,31 +1,74 @@
 [
   {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "tool_calls": [
-            {
-              "id": "call_fetch_secret",
-              "type": "function",
-              "function": {
-                "name": "fetch_url",
-                "arguments": "{\"url\":\"https://api.example.com/data\"}"
-              }
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "fetch data"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "fetch_url",
+            "description": "Fetch a URL over HTTP(S).",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "headers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "url"
+              ]
             }
-          ]
-        },
-        "finish_reason": "tool_calls"
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_fetch_secret",
+                "type": "function",
+                "function": {
+                  "name": "fetch_url",
+                  "arguments": "{\"url\":\"https://api.example.com/data\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 12,
+        "completion_tokens": 7
       }
-    ],
-    "usage": { "prompt_tokens": 12, "completion_tokens": 7 }
+    }
   },
   {
     "expect_request": {
       "model": "gpt-test",
       "messages": [
-        { "role": "user", "content": "fetch data" },
+        {
+          "role": "user",
+          "content": "fetch data"
+        },
         {
           "role": "assistant",
           "content": null,
@@ -55,13 +98,19 @@
             "parameters": {
               "type": "object",
               "properties": {
-                "url": { "type": "string" },
+                "url": {
+                  "type": "string"
+                },
                 "headers": {
                   "type": "object",
-                  "additionalProperties": { "type": "string" }
+                  "additionalProperties": {
+                    "type": "string"
+                  }
                 }
               },
-              "required": ["url"]
+              "required": [
+                "url"
+              ]
             }
           }
         }
@@ -77,7 +126,10 @@
           "finish_reason": "stop"
         }
       ],
-      "usage": { "prompt_tokens": 30, "completion_tokens": 6 }
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 6
+      }
     }
   }
 ]

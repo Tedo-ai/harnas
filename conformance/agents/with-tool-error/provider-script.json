@@ -1,32 +1,102 @@
 [
   {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_error_1",
-        "name": "explode",
-        "input": {
-          "reason": "fixture"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "please run the failing tool"
         }
+      ],
+      "tools": [
+        {
+          "name": "explode",
+          "description": "Raises a deterministic conformance error.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_error_1",
+          "name": "explode",
+          "input": {
+            "reason": "fixture"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 14,
+        "output_tokens": 6
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": {
-      "input_tokens": 14,
-      "output_tokens": 6
     }
   },
   {
-    "content": [
-      {
-        "type": "text",
-        "text": "The tool failed as expected."
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "please run the failing tool"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_error_1",
+              "name": "explode",
+              "input": {
+                "reason": "fixture"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_error_1",
+              "content": "RuntimeError: conformance tool error",
+              "is_error": true
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "explode",
+          "description": "Raises a deterministic conformance error.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "The tool failed as expected."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 24,
+        "output_tokens": 7
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 24,
-      "output_tokens": 7
     }
   }
 ]

@@ -1,31 +1,72 @@
 [
   {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "tool_calls": [
-            {
-              "id": "call_write_secret",
-              "type": "function",
-              "function": {
-                "name": "write_file",
-                "arguments": "{\"content\":\"secret\",\"path\":\"./secrets/key.pem\"}"
-              }
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "write the secret file"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "write_file",
+            "description": "Write text content to a file at the given path.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "content"
+              ]
             }
-          ]
-        },
-        "finish_reason": "tool_calls"
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_write_secret",
+                "type": "function",
+                "function": {
+                  "name": "write_file",
+                  "arguments": "{\"content\":\"secret\",\"path\":\"./secrets/key.pem\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+    }
   },
   {
     "expect_request": {
       "model": "gpt-test",
       "messages": [
-        { "role": "user", "content": "write the secret file" },
+        {
+          "role": "user",
+          "content": "write the secret file"
+        },
         {
           "role": "assistant",
           "content": null,
@@ -55,10 +96,17 @@
             "parameters": {
               "type": "object",
               "properties": {
-                "path": { "type": "string" },
-                "content": { "type": "string" }
+                "path": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
               },
-              "required": ["path", "content"]
+              "required": [
+                "path",
+                "content"
+              ]
             }
           }
         }
@@ -74,7 +122,10 @@
           "finish_reason": "stop"
         }
       ],
-      "usage": { "prompt_tokens": 32, "completion_tokens": 9 }
+      "usage": {
+        "prompt_tokens": 32,
+        "completion_tokens": 9
+      }
     }
   }
 ]

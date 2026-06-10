@@ -1,15 +1,27 @@
 [
   {
-    "content": [
-      {
-        "type": "text",
-        "text": "one"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "first"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "one"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 3,
+        "output_tokens": 1
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 3,
-      "output_tokens": 1
     }
   },
   {

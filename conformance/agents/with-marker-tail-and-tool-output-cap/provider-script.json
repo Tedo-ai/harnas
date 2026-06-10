@@ -1,45 +1,136 @@
 [
   {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_big_1",
-        "name": "big_echo",
-        "input": {
-          "blob": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "call the big tool"
         }
+      ],
+      "tools": [
+        {
+          "name": "big_echo",
+          "description": "Echoes large arguments through the conformance stub.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_big_1",
+          "name": "big_echo",
+          "input": {
+            "blob": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 12,
+        "output_tokens": 4
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": {
-      "input_tokens": 12,
-      "output_tokens": 4
     }
   },
   {
-    "content": [
-      {
-        "type": "text",
-        "text": "Big tool captured."
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "call the big tool"
+            },
+            {
+              "type": "text",
+              "text": "[tool `big_echo` output capped at 100 bytes (original 553 bytes)]\n[conformance stub: conformance.big_echo("
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "big_echo",
+          "description": "Echoes large arguments through the conformance stub.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Big tool captured."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 4
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 20,
-      "output_tokens": 4
     }
   },
   {
-    "content": [
-      {
-        "type": "text",
-        "text": "Continuing with compacted context."
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[snipped 3 earlier messages]"
+            },
+            {
+              "type": "text",
+              "text": "[tool `big_echo` output capped at 100 bytes (original 553 bytes)]\n[conformance stub: conformance.big_echo("
+            },
+            {
+              "type": "text",
+              "text": "continue after compaction"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "big_echo",
+          "description": "Echoes large arguments through the conformance stub.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Continuing with compacted context."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 6
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 16,
-      "output_tokens": 6
     }
   }
 ]

@@ -1,8 +1,20 @@
 [
   {
-    "error": {
-      "status": 400,
-      "body": "Bad Request"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello with provider trouble"
+        }
+      ]
+    },
+    "response": {
+      "error": {
+        "status": 400,
+        "body": "Bad Request"
+      }
     }
   }
 ]

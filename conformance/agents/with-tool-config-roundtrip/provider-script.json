@@ -1,40 +1,286 @@
 [
   {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_config_1",
-        "name": "configured_tool",
-        "input": { "label": "before" }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "use the configured tool once"
+        }
+      ],
+      "tools": [
+        {
+          "name": "configured_tool",
+          "description": "Echoes the opaque tool config received by the handler.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_config_1",
+          "name": "configured_tool",
+          "input": {
+            "label": "before"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 12,
+        "output_tokens": 5
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": { "input_tokens": 12, "output_tokens": 5 }
+    }
   },
   {
-    "content": [
-      { "type": "text", "text": "Config seen before reload." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 22, "output_tokens": 6 }
-  },
-  {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_config_2",
-        "name": "configured_tool",
-        "input": { "label": "after" }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "use the configured tool once"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_config_1",
+              "name": "configured_tool",
+              "input": {
+                "label": "before"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_config_1",
+              "content": "[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "configured_tool",
+          "description": "Echoes the opaque tool config received by the handler.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Config seen before reload."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 22,
+        "output_tokens": 6
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": { "input_tokens": 34, "output_tokens": 5 }
+    }
   },
   {
-    "content": [
-      { "type": "text", "text": "Config seen after reload." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 44, "output_tokens": 6 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "use the configured tool once"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_config_1",
+              "name": "configured_tool",
+              "input": {
+                "label": "before"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_config_1",
+              "content": "[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Config seen before reload."
+        },
+        {
+          "role": "user",
+          "content": "use the configured tool again"
+        }
+      ],
+      "tools": [
+        {
+          "name": "configured_tool",
+          "description": "Echoes the opaque tool config received by the handler.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_config_2",
+          "name": "configured_tool",
+          "input": {
+            "label": "after"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 34,
+        "output_tokens": 5
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "use the configured tool once"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_config_1",
+              "name": "configured_tool",
+              "input": {
+                "label": "before"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_config_1",
+              "content": "[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "content": "Config seen before reload."
+        },
+        {
+          "role": "user",
+          "content": "use the configured tool again"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_config_2",
+              "name": "configured_tool",
+              "input": {
+                "label": "after"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_config_2",
+              "content": "[conformance config: {\"idempotency_policy\":\"key_in_payload\",\"limits\":{\"max_recipients\":3,\"timeout_ms\":2500},\"operation_key\":\"mailbox.send\",\"resource_binding\":{\"mailbox_id\":\"mailbox_123\",\"scopes\":[\"read\",\"write\"]},\"retryable\":true,\"tags\":[\"conformance\",\"opaque-config\"]}]"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "configured_tool",
+          "description": "Echoes the opaque tool config received by the handler.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Config seen after reload."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 44,
+        "output_tokens": 6
+      }
+    }
   }
 ]

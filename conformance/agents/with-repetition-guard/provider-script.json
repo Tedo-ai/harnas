@@ -1,8 +1,69 @@
 [
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run the failing command"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "run_shell",
+            "description": "Run a shell command.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_fail_1",
+                "type": "function",
+                "function": {
+                  "name": "run_shell",
+                  "arguments": "{\"command\":\"failing-cmd\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 8
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run the failing command"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -16,15 +77,87 @@
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_fail_1",
+          "content": "RuntimeError: conformance tool error"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "run_shell",
+            "description": "Run a shell command.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_fail_2",
+                "type": "function",
+                "function": {
+                  "name": "run_shell",
+                  "arguments": "{\"command\":\"failing-cmd\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 20,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+    }
   },
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run the failing command"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_fail_1",
+              "type": "function",
+              "function": {
+                "name": "run_shell",
+                "arguments": "{\"command\":\"failing-cmd\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_fail_1",
+          "content": "RuntimeError: conformance tool error"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -38,31 +171,57 @@
             }
           ]
         },
-        "finish_reason": "tool_calls"
-      }
-    ],
-    "usage": { "prompt_tokens": 20, "completion_tokens": 8 }
-  },
-  {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "tool_calls": [
-            {
-              "id": "call_fail_3",
-              "type": "function",
-              "function": {
-                "name": "run_shell",
-                "arguments": "{\"command\":\"failing-cmd\"}"
-              }
+        {
+          "role": "tool",
+          "tool_call_id": "call_fail_2",
+          "content": "RuntimeError: conformance tool error"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "run_shell",
+            "description": "Run a shell command.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "command": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "command"
+              ]
             }
-          ]
-        },
-        "finish_reason": "tool_calls"
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_fail_3",
+                "type": "function",
+                "function": {
+                  "name": "run_shell",
+                  "arguments": "{\"command\":\"failing-cmd\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 30, "completion_tokens": 8 }
+    }
   }
 ]

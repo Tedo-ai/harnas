@@ -1,14 +1,28 @@
 [
   {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": "Hello."
-        },
-        "finish_reason": "stop"
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello"
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "Hello."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 5,
+        "completion_tokens": 2
       }
-    ],
-    "usage": { "prompt_tokens": 5, "completion_tokens": 2 }
+    }
   }
 ]

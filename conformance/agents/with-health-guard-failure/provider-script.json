@@ -1,25 +1,58 @@
 [
   {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "tool_calls": [
-            {
-              "id": "call_health_1",
-              "type": "function",
-              "function": {
-                "name": "check_marker",
-                "arguments": "{\"ok\":true}"
-              }
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run a check"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "check_marker",
+            "description": "Echo marker arguments.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "ok": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "ok"
+              ]
             }
-          ]
-        },
-        "finish_reason": "tool_calls"
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_health_1",
+                "type": "function",
+                "function": {
+                  "name": "check_marker",
+                  "arguments": "{\"ok\":true}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+    }
   }
 ]
-

@@ -1,25 +1,129 @@
 [
   {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_spawn_recip",
-        "name": "spawn_agent",
-        "input": {
-          "task": "test",
-          "label": "reciprocity child",
-          "role": "explorer"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "spawn a child"
         }
+      ],
+      "tools": [
+        {
+          "name": "spawn_agent",
+          "description": "Create a child agent Session receipt for a delegated task.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_spawn_recip",
+          "name": "spawn_agent",
+          "input": {
+            "task": "test",
+            "label": "reciprocity child",
+            "role": "explorer"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 8,
+        "output_tokens": 4
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": { "input_tokens": 8, "output_tokens": 4 }
+    }
   },
   {
-    "content": [
-      { "type": "text", "text": "Child spawned." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 20, "output_tokens": 3 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "spawn a child"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_spawn_recip",
+              "name": "spawn_agent",
+              "input": {
+                "task": "test",
+                "label": "reciprocity child",
+                "role": "explorer"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_spawn_recip",
+              "content": "{\"spawn_id\":\"spn_5db0fda4-f704-4bfb-8c5b-b50424b08d04\",\"child_session_id\":\"ses_b4803087-dffd-4176-be74-4901c1da5392\",\"status\":\"spawned\"}"
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "spawn_agent",
+          "description": "Create a child agent Session receipt for a delegated task.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Child spawned."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 3
+      }
+    }
   }
 ]

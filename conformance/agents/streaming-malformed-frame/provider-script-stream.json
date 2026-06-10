@@ -1,25 +1,37 @@
 [
-  [
-    {
-      "type": "assistant_turn_started",
-      "payload": {
-        "turn_id": "turn_stream_malformed_1"
-      }
+  {
+    "expect_request": {
+      "model": "mock-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "stream then hit malformed frame"
+        }
+      ]
     },
-    {
-      "type": "assistant_text_delta",
-      "payload": {
-        "turn_id": "turn_stream_malformed_1",
-        "chunk": "partial"
+    "response": [
+      {
+        "type": "assistant_turn_started",
+        "payload": {
+          "turn_id": "turn_stream_malformed_1"
+        }
+      },
+      {
+        "type": "assistant_text_delta",
+        "payload": {
+          "turn_id": "turn_stream_malformed_1",
+          "chunk": "partial"
+        }
+      },
+      {
+        "malformed_frame": {
+          "turn_id": "turn_stream_malformed_1",
+          "provider": "openai",
+          "preview": "{not-json",
+          "message": "openai malformed stream frame: preview=\"{not-json\""
+        }
       }
-    },
-    {
-      "malformed_frame": {
-        "turn_id": "turn_stream_malformed_1",
-        "provider": "openai",
-        "preview": "{not-json",
-        "message": "openai malformed stream frame: preview=\"{not-json\""
-      }
-    }
-  ]
+    ]
+  }
 ]

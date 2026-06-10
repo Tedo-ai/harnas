@@ -1,8 +1,80 @@
 [
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run a long command and stop it"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_bash_timeout_1",
+                "type": "function",
+                "function": {
+                  "name": "bash_session",
+                  "arguments": "{\"action\":\"run\",\"session_id\":\"timeout_s1\",\"command\":\"sleep 60\",\"timeout_ms\":500}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 16,
+        "completion_tokens": 6
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run a long command and stop it"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -11,20 +83,103 @@
               "type": "function",
               "function": {
                 "name": "bash_session",
-                "arguments": "{\"action\":\"run\",\"session_id\":\"timeout_s1\",\"command\":\"sleep 60\",\"timeout_ms\":500}"
+                "arguments": "{\"action\":\"run\",\"command\":\"sleep 60\",\"session_id\":\"timeout_s1\",\"timeout_ms\":500}"
               }
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_timeout_1",
+          "content": "{\"session_id\":\"timeout_s1\",\"status\":\"running\",\"exit_code\":null,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_bash_timeout_2",
+                "type": "function",
+                "function": {
+                  "name": "bash_session",
+                  "arguments": "{\"action\":\"kill\",\"session_id\":\"timeout_s1\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 6
       }
-    ],
-    "usage": { "prompt_tokens": 16, "completion_tokens": 6 }
+    }
   },
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "run a long command and stop it"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_bash_timeout_1",
+              "type": "function",
+              "function": {
+                "name": "bash_session",
+                "arguments": "{\"action\":\"run\",\"command\":\"sleep 60\",\"session_id\":\"timeout_s1\",\"timeout_ms\":500}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_timeout_1",
+          "content": "{\"session_id\":\"timeout_s1\",\"status\":\"running\",\"exit_code\":null,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -38,21 +193,58 @@
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_bash_timeout_2",
+          "content": "{\"session_id\":\"timeout_s1\",\"status\":\"killed\",\"exit_code\":null,\"stdout\":\"\",\"stderr\":\"\",\"command_stdout\":\"\",\"command_stderr\":\"\",\"truncated\":false}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "bash_session",
+            "description": "Run a command in a persistent bash session. Sessions preserve working directory and environment variables across calls.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                },
+                "command": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "run",
+                    "status",
+                    "kill"
+                  ]
+                },
+                "timeout_ms": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The long-running command was killed."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 26, "completion_tokens": 6 }
-  },
-  {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": "The long-running command was killed."
-        },
-        "finish_reason": "stop"
-      }
-    ],
-    "usage": { "prompt_tokens": 42, "completion_tokens": 8 }
+    }
   }
 ]

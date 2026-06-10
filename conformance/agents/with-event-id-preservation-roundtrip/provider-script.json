@@ -1,16 +1,60 @@
 [
   {
-    "content": [
-      { "type": "text", "text": "Before save response." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 4, "output_tokens": 3 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "before save"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Before save response."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 4,
+        "output_tokens": 3
+      }
+    }
   },
   {
-    "content": [
-      { "type": "text", "text": "After load response." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 9, "output_tokens": 4 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "before save"
+        },
+        {
+          "role": "assistant",
+          "content": "Before save response."
+        },
+        {
+          "role": "user",
+          "content": "after load"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "After load response."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 9,
+        "output_tokens": 4
+      }
+    }
   }
 ]

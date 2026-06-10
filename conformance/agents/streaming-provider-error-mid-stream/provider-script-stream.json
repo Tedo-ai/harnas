@@ -1,32 +1,44 @@
 [
-  [
-    {
-      "type": "assistant_turn_started",
-      "payload": {
-        "turn_id": "turn_stream_fail_1"
-      }
+  {
+    "expect_request": {
+      "model": "mock-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "start streaming then fail"
+        }
+      ]
     },
-    {
-      "type": "assistant_text_delta",
-      "payload": {
-        "turn_id": "turn_stream_fail_1",
-        "chunk": "partial "
+    "response": [
+      {
+        "type": "assistant_turn_started",
+        "payload": {
+          "turn_id": "turn_stream_fail_1"
+        }
+      },
+      {
+        "type": "assistant_text_delta",
+        "payload": {
+          "turn_id": "turn_stream_fail_1",
+          "chunk": "partial "
+        }
+      },
+      {
+        "type": "assistant_text_delta",
+        "payload": {
+          "turn_id": "turn_stream_fail_1",
+          "chunk": "answer"
+        }
+      },
+      {
+        "error": {
+          "turn_id": "turn_stream_fail_1",
+          "message": "HTTP 400: stream aborted",
+          "status": 400,
+          "body": "stream aborted"
+        }
       }
-    },
-    {
-      "type": "assistant_text_delta",
-      "payload": {
-        "turn_id": "turn_stream_fail_1",
-        "chunk": "answer"
-      }
-    },
-    {
-      "error": {
-        "turn_id": "turn_stream_fail_1",
-        "message": "HTTP 400: stream aborted",
-        "status": 400,
-        "body": "stream aborted"
-      }
-    }
-  ]
+    ]
+  }
 ]

@@ -57,6 +57,17 @@ streaming provider call; each stream is an ordered list of Event-args
 objects `{type, payload}` yielded verbatim to the AgentLoop stream
 callback.
 
+Streaming script entries may also wrap a stream with an expected
+request assertion:
+`{"expect_request":{...},"response":[...]}`. The ScriptedProvider MUST
+compare the projected request to `expect_request` after canonical
+normalization and fail the fixture if it differs, then replay the
+`response` stream.
+
+Fixtures that fail before provider dispatch, for example in a
+`post_projection` hook, SHOULD use an empty provider script (`[]`) so
+the script contains only calls that actually occur.
+
 Since v0.8, streaming transport Events are Observation-only. They do
 not appear in `expected-log.jsonl`. Fixtures that need to assert the
 transport stream may include `expected-deltas.jsonl`, an informative
@@ -111,6 +122,15 @@ implementation's `just test` (via
 `harnas-ruby/spec/harnas/conformance/runner_spec.rb`) so any
 regression in projection/ingestor/agent-loop behavior is caught
 on normal CI.
+
+To verify request assertion coverage across the fixture corpus:
+
+    python3 conformance/check_expect_request_coverage.py
+
+Every provider-call turn in `provider-script.json` and
+`provider-script-stream.json` MUST include `expect_request`. This check
+is intentionally separate from implementation runners so fixture
+coverage drift is visible before any port runs the suite.
 
 ### For cross-language implementors
 

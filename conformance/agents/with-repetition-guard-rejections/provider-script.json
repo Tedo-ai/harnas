@@ -1,8 +1,69 @@
 [
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "try the same denied edit"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "dangerous_tool",
+            "description": "A tool denied by fixture policy.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_reject_1",
+                "type": "function",
+                "function": {
+                  "name": "dangerous_tool",
+                  "arguments": "{\"target\":\"same-file\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 8
+      }
+    }
+  },
+  {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "try the same denied edit"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -16,15 +77,87 @@
             }
           ]
         },
-        "finish_reason": "tool_calls"
+        {
+          "role": "tool",
+          "tool_call_id": "call_reject_1",
+          "content": "denied by hook: tool \"dangerous_tool\" is on the deny-list"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "dangerous_tool",
+            "description": "A tool denied by fixture policy.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_reject_2",
+                "type": "function",
+                "function": {
+                  "name": "dangerous_tool",
+                  "arguments": "{\"target\":\"same-file\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 20,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 10, "completion_tokens": 8 }
+    }
   },
   {
-    "choices": [
-      {
-        "message": {
+    "expect_request": {
+      "model": "gpt-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "try the same denied edit"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_reject_1",
+              "type": "function",
+              "function": {
+                "name": "dangerous_tool",
+                "arguments": "{\"target\":\"same-file\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_reject_1",
+          "content": "denied by hook: tool \"dangerous_tool\" is on the deny-list"
+        },
+        {
           "role": "assistant",
           "content": null,
           "tool_calls": [
@@ -38,32 +171,57 @@
             }
           ]
         },
-        "finish_reason": "tool_calls"
-      }
-    ],
-    "usage": { "prompt_tokens": 20, "completion_tokens": 8 }
-  },
-  {
-    "choices": [
-      {
-        "message": {
-          "role": "assistant",
-          "content": null,
-          "tool_calls": [
-            {
-              "id": "call_reject_3",
-              "type": "function",
-              "function": {
-                "name": "dangerous_tool",
-                "arguments": "{\"target\":\"same-file\"}"
-              }
+        {
+          "role": "tool",
+          "tool_call_id": "call_reject_2",
+          "content": "denied by hook: tool \"dangerous_tool\" is on the deny-list"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "dangerous_tool",
+            "description": "A tool denied by fixture policy.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target"
+              ]
             }
-          ]
-        },
-        "finish_reason": "tool_calls"
+          }
+        }
+      ]
+    },
+    "response": {
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": null,
+            "tool_calls": [
+              {
+                "id": "call_reject_3",
+                "type": "function",
+                "function": {
+                  "name": "dangerous_tool",
+                  "arguments": "{\"target\":\"same-file\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 30,
+        "completion_tokens": 8
       }
-    ],
-    "usage": { "prompt_tokens": 30, "completion_tokens": 8 }
+    }
   }
 ]
-

@@ -1,16 +1,128 @@
 [
   {
-    "content": [
-      { "type": "text", "text": "Hi there!" }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 9, "output_tokens": 3 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello"
+        }
+      ],
+      "tools": [
+        {
+          "name": "bash_session",
+          "description": "Run a command in a persistent shell session.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string"
+              },
+              "command": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "run",
+                  "status",
+                  "kill"
+                ]
+              },
+              "timeout_ms": {
+                "type": "integer"
+              },
+              "env": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Hi there!"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 9,
+        "output_tokens": 3
+      }
+    }
   },
   {
-    "content": [
-      { "type": "text", "text": "I'm doing well, thanks for asking." }
-    ],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 21, "output_tokens": 9 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "hello"
+        },
+        {
+          "role": "assistant",
+          "content": "Hi there!"
+        },
+        {
+          "role": "user",
+          "content": "how are you?"
+        }
+      ],
+      "tools": [
+        {
+          "name": "bash_session",
+          "description": "Run a command in a persistent shell session.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "session_id": {
+                "type": "string"
+              },
+              "command": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "run",
+                  "status",
+                  "kill"
+                ]
+              },
+              "timeout_ms": {
+                "type": "integer"
+              },
+              "env": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "I'm doing well, thanks for asking."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 21,
+        "output_tokens": 9
+      }
+    }
   }
 ]

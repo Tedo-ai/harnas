@@ -1,22 +1,134 @@
 [
   {
-    "content": [{ "type": "text", "text": "response one" }],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 10, "output_tokens": 2 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "message one"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "response one"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 2
+      }
+    }
   },
   {
-    "content": [{ "type": "text", "text": "response two" }],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 15, "output_tokens": 2 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "message one"
+        },
+        {
+          "role": "assistant",
+          "content": "response one"
+        },
+        {
+          "role": "user",
+          "content": "message two"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "response two"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 15,
+        "output_tokens": 2
+      }
+    }
   },
   {
-    "content": [{ "type": "text", "text": "response three" }],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 20, "output_tokens": 2 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "[snipped 3 earlier messages]"
+        },
+        {
+          "role": "assistant",
+          "content": "response two"
+        },
+        {
+          "role": "user",
+          "content": "message three"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "response three"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 20,
+        "output_tokens": 2
+      }
+    }
   },
   {
-    "content": [{ "type": "text", "text": "response four" }],
-    "stop_reason": "end_turn",
-    "usage": { "input_tokens": 25, "output_tokens": 2 }
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "[snipped 3 earlier messages]"
+        },
+        {
+          "role": "assistant",
+          "content": "response two"
+        },
+        {
+          "role": "user",
+          "content": "message three"
+        },
+        {
+          "role": "assistant",
+          "content": "response three"
+        },
+        {
+          "role": "user",
+          "content": "message four"
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "response four"
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 25,
+        "output_tokens": 2
+      }
+    }
   }
 ]

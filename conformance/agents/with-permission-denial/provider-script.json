@@ -1,32 +1,102 @@
 [
   {
-    "content": [
-      {
-        "type": "tool_use",
-        "id": "toolu_denied_1",
-        "name": "dangerous_tool",
-        "input": {
-          "reason": "policy-test"
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "try the denied tool"
         }
+      ],
+      "tools": [
+        {
+          "name": "dangerous_tool",
+          "description": "A tool denied by fixture policy.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_denied_1",
+          "name": "dangerous_tool",
+          "input": {
+            "reason": "policy-test"
+          }
+        }
+      ],
+      "stop_reason": "tool_use",
+      "usage": {
+        "input_tokens": 16,
+        "output_tokens": 6
       }
-    ],
-    "stop_reason": "tool_use",
-    "usage": {
-      "input_tokens": 16,
-      "output_tokens": 6
     }
   },
   {
-    "content": [
-      {
-        "type": "text",
-        "text": "The tool was denied."
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "try the denied tool"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_denied_1",
+              "name": "dangerous_tool",
+              "input": {
+                "reason": "policy-test"
+              }
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_denied_1",
+              "content": "denied by hook: tool \"dangerous_tool\" is on the deny-list",
+              "is_error": true
+            }
+          ]
+        }
+      ],
+      "tools": [
+        {
+          "name": "dangerous_tool",
+          "description": "A tool denied by fixture policy.",
+          "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        }
+      ]
+    },
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "The tool was denied."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 24,
+        "output_tokens": 5
       }
-    ],
-    "stop_reason": "end_turn",
-    "usage": {
-      "input_tokens": 24,
-      "output_tokens": 5
     }
   }
 ]
