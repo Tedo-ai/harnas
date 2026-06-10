@@ -102,15 +102,23 @@ NOT yield `:assistant_turn_completed` or the consolidated events.
 
 **S8.** A streaming Provider call may fail mid-stream, including from
 network failure, a server-signaled error after partial deltas, or a
-malformed event. Partial transport Events already emitted on
-Observation MUST remain visible to subscribers that received them.
-They are not retroactively removed from the Observation stream.
+malformed provider frame. A malformed Server-Sent Events `data:` frame,
+chunked JSON item, or provider-equivalent stream frame MUST be treated as
+a provider failure, not as a successful delta. Partial transport Events
+already emitted on Observation MUST remain visible to subscribers that
+received them. They are not retroactively removed from the Observation
+stream.
 
 **S9.** When a streaming Provider call fails, the runtime MUST emit
 `:assistant_turn_failed` on Observation recording the failure. It MUST
 NOT emit `:assistant_turn_completed` or append the consolidated
 `:assistant_message` / `:tool_use` Events that complete a successful
 stream.
+
+For malformed provider frames, the failure payload or corresponding
+terminal `:provider_error` SHOULD include the provider kind and MAY
+include a bounded, sanitized preview of the bad frame. The preview MUST
+omit credentials, request headers, and secret values.
 
 **S10.** After a streaming Provider failure, the runtime MUST either
 retry per its RetryPolicy, yielding a new `:assistant_turn_started` and

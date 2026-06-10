@@ -54,6 +54,9 @@ separate permission decisions per capability.
     "shell": "auto",
     "shell_type": "auto",
     "cwd": ".",
+    "env_policy": "inherited",
+    "env_allowlist": ["PATH", "HOME", "TMPDIR", "TEMP", "TMP"],
+    "env_denylist": [],
     "max_output_bytes": 65536
   }
 }
@@ -119,6 +122,67 @@ Agents should use `shell_type` to adapt command syntax: POSIX shells
 expect `ls`, `grep`, `cd`, and `find`; PowerShell expects
 `Get-ChildItem`, `Select-String`, `Set-Location`, and
 `Get-ChildItem -Recurse`.
+
+### Environment Launch Policy
+
+This section is an Unreleased v0.20 draft. Existing implementations that
+do not implement `env_policy` retain the current behavior: the session
+shell inherits the harness process environment unless an implementation
+or adopter explicitly configures otherwise.
+
+The `bash_session` tool's `config` map MAY include `env_policy`. The
+proposed v0.20 security default is `"scrubbed"`: the session shell starts
+with a minimal allowlisted environment instead of inheriting the full
+harness process environment. This prevents provider keys, API tokens,
+cookies, private keys, and other ambient secrets from being exposed to
+shell commands or subprocesses by default. That default flip is
+compatibility-significant and must be paired with a conformance fixture
+proving parent environment secrets do not leak.
+
+Supported policy values:
+
+- `"scrubbed"`: start the session with only allowlisted variables plus
+  implementation-required platform variables. This is the proposed v0.20
+  security default.
+- `"inherited"`: inherit the harness process environment. This is useful
+  for local development, but production deployments SHOULD avoid it
+  unless the parent environment is already scoped to the agent.
+
+`env_allowlist` is an array of environment variable names that may be
+preserved under the scrubbed policy. Implementations SHOULD include
+ordinary non-secret process variables such as `PATH`, `HOME`, `TMPDIR`,
+`TEMP`, and `TMP` when they are required for shell operation on the host
+platform.
+
+`env_denylist` is an array of environment variable names or simple glob
+patterns that MUST be dropped even if they would otherwise be allowed.
+Implementations SHOULD treat the following generic secret-name classes
+as denied by default: `*_API_KEY`, `*_TOKEN`, `*_SECRET`,
+`*_PASSWORD`, `*_PRIVATE_KEY`, `*ACCESS_KEY*`, `*CREDENTIAL*`,
+`*CREDENTIALS*`, `COOKIE`, and `SESSION`.
+
+Provider-specific secret names SHOULD be derived from the provider or
+carrier registry when one is available, not hard-coded as a fixed brand
+prefix list. The named, versioned scrub profile for provider-derived
+keys is deferred to the provider-carrier work.
+
+When a runtime starts a scrubbed shell session, it SHOULD append an
+`:annotation` Event with kind `shell_env_scrubbed`. The annotation
+records policy facts only, for example:
+
+```json
+{
+  "kind": "shell_env_scrubbed",
+  "policy": "scrubbed",
+  "dropped_classes": ["*_API_KEY", "*_TOKEN"],
+  "dropped_count": 4,
+  "allowlisted": ["PATH", "HOME", "TMPDIR"]
+}
+```
+
+Environment variable values MUST NOT be appended to the Log and MUST
+NOT be emitted through Observation. The annotation records names,
+classes, and counts only.
 
 The tool result is a JSON object encoded as a string, because
 `:tool_result.payload.output` is currently a string in the Harnas Event

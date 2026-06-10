@@ -65,8 +65,18 @@ result types, error values).
 
 **R4.** A provider MUST signal malformed-payload failures (for example, a
 200 response with a body that is not valid JSON) through an error channel
-distinct from successful return. In the reference implementation this is
-`Harnas::Providers::Error` (non-`HTTPError`).
+distinct from successful return. Streaming providers MUST apply the same
+rule to each parsed provider frame: a malformed Server-Sent Events
+`data:` frame, chunked JSON item, or provider-equivalent stream frame is
+not a successful delta and MUST be reported as a provider failure.
+
+Provider failures caused by malformed stream frames SHOULD include the
+provider kind and MAY include a bounded, sanitized preview of the bad
+frame. The preview MUST NOT contain credentials, request headers, or
+other secret values, and implementations SHOULD truncate it to a small
+diagnostic prefix. In the reference implementation this is
+`Harnas::Providers::Error` (non-`HTTPError`) unless the underlying
+provider also reported an HTTP status.
 
 **R5.** A provider MUST NOT mutate the `request` object it receives.
 

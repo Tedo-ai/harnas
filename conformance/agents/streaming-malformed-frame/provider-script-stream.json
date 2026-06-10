@@ -1,0 +1,25 @@
+[
+  [
+    {
+      "type": "assistant_turn_started",
+      "payload": {
+        "turn_id": "turn_stream_malformed_1"
+      }
+    },
+    {
+      "type": "assistant_text_delta",
+      "payload": {
+        "turn_id": "turn_stream_malformed_1",
+        "chunk": "partial"
+      }
+    },
+    {
+      "malformed_frame": {
+        "turn_id": "turn_stream_malformed_1",
+        "provider": "openai",
+        "preview": "{not-json",
+        "message": "openai malformed stream frame: preview=\"{not-json\""
+      }
+    }
+  ]
+]

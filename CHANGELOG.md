@@ -7,6 +7,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and Harnas adheres to [Semantic Versioning](https://semver.org/) on
 the specification as a whole.
 
+## [Unreleased]
+
+### Added
+
+- Added `streaming-malformed-frame`, a conformance fixture requiring
+  malformed streaming provider frames to terminate with a
+  `:provider_error` and no consolidated assistant message.
+- Added Unreleased v0.20 draft material for an informative
+  execution-evidence vocabulary using `enforced`, `contained`,
+  `backend`, and sanitized `detail`.
+
+### Changed
+
+- Tightened §02 R4 and §15 so malformed per-frame streaming payloads
+  are provider failures with optional bounded, sanitized frame previews.
+- Updated `informative/bash_session.md` and the manifest schema with
+  Unreleased v0.20 draft `env_policy`, `env_allowlist`, and
+  `env_denylist` fields. Existing implementations retain inherited
+  environment behavior unless they explicitly opt into scrubbing; the
+  v0.20 default flip remains gated on a leak-prevention fixture and
+  release-note framing.
+- Agent conformance will cover 71 fixtures once this Unreleased set is
+  versioned.
+
 ## [0.19.4] — 2026-06-03
 
 ### Added

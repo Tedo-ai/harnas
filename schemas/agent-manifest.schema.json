@@ -101,6 +101,21 @@
                 "type": "string",
                 "enum": ["auto", "posix", "powershell", "cmd"],
                 "description": "Optional bash_session shell family hint. 'auto' asks the runtime to resolve the active shell family."
+              },
+              "env_policy": {
+                "type": "string",
+                "enum": ["scrubbed", "inherited"],
+                "description": "Optional bash_session environment launch policy. 'scrubbed' starts the shell with an allowlisted environment; 'inherited' preserves the harness process environment."
+              },
+              "env_allowlist": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Optional bash_session environment variables to preserve under env_policy=scrubbed."
+              },
+              "env_denylist": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Optional bash_session environment variables or simple glob patterns to drop even if otherwise allowed."
               }
             },
             "additionalProperties": true
