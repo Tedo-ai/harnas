@@ -134,6 +134,13 @@ Every provider-call turn in `provider-script.json` and
 is intentionally separate from implementation runners so fixture
 coverage drift is visible before any port runs the suite.
 
+The corpus is version-bound by `conformance/corpus-manifest.json`.
+For each `fixtures_version`, the manifest records the sorted agent
+fixture names and each fixture's `expected-log.jsonl` SHA-256 hash.
+Changing a fixture's expected Log, adding a fixture, or removing a
+fixture without updating that manifest and bumping `fixtures_version`
+is drift; the spec and implementation drift checks fail it.
+
 ### For cross-language implementors
 
 To verify a `harnas-python` / `harnas-go` / `harnas-typescript` port is

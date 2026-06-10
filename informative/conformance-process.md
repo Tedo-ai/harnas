@@ -2,12 +2,11 @@
 
 [informative]
 
-Harnas currently has three released reference implementations: `harnas-go`,
-`harnas-ruby`, and `harnas-python`, with `harnas-typescript` in active
-development. The process is designed for all reference implementations to
-pass the same conformance suite against a specific fixtures version.
-Spec changes must propagate through a deterministic process to prevent
-drift.
+Harnas currently has four reference implementations: `harnas-go`,
+`harnas-ruby`, `harnas-python`, and `harnas-typescript`. The process is
+designed for all reference implementations to pass the same conformance
+suite against a specific fixtures version. Spec changes must propagate
+through a deterministic process to prevent drift.
 
 ## Versions
 
@@ -25,6 +24,14 @@ name the fixture version used for the release.
 New or changed fixtures SHOULD include `fixture_version_added` in their
 `manifest.json` so the introduction point is traceable. Older fixtures
 may omit the field.
+
+The spec repo also carries `conformance/corpus-manifest.json`. That file
+binds each `fixtures_version` to the sorted agent fixture corpus and the
+SHA-256 hash of every fixture's `expected-log.jsonl`. Any fixture addition,
+removal, or expected-log change MUST update the corpus manifest and bump
+`fixtures_version` in the same change. Drift checks in the spec and
+reference implementations fail when the live corpus no longer matches the
+manifest entry for the declared fixture version.
 
 ## When The Spec Changes
 
