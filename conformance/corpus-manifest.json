@@ -1,12 +1,12 @@
 {
   "versions": {
-    "0.19.4": {
+    "0.19.5": {
       "agents": {
         "minimal-chat": "556cefa62227f6781c9f7d134116d280fd3b877e427656b2001b8ea5cb121ede",
-        "streaming-malformed-frame": "cd7f4ae63c2dd021cb313b8033f36ca5bcd9c796432d584e5ad9853beca7bf8a",
-        "streaming-minimal-chat": "ad5b650043bc47b5cba0130052989e9bdd2a02317965d16a4330001181cbcaf3",
-        "streaming-provider-error-mid-stream": "abc1dad875fdd078c0ba23c52d77e8e5541984f456c7229a21549b8b0613fa3a",
-        "streaming-with-tool-call": "8b496aac9becc4f10a34bc9947c6fcd2389bcf8536bd8338643cbf87dc79187c",
+        "streaming-malformed-frame": "83690f878494029a2e19af414dc20cc744544e378008af0b20fc90efe8f08e1f",
+        "streaming-minimal-chat": "9e256fc373bc4615a7d2d43e031ef20f887afdb658ac2bb032f187a55dc27d3d",
+        "streaming-provider-error-mid-stream": "b4f924f77b8d84b6aa694a5b1ac37985985e9f8d86dcd4be3bfe68eafd71834e",
+        "streaming-with-tool-call": "805f2da1f7f9113ae70c28ae0e030b41d3a381dcb51bee2663700cc40c574184",
         "streaming-with-usage-identity": "ad482ffc9d69965588629de806167f4ffffb9386ef28387a91be1df9b82b3e13",
         "with-assistant-usage-identity": "a44ab3d036e50bed17bca8eb164b28524a581fe73faed9f7273f76ea0afa61a8",
         "with-bash-session-basic": "cc35a158ac55f1d531a51ffa9a1b8a36571006898f4352359099970e0154ad24",
@@ -16,7 +16,7 @@
         "with-bash-session-timeout": "034f8d3507b4c3c578611ab07cafa892667d2af95300c20aebc6a6ca3609ec22",
         "with-bash-session-truncation": "31e7f781297a9910f782514b74d534fb771497f6cd981df98e308abb75a63eb7",
         "with-credential-proxy-injection": "e68ae84e5829b6a22aad393f678c2549675f7b7113ee39284e9d602f1202d03d",
-        "with-delta-logger-sidecar": "85e538491f0b3107189017f8bf540876b649f5a2b8b7db3bd107b6e078998b88",
+        "with-delta-logger-sidecar": "6e9373452dcf4a4b5ebf737f537f7ca4f95e92bd4b08ee52a1905ad34ee7338a",
         "with-document-anthropic": "b224a8f9e42e6d2e90b90eea2d74770677269df74e7ecca406ceff3b6eb05925",
         "with-document-fallback-openai": "222e44cc263aacd62ecfa0050e8540c4d091310d222a455fdf0c5bf4cfe5c20c",
         "with-document-gemini": "64b17151d5bfadf26a1b4f31e2a78b50153c4942f8b61fbed451a83f69761bf5",
@@ -37,12 +37,12 @@
         "with-marker-tail-and-tool-output-cap": "91d3896ed2a50c010da9e7767526586ec9b5398d8f7168591492f2dec7711a74",
         "with-marker-tail-and-tool-output-cap-variant": "ba6913f34f68b7dbba840fe88748aabf3c4709b390bbfc8038b056175667b1f0",
         "with-marker-tail-compaction": "64479b360f4dcb878e6e469302789264010db07016934a0c7f4b0def026d3353",
-        "with-multi-turn-streaming-and-tool-error": "57fd17189d71dee387ea42b87bda7814f74be87235a8845a15f18a015ffc1809",
+        "with-multi-turn-streaming-and-tool-error": "479d1512d615d653ac09e8c002b22a6337b5e7dfe13381f8644848bf8a2f1556",
         "with-network-sandbox-allow": "a3fd7f0959f1c0b545b74c2a45d58c97b2fa692cc1889e257a6b4d7b51ba0095",
         "with-network-sandbox-deny": "622b0af05dc9469393ed2797ebbcad38bd7312639f71a76f5d9cd41735e064f8",
         "with-permission-denial": "01753f69955e75687a673482c1ff69793f9e3fd476b860e8bf88b612c662e18e",
-        "with-provider-error-fatal": "0e79474f0865ff95367e8316163d7b2238e2ba3445ec8ce1cca320b66476a83b",
-        "with-provider-error-retry": "a4e496cac7ef1fc5f7e0cab7ae001bbebaceb4ec9e3015397902aa1281b0e199",
+        "with-provider-error-fatal": "1041f72d18a3396be619f9d22ee7524e762cb5a2a10a68ab17306bbb6a7939d4",
+        "with-provider-error-retry": "fd26646f2d1217dd9bc6eb8882db165c8358b79af604e8d44e392a69be85e7a4",
         "with-read-file-line-numbers": "ece79a363dedeab6af1df7a7373fad739b3a9eedaa1bfd275b8a1879ab947974",
         "with-reasoning-and-text-anthropic": "1c7ac97f40ca1d91d6c07bb848a5bcd810bbf92395f9e5ad69c05ffcb477056d",
         "with-reasoning-anthropic": "36763d280eb7a04b88802849e299ccd7683183681f47ca0162f6ecc03e1005da",

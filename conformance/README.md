@@ -39,6 +39,11 @@ Each directory under `agents/` is one fixture:
         ├── inputs.json            # ordered user message strings or actions
         └── expected-log.jsonl     # the Log any conformant impl must produce
 
+Fixtures may use provider `kind: "mock"` in `manifest.json`. `mock` is
+an intentional selectable provider kind for deterministic tests and
+conformance harnesses; it is not a fallback for unresolved provider or
+tool handlers.
+
 Buffered fixtures use `provider-script.json`: an ordered list of
 provider responses, one per `Provider.call`. A buffered script entry
 may instead be an error object of the form
