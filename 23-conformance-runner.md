@@ -53,9 +53,9 @@ requests, sidecar rows, tool descriptors, projection outputs, and
 round-trip JSONL rows.
 
 **C4. Canonical normalization.** Canonical normalization for runner
-diffs is the `harnas-jcs-v1` profile. This section does not redefine
-that profile. Runners MUST use the same canonicalization profile for
-actual and expected artifacts before comparison.
+diffs is the `harnas-jcs-v1` profile defined in §24. This section does
+not redefine that profile. Runners MUST use the same canonicalization
+profile for actual and expected artifacts before comparison.
 
 Runner-specific normalization is limited to fields explicitly marked by
 the fixture format as generated. For example, an expected value of

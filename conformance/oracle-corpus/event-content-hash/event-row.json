@@ -1,0 +1,14 @@
+{
+  "seq": 0,
+  "id": "evt_hash_0",
+  "timestamp": "2026-06-16T10:00:00Z",
+  "type": "user_message",
+  "payload": {
+    "content": [
+      {
+        "type": "text",
+        "text": "hash me"
+      }
+    ]
+  }
+}

@@ -15,6 +15,11 @@ The adapter laws and interface contract in this section are normative.
 Recommended built-in adapters, packaging shape, contrib database
 adapters, and examples are informative.
 
+**Status note.** S9 `expected_next_seq` / `storage_conflict` is staged
+for v0.20.0 and is bound by `fixtures_version: 0.20.0`. It is present
+here for review and reference-build work before the released
+`harnas_version` advances.
+
 The storage laws are normative for persisted Session behavior and for
 any adapter interface an implementation exposes. A reference
 implementation may satisfy them with only its built-in file-backed
@@ -66,9 +71,10 @@ StorageAdapter:
   save_header(header) -> void
       Persist the header. MUST exist; see Header Persistence.
 
-  append_event(draft: EventDraft) -> EventRow
+  append_event(draft: EventDraft, expected_next_seq: int | nil = nil) -> EventRow
       Append the draft, assign seq, persist, and return the full §19
-      EventRow.
+      EventRow. When expected_next_seq is supplied, the append is
+      conditional; see S9.
 
   events_since(cursor) -> [EventRow]
       Return full §19 EventRows strictly after cursor, in append order.
@@ -112,7 +118,28 @@ as valid Events. Mechanisms such as fsync, atomic rename, WAL, record
 framing, and database transactions are implementation choices, not
 normative.
 
-**S9 — Session scoping.** An adapter implementation used for multiple
+**S9 — Conditional append fence.** An adapter MUST support a conditional
+append fence equivalent to `expected_next_seq`. When an append carries
+`expected_next_seq`, the adapter MUST compare it to the Session's current
+next sequence number at the moment of append. If they are equal, the
+adapter MUST append the draft, assign that `seq`, persist it, and return
+the full §19 EventRow. If they differ, the adapter MUST reject the append
+without writing an Event.
+
+The stale-append rejection MUST be surfaced as a defined, portable
+storage-conflict outcome. Language bindings may expose this as an error,
+exception, tagged result, or status object, but the outcome MUST carry or
+allow callers to recover the current next sequence number. The canonical
+reason string for logs, diagnostics, and conformance reports is
+`storage_conflict`.
+
+An adapter MUST NOT silently retry, overwrite, skip ahead, or assign a
+different `seq` when the fence fails. The caller decides whether to
+reload and retry. This is the optimistic-concurrency fence required by
+multi-writer hosts such as web applications and database-backed
+adapters.
+
+**S10 — Session scoping.** An adapter implementation used for multiple
 Sessions in one process MUST keep each Session's Events isolated. Two
 Sessions sharing one adapter implementation, with interleaved appends,
 MUST each export only their own rows.
@@ -142,7 +169,7 @@ be added when a consumer needs it.
 
 ## Conformance — The Law Helper
 
-An adapter is conformant iff it satisfies S1-S9. The law helper tests
+An adapter is conformant iff it satisfies S1-S10. The law helper tests
 more than byte-identical export. Against the adapter directly, it
 checks:
 
@@ -157,6 +184,10 @@ checks:
 - a truncated final line, injected garbage, duplicate seq, gap, or
   reorder yields the clean prefix or a loud storage error, never a
   partial row returned as valid;
+- conditional append: `expected_next_seq` equal to the current next seq
+  succeeds and assigns that seq; stale `expected_next_seq` rejects with
+  `storage_conflict` and does not write an Event; the same draft can
+  then be appended with the correct expected seq;
 - two Sessions on one adapter implementation stay isolated.
 
 The agent-fixture `"<generated>"` timestamp wildcard asserts that a

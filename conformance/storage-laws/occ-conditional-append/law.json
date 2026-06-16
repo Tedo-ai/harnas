@@ -1,0 +1,175 @@
+{
+  "law": "storage_occ_conditional_append",
+  "operations": [
+    {
+      "op": "append_event",
+      "expected_next_seq": 0,
+      "draft": {
+        "id": "evt_occ_0",
+        "timestamp": "2026-06-16T10:00:00Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "first"
+            }
+          ]
+        }
+      },
+      "expect": {
+        "ok": true,
+        "row": {
+          "seq": 0,
+          "id": "evt_occ_0",
+          "timestamp": "2026-06-16T10:00:00Z",
+          "type": "user_message",
+          "payload": {
+            "content": [
+              {
+                "type": "text",
+                "text": "first"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "op": "append_event",
+      "expected_next_seq": 0,
+      "draft": {
+        "id": "evt_occ_1",
+        "timestamp": "2026-06-16T10:00:01Z",
+        "type": "assistant_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "second"
+            }
+          ],
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 1,
+            "output_tokens": 1,
+            "total_tokens": 2,
+            "cache_read_input_tokens": null,
+            "cache_write_input_tokens": null,
+            "reasoning_tokens": null,
+            "provider_raw": null,
+            "provenance": "runtime_estimated"
+          }
+        }
+      },
+      "expect": {
+        "ok": false,
+        "reason": "storage_conflict",
+        "current_next_seq": 1
+      }
+    },
+    {
+      "op": "append_event",
+      "expected_next_seq": 1,
+      "draft": {
+        "id": "evt_occ_1",
+        "timestamp": "2026-06-16T10:00:01Z",
+        "type": "assistant_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "second"
+            }
+          ],
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 1,
+            "output_tokens": 1,
+            "total_tokens": 2,
+            "cache_read_input_tokens": null,
+            "cache_write_input_tokens": null,
+            "reasoning_tokens": null,
+            "provider_raw": null,
+            "provenance": "runtime_estimated"
+          }
+        }
+      },
+      "expect": {
+        "ok": true,
+        "row": {
+          "seq": 1,
+          "id": "evt_occ_1",
+          "timestamp": "2026-06-16T10:00:01Z",
+          "type": "assistant_message",
+          "payload": {
+            "content": [
+              {
+                "type": "text",
+                "text": "second"
+              }
+            ],
+            "stop_reason": "end_turn",
+            "usage": {
+              "input_tokens": 1,
+              "output_tokens": 1,
+              "total_tokens": 2,
+              "cache_read_input_tokens": null,
+              "cache_write_input_tokens": null,
+              "reasoning_tokens": null,
+              "provider_raw": null,
+              "provenance": "runtime_estimated"
+            }
+          }
+        }
+      }
+    },
+    {
+      "op": "events_since",
+      "cursor": null,
+      "expect": {
+        "rows": [
+          {
+            "seq": 0,
+            "id": "evt_occ_0",
+            "timestamp": "2026-06-16T10:00:00Z",
+            "type": "user_message",
+            "payload": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "first"
+                }
+              ]
+            }
+          },
+          {
+            "seq": 1,
+            "id": "evt_occ_1",
+            "timestamp": "2026-06-16T10:00:01Z",
+            "type": "assistant_message",
+            "payload": {
+              "content": [
+                {
+                  "type": "text",
+                  "text": "second"
+                }
+              ],
+              "stop_reason": "end_turn",
+              "usage": {
+                "input_tokens": 1,
+                "output_tokens": 1,
+                "total_tokens": 2,
+                "cache_read_input_tokens": null,
+                "cache_write_input_tokens": null,
+                "reasoning_tokens": null,
+                "provider_raw": null,
+                "provenance": "runtime_estimated"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

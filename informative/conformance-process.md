@@ -26,9 +26,12 @@ New or changed fixtures SHOULD include `fixture_version_added` in their
 may omit the field.
 
 The spec repo also carries `conformance/corpus-manifest.json`. That file
-binds each `fixtures_version` to the sorted agent fixture corpus and the
-SHA-256 hash of every fixture's `expected-log.jsonl`. Any fixture addition,
-removal, or expected-log change MUST update the corpus manifest and bump
+binds each `fixtures_version` to the sorted conformance corpus and the
+SHA-256 hash of each tracked fixture artifact. For agent fixtures, the
+tracked artifact is each fixture's `expected-log.jsonl`; for
+oracle-corpus and storage-law fixtures, the tracked artifacts are the
+fixture files under those directories. Any fixture addition, removal, or
+tracked artifact change MUST update the corpus manifest and bump
 `fixtures_version` in the same change. Drift checks in the spec and
 reference implementations fail when the live corpus no longer matches the
 manifest entry for the declared fixture version.

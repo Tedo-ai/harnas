@@ -248,10 +248,10 @@ Harnas does not persist a global interleaved Log.
 
 `agent_spawn.payload.capabilities.manifest_ref` names the resolved
 capability manifest the child received. The ref format is
-`cap_sha256_<hash>`, where the hash is computed over a canonical JSON
-serialization of the manifest content. Implementations may store the
-manifest content in an AttachmentStore, side table, filesystem
-directory, or database row.
+`cap_sha256_<hash>`, where the hash is computed over the
+`harnas-jcs-v1` canonical JSON serialization (§24) of the manifest
+content. Implementations may store the manifest content in an
+AttachmentStore, side table, filesystem directory, or database row.
 
 The spawn event carries high-signal overrides inline so operators can
 see what changed without expanding the full manifest:

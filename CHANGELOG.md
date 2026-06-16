@@ -25,6 +25,22 @@ the specification as a whole.
   `with-marker-tail-and-tool-output-cap-variant`,
   `with-manifest-hooks-variant`, `with-hook-fail-turn-variant`, and
   `with-fork-after-divergence`.
+- Added §21 S9, the Storage Adapter conditional-append fence using
+  `expected_next_seq` and portable `storage_conflict` rejection.
+- Added §19 `content_hash` for Event rows, defined as SHA-256 over the
+  `harnas-jcs-v1` canonical row bytes excluding `content_hash` itself.
+- Added §24, defining `harnas-jcs-v1` as RFC 8785 JSON
+  Canonicalization Scheme with a Harnas-specific arbitrary-precision
+  integer preservation rule and explicit Unicode non-normalization
+  rationale.
+- Added the `storage-laws/occ-conditional-append` adapter law fixture
+  and the `oracle-corpus/event-content-hash` RFC 8785 canonicalization
+  and hash oracle vectors, including big integers, a 64-bit
+  snowflake-style value, true fractionals, UTF-16 key ordering, and
+  precomposed/decomposed Unicode.
+- Extended the corpus manifest and drift check so `fixtures_version`
+  binds oracle-corpus and storage-law fixture files, not only agent
+  fixture expected logs.
 
 ### Changed
 
@@ -36,7 +52,11 @@ the specification as a whole.
   environment behavior unless they explicitly opt into scrubbing; the
   v0.20 default flip remains gated on a leak-prevention fixture and
   release-note framing.
+- Fixture version is now `0.20.0`.
 - Agent conformance covers 75 fixtures in this Unreleased set.
+- Marked §19 J11, §21 S9, and §24 as staged for v0.20.0 while the
+  released `harnas_version` remains `0.19.4` until the reference builds
+  and lockstep release advance it.
 - Public implementation-status docs now identify Ruby, Python, Go, and
   TypeScript as the current conforming reference set, with
   implementation-specific footnotes disclosed per repository.

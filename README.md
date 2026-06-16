@@ -55,15 +55,17 @@ reference earlier ones rather than modifying them.
 10. [`23-conformance-runner.md`](23-conformance-runner.md) —
    conformance runner laws, strict artifact diffing, and oracle-corpus
    checks for the measurement system.
-11. [`informative/`](informative/) — non-normative ecosystem
+11. [`24-harnas-jcs-v1.md`](24-harnas-jcs-v1.md) — canonical JSON
+   serialization profile used by strict diffing and content hashes.
+12. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
    guidance, multimodal content blocks, shell-tool embedding notes, provider implementation
    guidance, shell isolation guidance, conformance process,
    Log/Projection framing, subagent delegation, and worktree-per-agent
    runs.
-12. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+13. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-13. [`conformance/`](conformance/) — fixtures any conformant
+14. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations

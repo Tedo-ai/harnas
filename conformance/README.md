@@ -13,14 +13,21 @@ Two layers of conformance:
   phase 1 and saves a Session as JSONL; a second implementation loads
   that JSONL, runs phase 2, and diffs the final Log. This is the
   cross-language wire-compatibility contract for Session persistence.
-- **`oracle-corpus/`** — runner checks. These are not agent scenarios;
-  they are actual/expected artifact pairs that prove the runner's
-  differ rejects known invalid matches.
+- **`storage-laws/`** — Storage Adapter law fixtures. These are not
+  agent scenarios; they are operation scripts that every adapter
+  implementation can run against memory, file, and future database
+  backends.
+- **`oracle-corpus/`** — runner and canonicalization checks. These are
+  not agent scenarios; they are small inputs and expected outcomes that
+  prove the measurement system rejects known invalid matches or computes
+  known canonical values.
 
-Both are **normative**. Any Harnas implementation in any language
-SHOULD pass every agent fixture, SHOULD pass every round-trip fixture,
-and SHOULD be able to load every single-call fixture into its mock
-provider.
+All fixture families are **normative** for the behavior they exercise.
+Any Harnas implementation in any language SHOULD pass every agent
+fixture, SHOULD pass every round-trip fixture, SHOULD be able to load
+every single-call fixture into its mock provider, SHOULD pass the
+storage law fixtures for each adapter it exposes, and SHOULD pass every
+oracle-corpus check used by its conformance runner.
 
 ## `agents/` — agent-level conformance
 
@@ -140,11 +147,13 @@ is intentionally separate from implementation runners so fixture
 coverage drift is visible before any port runs the suite.
 
 The corpus is version-bound by `conformance/corpus-manifest.json`.
-For each `fixtures_version`, the manifest records the sorted agent
-fixture names and each fixture's `expected-log.jsonl` SHA-256 hash.
-Changing a fixture's expected Log, adding a fixture, or removing a
-fixture without updating that manifest and bumping `fixtures_version`
-is drift; the spec and implementation drift checks fail it.
+For each `fixtures_version`, the manifest records the sorted tracked
+fixture artifacts and their SHA-256 hashes. Agent fixtures track each
+fixture's `expected-log.jsonl`; oracle-corpus and storage-law fixtures
+track the fixture files under those directories. Changing a tracked
+artifact, adding a fixture file, or removing a fixture file without
+updating that manifest and bumping `fixtures_version` is drift; the spec
+and implementation drift checks fail it.
 
 ### For cross-language implementors
 
@@ -177,6 +186,20 @@ definition, conformant on those cases. Add new fixtures as the
 catalog grows; every new canonical strategy should come with at
 least one fixture that exercises it.
 
+## `storage-laws/` — adapter law conformance
+
+Each directory under `storage-laws/` documents one required property for
+Storage Adapters (§21). These fixtures are operation scripts, not agent
+scenarios. A law runner creates a fresh adapter instance, performs each
+operation in order, and compares the adapter outcome to the expected
+outcome.
+
+The same law fixture SHOULD run against every adapter an implementation
+exposes: in-memory, file-backed, and future database-backed adapters.
+Adapter-specific setup, such as a temporary directory or database
+transaction, lives in the implementation's test harness. The fixture
+itself stays language-neutral.
+
 ## `oracle-corpus/` — runner conformance
 
 Each directory under `oracle-corpus/` documents one required runner
@@ -189,6 +212,13 @@ with an extra payload field and an `expected-log.jsonl` without it. A
 strict differ MUST report a mismatch. If this oracle passes, the runner
 is hiding extra actual fields and its conformance count is not
 trustworthy.
+
+The `event-content-hash` oracle pins RFC 8785 / `harnas-jcs-v1`
+canonicalization vectors to exact canonical bytes and SHA-256 hashes.
+It covers RFC 8785 number forms, arbitrary-precision integer
+preservation, UTF-16 key ordering, Unicode preservation without
+normalization, invalid Unicode, recursive sorting, and §19
+`content_hash` self-exclusion.
 
 ## `round-trips/` — persistence conformance
 

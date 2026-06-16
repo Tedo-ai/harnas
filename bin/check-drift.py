@@ -46,6 +46,34 @@ def fixture_hashes() -> dict[str, str]:
     return hashes
 
 
+def tree_hashes(relative_root: str) -> dict[str, str]:
+    base = ROOT / relative_root
+    hashes: dict[str, str] = {}
+    if not base.exists():
+        return hashes
+    for path in sorted(base.rglob("*")):
+        if not path.is_file():
+            continue
+        key = path.relative_to(base).as_posix()
+        hashes[key] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return hashes
+
+
+def compare_manifest_section(section: str, expected: dict[str, str], actual: dict[str, str]) -> None:
+    if actual != expected:
+        missing = sorted(set(actual) - set(expected))
+        stale = sorted(set(expected) - set(actual))
+        changed = sorted(name for name in set(actual) & set(expected) if actual[name] != expected[name])
+        parts = []
+        if missing:
+            parts.append(f"new {section} files without version bump: {', '.join(missing)}")
+        if stale:
+            parts.append(f"manifest contains removed {section} files: {', '.join(stale)}")
+        if changed:
+            parts.append(f"{section} hashes changed: {', '.join(changed)}")
+        fail("; ".join(parts) or f"corpus manifest {section} does not match live files")
+
+
 def require_corpus_manifest(fixtures_version: str) -> None:
     manifest_path = ROOT / "conformance" / "corpus-manifest.json"
     if not manifest_path.exists():
@@ -61,18 +89,17 @@ def require_corpus_manifest(fixtures_version: str) -> None:
     if not isinstance(expected, dict):
         fail(f"corpus manifest entry {fixtures_version} has no agents object")
     actual = fixture_hashes()
-    if actual != expected:
-        missing = sorted(set(actual) - set(expected))
-        stale = sorted(set(expected) - set(actual))
-        changed = sorted(name for name in set(actual) & set(expected) if actual[name] != expected[name])
-        parts = []
-        if missing:
-            parts.append(f"new fixtures without version bump: {', '.join(missing)}")
-        if stale:
-            parts.append(f"manifest contains removed fixtures: {', '.join(stale)}")
-        if changed:
-            parts.append(f"expected-log hashes changed: {', '.join(changed)}")
-        fail("; ".join(parts) or "corpus manifest does not match live fixtures")
+    compare_manifest_section("agent fixture", expected, actual)
+    for key, relative_root in (
+        ("oracle_corpus", "conformance/oracle-corpus"),
+        ("storage_laws", "conformance/storage-laws"),
+    ):
+        expected_tree = entry.get(key)
+        if expected_tree is None:
+            continue
+        if not isinstance(expected_tree, dict):
+            fail(f"corpus manifest entry {fixtures_version} has invalid {key} object")
+        compare_manifest_section(key, expected_tree, tree_hashes(relative_root))
 
 
 def require_contains(path: Path, needle: str) -> None:

@@ -1,0 +1,122 @@
+{
+  "profile": "harnas-jcs-v1",
+  "base_standard": "RFC 8785 JSON Canonicalization Scheme",
+  "valid": [
+    {
+      "name": "rfc8785-primitives",
+      "input_json": "{\"numbers\":[333333333.33333329,1E30,4.50,2e-3,0.000000000000000000000000001],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\\\\\"/\",\"literals\":[null,true,false]}",
+      "expected_canonical": "{\"literals\":[null,true,false],\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27],\"string\":\"€$\\u000f\\nA'B\\\"\\\\\\\\\\\"/\"}",
+      "expected_content_hash": "2d5e01a318d0f0879ab568c4be289c8b1f64ef8921a53c6277d5e069978baacb",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "rfc8785-utf16-key-order",
+      "input_json": "{\"€\":\"Euro Sign\",\"\\r\":\"Carriage Return\",\"דּ\":\"Hebrew Letter Dalet With Dagesh\",\"1\":\"One\",\"😀\":\"Emoji: Grinning Face\",\"\":\"Control\",\"ö\":\"Latin Small Letter O With Diaeresis\"}",
+      "expected_canonical": "{\"\\r\":\"Carriage Return\",\"1\":\"One\",\"\":\"Control\",\"ö\":\"Latin Small Letter O With Diaeresis\",\"€\":\"Euro Sign\",\"😀\":\"Emoji: Grinning Face\",\"דּ\":\"Hebrew Letter Dalet With Dagesh\"}",
+      "expected_content_hash": "5e321556d22018a9656991a9e94f77ec175fa193e52a2429d312f8419ec8b08c",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "recursive-object-sorting",
+      "input_json": "{\"z\":[{\"b\":2,\"a\":1}],\"a\":{\"d\":4,\"c\":3}}",
+      "expected_canonical": "{\"a\":{\"c\":3,\"d\":4},\"z\":[{\"a\":1,\"b\":2}]}",
+      "expected_content_hash": "931a753059c2c9caf76f585cf9ed94b9183f3a4211b25add8c2974e6a06db330",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "number-forms",
+      "input_json": "{\"int\":1.0,\"minusZero\":-0,\"exp\":1e+30,\"tiny\":1e-27,\"fraction\":0.002}",
+      "expected_canonical": "{\"exp\":1e+30,\"fraction\":0.002,\"int\":1,\"minusZero\":0,\"tiny\":1e-27}",
+      "expected_content_hash": "79ae4b0b821642e173d1fa58786ca4eb73cde6bd9a8854817ed0e6a861d8cab5",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "max-safe-integer",
+      "input_json": "{\"max\":9007199254740991,\"min\":-9007199254740991}",
+      "expected_canonical": "{\"max\":9007199254740991,\"min\":-9007199254740991}",
+      "expected_content_hash": "63546eb60913dcb1cdd5118f7bf4885beed344af930c8a9d5f38fad243fd4819",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "unicode-preservation-no-nfc",
+      "input_json": "{\"nfc\":\"é\",\"nfd\":\"é\",\"escaped\":\"A\\nB\",\"slash\":\"/\",\"quote\":\"\\\"\"}",
+      "expected_canonical": "{\"escaped\":\"A\\nB\",\"nfc\":\"é\",\"nfd\":\"é\",\"quote\":\"\\\"\",\"slash\":\"/\"}",
+      "expected_content_hash": "24a8e21947334ed143541d8a6cf1be22bda085001e2ffe09b2efe9457733867c",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "non-bmp-vs-bmp-key-order",
+      "input_json": "{\"\":\"private-use\",\"😀\":\"emoji\"}",
+      "expected_canonical": "{\"😀\":\"emoji\",\"\":\"private-use\"}",
+      "expected_content_hash": "58200e2405291186c6e82c1e4b3fd64f841cfdf8d612a0695695dd880990eba2",
+      "scope": "rfc8785"
+    },
+    {
+      "name": "event-row-basic",
+      "input_json": "{\"seq\":0,\"id\":\"evt_hash_0\",\"timestamp\":\"2026-06-16T10:00:00Z\",\"type\":\"user_message\",\"payload\":{\"content\":[{\"type\":\"text\",\"text\":\"hash me\"}]}}",
+      "expected_canonical": "{\"id\":\"evt_hash_0\",\"payload\":{\"content\":[{\"text\":\"hash me\",\"type\":\"text\"}]},\"seq\":0,\"timestamp\":\"2026-06-16T10:00:00Z\",\"type\":\"user_message\"}",
+      "expected_content_hash": "d4e14719924d59c2d840908c8c3d3e0068dea715abf3f80c8939eba91400fe2e",
+      "scope": "harnas_event_content_hash"
+    },
+    {
+      "name": "event-row-with-content-hash-excluded",
+      "input_json": "{\"seq\":0,\"id\":\"evt_hash_0\",\"timestamp\":\"2026-06-16T10:00:00Z\",\"type\":\"user_message\",\"payload\":{\"content\":[{\"type\":\"text\",\"text\":\"hash me\"}]},\"content_hash\":\"d4e14719924d59c2d840908c8c3d3e0068dea715abf3f80c8939eba91400fe2e\"}",
+      "exclude_keys": [
+        "content_hash"
+      ],
+      "expected_canonical": "{\"id\":\"evt_hash_0\",\"payload\":{\"content\":[{\"text\":\"hash me\",\"type\":\"text\"}]},\"seq\":0,\"timestamp\":\"2026-06-16T10:00:00Z\",\"type\":\"user_message\"}",
+      "expected_content_hash": "d4e14719924d59c2d840908c8c3d3e0068dea715abf3f80c8939eba91400fe2e",
+      "scope": "harnas_event_content_hash"
+    },
+    {
+      "name": "integer-beyond-i-json-range-preserved",
+      "scope": "harnas_event_content_hash",
+      "input_json": "{\"big\":9007199254740993}",
+      "expected_canonical": "{\"big\":9007199254740993}",
+      "expected_content_hash": "edc0c65e0c4510819c805b199447a62255257c93d853261e35472963b90140c3"
+    },
+    {
+      "name": "uint64-snowflake-preserved",
+      "scope": "harnas_event_content_hash",
+      "input_json": "{\"snowflake\":12345678901234567890}",
+      "expected_canonical": "{\"snowflake\":12345678901234567890}",
+      "expected_content_hash": "6899db0f8faf5e1f6b7c296e8cce582cd67268adef0683f7aff507393d3da57f"
+    },
+    {
+      "name": "negative-big-int-preserved",
+      "scope": "harnas_event_content_hash",
+      "input_json": "{\"negative\":-12345678901234567890}",
+      "expected_canonical": "{\"negative\":-12345678901234567890}",
+      "expected_content_hash": "3a9359bcf6cc6bcf9275e7406473353fe18edf3e69c7f8daa3858a8b04b0a580"
+    },
+    {
+      "name": "true-fractional-es6-number-form",
+      "scope": "rfc8785",
+      "input_json": "{\"fractional\":1.25,\"exp\":1.23e-7}",
+      "expected_canonical": "{\"exp\":1.23e-7,\"fractional\":1.25}",
+      "expected_content_hash": "83006cdd450eed639d51047f62d75e46b1f91535bd8711f0c70559c06d67bdea"
+    },
+    {
+      "name": "unicode-precomposed-e-acute",
+      "scope": "rfc8785",
+      "input_json": "{\"value\":\"é\"}",
+      "expected_canonical": "{\"value\":\"é\"}",
+      "expected_content_hash": "69e46f3f0688000ab7eeb9e40e6a516a254268cd644a24f4f69cf7ad063cf479"
+    },
+    {
+      "name": "unicode-decomposed-e-acute",
+      "scope": "rfc8785",
+      "input_json": "{\"value\":\"é\"}",
+      "expected_canonical": "{\"value\":\"é\"}",
+      "expected_content_hash": "1b986c631da83257beca64c93ff3e5174908d558af7bb9dfb36b25a6198f7c38"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "lone-surrogate",
+      "input_json": "{\"bad\":\"\\uDEAD\"}",
+      "expected_error": "invalid_unicode",
+      "scope": "harnas_event_content_hash"
+    }
+  ]
+}

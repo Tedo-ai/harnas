@@ -2,6 +2,10 @@
 
 This section defines the canonical Session JSONL persistence format.
 
+**Status note.** J11 `content_hash` is staged for v0.20.0 and is bound
+by `fixtures_version: 0.20.0`. It is present here for review and
+reference-build work before the released `harnas_version` advances.
+
 The format is intentionally small: one JSON object per line, UTF-8
 encoded, newline-delimited, with a Session header followed by Event
 rows in append order. It is the interchange format used by
@@ -56,6 +60,9 @@ The Event row fields are:
   serialized as ISO 8601 / RFC 3339 using UTC and a trailing `Z`.
 - `type`: the Event type without a leading colon.
 - `payload`: the Event payload object.
+- `content_hash`: optional in v0.20.0 and later. When present, it is
+  the lowercase hexadecimal SHA-256 digest of the
+  `harnas-jcs-v1` canonical JSON bytes for the Event row.
 
 **J4.** Event rows MUST appear in append order. Their `seq` values MUST
 be dense and monotonic starting at `0`.
@@ -91,6 +98,24 @@ compatibility value, not the original append time, and loaders /
 projections MUST NOT treat it as historical truth. New Event rows
 produced by v0.19.0 or later implementations MUST include
 `timestamp`.
+
+**J11.** When an Event row carries `content_hash`, the hash input is
+the §19 Event row object serialized with the `harnas-jcs-v1`
+canonicalization profile (§24), excluding only the `content_hash` field
+itself. This avoids self-reference. All other row fields present in the
+row, including `seq`, `id`, `timestamp`, `type`, and `payload`, are part
+of the hash input.
+
+`content_hash` is a row-integrity value, not an Event id. It MUST NOT be
+used to assign `seq`, infer ordering, or replace `id`. Consumers that
+verify hashes MUST fail loudly on mismatch or mark the row corrupt; they
+MUST NOT silently ignore a mismatching hash and continue as though the
+row were valid.
+
+The conformance oracle
+`conformance/oracle-corpus/event-content-hash/` pins a known Event row
+to its expected `content_hash` and also verifies that a persisted
+`content_hash` field is excluded from its own input.
 
 ## Relationship To Log Conformance
 
