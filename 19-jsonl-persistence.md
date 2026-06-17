@@ -3,8 +3,7 @@
 This section defines the canonical Session JSONL persistence format.
 
 **Status note.** J11 `content_hash` is staged for v0.20.0 and is bound
-by `fixtures_version: 0.20.0`. It is present here for review and
-reference-build work before the released `harnas_version` advances.
+by `harnas_version: 0.20.0` and `fixtures_version: 0.20.0`.
 
 The format is intentionally small: one JSON object per line, UTF-8
 encoded, newline-delimited, with a Session header followed by Event

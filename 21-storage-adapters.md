@@ -16,9 +16,8 @@ Recommended built-in adapters, packaging shape, contrib database
 adapters, and examples are informative.
 
 **Status note.** S9 `expected_next_seq` / `storage_conflict` is staged
-for v0.20.0 and is bound by `fixtures_version: 0.20.0`. It is present
-here for review and reference-build work before the released
-`harnas_version` advances.
+for v0.20.0 and is bound by `harnas_version: 0.20.0` and
+`fixtures_version: 0.20.0`.
 
 The storage laws are normative for persisted Session behavior and for
 any adapter interface an implementation exposes. A reference

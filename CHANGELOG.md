@@ -54,9 +54,9 @@ the specification as a whole.
   release-note framing.
 - Fixture version is now `0.20.0`.
 - Agent conformance covers 75 fixtures in this Unreleased set.
-- Marked §19 J11, §21 S9, and §24 as staged for v0.20.0 while the
-  released `harnas_version` remains `0.19.4` until the reference builds
-  and lockstep release advance it.
+- Spec version is now `0.20.0`.
+- Marked §19 J11, §21 S9, and §24 as staged for v0.20.0 and bound by
+  `harnas_version: 0.20.0` plus `fixtures_version: 0.20.0`.
 - Public implementation-status docs now identify Ruby, Python, Go, and
   TypeScript as the current conforming reference set, with
   implementation-specific footnotes disclosed per repository.

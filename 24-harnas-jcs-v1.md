@@ -1,8 +1,7 @@
 # 24. harnas-jcs-v1 Canonical JSON
 
 **Status note.** This section is staged for v0.20.0 and is bound by
-`fixtures_version: 0.20.0`. It is present here for review and
-reference-build work before the released `harnas_version` advances.
+`harnas_version: 0.20.0` and `fixtures_version: 0.20.0`.
 
 `harnas-jcs-v1` is the canonical JSON profile used by Harnas whenever
 two independently-written implementations must produce identical bytes
