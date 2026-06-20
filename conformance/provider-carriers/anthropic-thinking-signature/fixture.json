@@ -28,6 +28,7 @@
     "expect_event": {
       "type": "assistant_message",
       "payload": {
+        "text": "The invariant holds.",
         "content": [
           {
             "type": "text",

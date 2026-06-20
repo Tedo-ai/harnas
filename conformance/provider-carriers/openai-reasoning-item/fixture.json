@@ -32,6 +32,7 @@
     "expect_event": {
       "type": "assistant_message",
       "payload": {
+        "text": "The answer is stable.",
         "content": [
           {
             "type": "text",

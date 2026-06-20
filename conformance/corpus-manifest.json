@@ -217,8 +217,8 @@
         "with-provider-error-fatal": "1041f72d18a3396be619f9d22ee7524e762cb5a2a10a68ab17306bbb6a7939d4",
         "with-provider-error-retry": "fd26646f2d1217dd9bc6eb8882db165c8358b79af604e8d44e392a69be85e7a4",
         "with-read-file-line-numbers": "ece79a363dedeab6af1df7a7373fad739b3a9eedaa1bfd275b8a1879ab947974",
-        "with-reasoning-and-text-anthropic": "1c7ac97f40ca1d91d6c07bb848a5bcd810bbf92395f9e5ad69c05ffcb477056d",
-        "with-reasoning-anthropic": "36763d280eb7a04b88802849e299ccd7683183681f47ca0162f6ecc03e1005da",
+        "with-reasoning-and-text-anthropic": "9c688c98bfafc0dbe2cf1a2aa4a10922116b2c7e7f7e12e0b707a1943778fa0b",
+        "with-reasoning-anthropic": "11afe214cc189bd14a599423c34b7e74803cca4b2b1e4b998625cea0f8ba46cf",
         "with-reasoning-kimi": "cddbad5efa986c896c57816183ec765fd1af290d1724e10633f195d66515362f",
         "with-reasoning-openai": "652d09a70370e398ece07ae7f7a1496958eb5c1c65e49b18cc615cab3da40060",
         "with-repetition-guard": "388880814091fcc697a1a13245b98c2952d6057467f5ab5a558166dfb15463df",
@@ -269,11 +269,11 @@
       "provider_carriers": {
         "README.md": "f16c4cf4159c9fd7c868ccfe9b53d86fe7fcb98e2eb4ab7767fd67daf1c23ff9",
         "anthropic-thinking-signature/README.md": "baa3969770e94b7618cd624e3e5549b369c09db516cda8a76af560193d9bad86",
-        "anthropic-thinking-signature/fixture.json": "d9586c9225939def88428b752a82d1dfbdc59eb98ff183e6337dfab54f3738f1",
+        "anthropic-thinking-signature/fixture.json": "1a88a7df18cad0e11468ce8f30d06f104d8328ac44b457436956b8ddd7c6ef31",
         "gemini-thought-signature-final-part/README.md": "1f87e50762774065265471dec1b53bd893dbc8f82010ac6d6c04f47b7ecb9532",
-        "gemini-thought-signature-final-part/fixture.json": "bd717cd1b6d310c3526da8e4e96cacd1a3fd03ac52843fc5a47c72eb05da3d6f",
+        "gemini-thought-signature-final-part/fixture.json": "b831f396ea011319e6c0cca8a4ecea2c44f9ff7a2d95e7cc5adc3ce249f460a3",
         "openai-reasoning-item/README.md": "5a137f70fe7edf08fb4ad4c2cb2e2c7572299e4ec937e41b2a2c1f07661875c4",
-        "openai-reasoning-item/fixture.json": "128eeeda4f4484062e4c79a49de7308da40451dd4cf3ee245c6c6d2c9bfd96f5"
+        "openai-reasoning-item/fixture.json": "f59e3a857f9a191261feb32d33eaee5cc6a6883a400616c8a9555a558c9b204a"
       }
     }
   }

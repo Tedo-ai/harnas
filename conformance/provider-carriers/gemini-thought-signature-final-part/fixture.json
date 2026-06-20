@@ -29,6 +29,7 @@
     "expect_event": {
       "type": "assistant_message",
       "payload": {
+        "text": "The migration is safe to apply.",
         "content": [
           {
             "type": "text",
