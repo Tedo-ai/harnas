@@ -1,0 +1,262 @@
+{
+  "name": "openai-reasoning-item",
+  "provider": {
+    "kind": "openai",
+    "model": "o3-test",
+    "carrier_destination": "openai.chat_completions"
+  },
+  "ingest": {
+    "provider_response": {
+      "model": "o3-test",
+      "choices": [
+        {
+          "message": {
+            "role": "assistant",
+            "content": "The answer is stable.",
+            "reasoning_details": [
+              {
+                "id": "rsn_openai_001",
+                "type": "reasoning.text",
+                "text": "Compare the recorded corpus before answering."
+              }
+            ]
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 21,
+        "completion_tokens": 8
+      }
+    },
+    "expect_event": {
+      "type": "assistant_message",
+      "payload": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The answer is stable.",
+            "provider_parts": [
+              {
+                "carrier_destination": "openai.chat_completions",
+                "index": 0,
+                "kind": "openai.message_content",
+                "wire": {
+                  "content": "The answer is stable."
+                },
+                "canonical_refs": [
+                  "payload.content[0]"
+                ]
+              }
+            ]
+          }
+        ],
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 21,
+          "output_tokens": 8,
+          "total_tokens": 29,
+          "cache_read_input_tokens": null,
+          "cache_write_input_tokens": null,
+          "reasoning_tokens": null,
+          "provider_raw": {
+            "prompt_tokens": 21,
+            "completion_tokens": 8
+          },
+          "provenance": "provider_reported"
+        },
+        "provider": "openai",
+        "model": "o3-test",
+        "reasoning": [
+          {
+            "type": "text",
+            "text": "Compare the recorded corpus before answering.",
+            "provider_parts": [
+              {
+                "carrier_destination": "openai.chat_completions",
+                "index": 0,
+                "kind": "openai.reasoning_detail",
+                "wire": {
+                  "id": "rsn_openai_001",
+                  "type": "reasoning.text",
+                  "text": "Compare the recorded corpus before answering."
+                },
+                "canonical_refs": [
+                  "payload.reasoning[0]"
+                ]
+              }
+            ]
+          }
+        ],
+        "provider_items": [
+          {
+            "carrier_destination": "openai.chat_completions",
+            "index": 0,
+            "kind": "openai.chat_message",
+            "wire": {
+              "role": "assistant",
+              "content": "The answer is stable.",
+              "reasoning_details": [
+                {
+                  "id": "rsn_openai_001",
+                  "type": "reasoning.text",
+                  "text": "Compare the recorded corpus before answering."
+                }
+              ]
+            },
+            "canonical_refs": [
+              "payload.content[0]",
+              "payload.reasoning[0]"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "project": {
+    "log": [
+      {
+        "seq": 0,
+        "timestamp": "2026-06-20T10:20:00Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Is the corpus stable?"
+            }
+          ]
+        }
+      },
+      {
+        "seq": 1,
+        "timestamp": "2026-06-20T10:20:01Z",
+        "type": "assistant_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "The answer is stable.",
+              "provider_parts": [
+                {
+                  "carrier_destination": "openai.chat_completions",
+                  "index": 0,
+                  "kind": "openai.message_content",
+                  "wire": {
+                    "content": "The answer is stable."
+                  },
+                  "canonical_refs": [
+                    "payload.content[0]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 21,
+            "output_tokens": 8,
+            "total_tokens": 29,
+            "cache_read_input_tokens": null,
+            "cache_write_input_tokens": null,
+            "reasoning_tokens": null,
+            "provider_raw": {
+              "prompt_tokens": 21,
+              "completion_tokens": 8
+            },
+            "provenance": "provider_reported"
+          },
+          "provider": "openai",
+          "model": "o3-test",
+          "reasoning": [
+            {
+              "type": "text",
+              "text": "Compare the recorded corpus before answering.",
+              "provider_parts": [
+                {
+                  "carrier_destination": "openai.chat_completions",
+                  "index": 0,
+                  "kind": "openai.reasoning_detail",
+                  "wire": {
+                    "id": "rsn_openai_001",
+                    "type": "reasoning.text",
+                    "text": "Compare the recorded corpus before answering."
+                  },
+                  "canonical_refs": [
+                    "payload.reasoning[0]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "provider_items": [
+            {
+              "carrier_destination": "openai.chat_completions",
+              "index": 0,
+              "kind": "openai.chat_message",
+              "wire": {
+                "role": "assistant",
+                "content": "The answer is stable.",
+                "reasoning_details": [
+                  {
+                    "id": "rsn_openai_001",
+                    "type": "reasoning.text",
+                    "text": "Compare the recorded corpus before answering."
+                  }
+                ]
+              },
+              "canonical_refs": [
+                "payload.content[0]",
+                "payload.reasoning[0]"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "seq": 2,
+        "timestamp": "2026-06-20T10:20:02Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue."
+            }
+          ]
+        }
+      }
+    ],
+    "expect_request": {
+      "model": "o3-test",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Is the corpus stable?"
+        },
+        {
+          "role": "assistant",
+          "content": "The answer is stable.",
+          "reasoning_details": [
+            {
+              "id": "rsn_openai_001",
+              "type": "reasoning.text",
+              "text": "Compare the recorded corpus before answering."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Continue."
+        }
+      ]
+    }
+  },
+  "round_trip": {
+    "source_event_path": "project.log[1]",
+    "expect_provider_wire_path": "project.expect_request.messages[1]",
+    "reingest_response_path": "ingest.provider_response",
+    "expect_provider_items_path": "ingest.expect_event.payload.provider_items",
+    "expect_reasoning_provider_parts_path": "ingest.expect_event.payload.reasoning[0].provider_parts"
+  }
+}

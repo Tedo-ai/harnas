@@ -268,8 +268,12 @@
       },
       "provider_carriers": {
         "README.md": "f16c4cf4159c9fd7c868ccfe9b53d86fe7fcb98e2eb4ab7767fd67daf1c23ff9",
+        "anthropic-thinking-signature/README.md": "baa3969770e94b7618cd624e3e5549b369c09db516cda8a76af560193d9bad86",
+        "anthropic-thinking-signature/fixture.json": "d9586c9225939def88428b752a82d1dfbdc59eb98ff183e6337dfab54f3738f1",
         "gemini-thought-signature-final-part/README.md": "1f87e50762774065265471dec1b53bd893dbc8f82010ac6d6c04f47b7ecb9532",
-        "gemini-thought-signature-final-part/fixture.json": "bd717cd1b6d310c3526da8e4e96cacd1a3fd03ac52843fc5a47c72eb05da3d6f"
+        "gemini-thought-signature-final-part/fixture.json": "bd717cd1b6d310c3526da8e4e96cacd1a3fd03ac52843fc5a47c72eb05da3d6f",
+        "openai-reasoning-item/README.md": "5a137f70fe7edf08fb4ad4c2cb2e2c7572299e4ec937e41b2a2c1f07661875c4",
+        "openai-reasoning-item/fixture.json": "128eeeda4f4484062e4c79a49de7308da40451dd4cf3ee245c6c6d2c9bfd96f5"
       }
     }
   }

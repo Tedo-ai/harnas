@@ -1,0 +1,266 @@
+{
+  "name": "anthropic-thinking-signature",
+  "provider": {
+    "kind": "anthropic",
+    "model": "claude-test",
+    "carrier_destination": "anthropic.messages"
+  },
+  "ingest": {
+    "provider_response": {
+      "model": "claude-test",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Check the invariant before answering.",
+          "signature": "sig_anthropic_thinking_001"
+        },
+        {
+          "type": "text",
+          "text": "The invariant holds."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 18,
+        "output_tokens": 9
+      }
+    },
+    "expect_event": {
+      "type": "assistant_message",
+      "payload": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The invariant holds.",
+            "provider_parts": [
+              {
+                "carrier_destination": "anthropic.messages",
+                "index": 0,
+                "kind": "anthropic.content_block",
+                "wire": {
+                  "type": "text",
+                  "text": "The invariant holds."
+                },
+                "canonical_refs": [
+                  "payload.content[0]"
+                ]
+              }
+            ]
+          }
+        ],
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 18,
+          "output_tokens": 9,
+          "total_tokens": 27,
+          "cache_read_input_tokens": null,
+          "cache_write_input_tokens": null,
+          "reasoning_tokens": null,
+          "provider_raw": {
+            "input_tokens": 18,
+            "output_tokens": 9
+          },
+          "provenance": "provider_reported"
+        },
+        "provider": "anthropic",
+        "model": "claude-test",
+        "reasoning": [
+          {
+            "type": "text",
+            "text": "Check the invariant before answering.",
+            "signature": "sig_anthropic_thinking_001",
+            "provider_parts": [
+              {
+                "carrier_destination": "anthropic.messages",
+                "index": 0,
+                "kind": "anthropic.content_block",
+                "wire": {
+                  "type": "thinking",
+                  "thinking": "Check the invariant before answering.",
+                  "signature": "sig_anthropic_thinking_001"
+                },
+                "canonical_refs": [
+                  "payload.reasoning[0]"
+                ]
+              }
+            ]
+          }
+        ],
+        "provider_items": [
+          {
+            "carrier_destination": "anthropic.messages",
+            "index": 0,
+            "kind": "anthropic.content",
+            "wire": [
+              {
+                "type": "thinking",
+                "thinking": "Check the invariant before answering.",
+                "signature": "sig_anthropic_thinking_001"
+              },
+              {
+                "type": "text",
+                "text": "The invariant holds."
+              }
+            ],
+            "canonical_refs": [
+              "payload.reasoning[0]",
+              "payload.content[0]"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "project": {
+    "log": [
+      {
+        "seq": 0,
+        "timestamp": "2026-06-20T10:10:00Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Does the invariant hold?"
+            }
+          ]
+        }
+      },
+      {
+        "seq": 1,
+        "timestamp": "2026-06-20T10:10:01Z",
+        "type": "assistant_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "The invariant holds.",
+              "provider_parts": [
+                {
+                  "carrier_destination": "anthropic.messages",
+                  "index": 0,
+                  "kind": "anthropic.content_block",
+                  "wire": {
+                    "type": "text",
+                    "text": "The invariant holds."
+                  },
+                  "canonical_refs": [
+                    "payload.content[0]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 18,
+            "output_tokens": 9,
+            "total_tokens": 27,
+            "cache_read_input_tokens": null,
+            "cache_write_input_tokens": null,
+            "reasoning_tokens": null,
+            "provider_raw": {
+              "input_tokens": 18,
+              "output_tokens": 9
+            },
+            "provenance": "provider_reported"
+          },
+          "provider": "anthropic",
+          "model": "claude-test",
+          "reasoning": [
+            {
+              "type": "text",
+              "text": "Check the invariant before answering.",
+              "signature": "sig_anthropic_thinking_001",
+              "provider_parts": [
+                {
+                  "carrier_destination": "anthropic.messages",
+                  "index": 0,
+                  "kind": "anthropic.content_block",
+                  "wire": {
+                    "type": "thinking",
+                    "thinking": "Check the invariant before answering.",
+                    "signature": "sig_anthropic_thinking_001"
+                  },
+                  "canonical_refs": [
+                    "payload.reasoning[0]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "provider_items": [
+            {
+              "carrier_destination": "anthropic.messages",
+              "index": 0,
+              "kind": "anthropic.content",
+              "wire": [
+                {
+                  "type": "thinking",
+                  "thinking": "Check the invariant before answering.",
+                  "signature": "sig_anthropic_thinking_001"
+                },
+                {
+                  "type": "text",
+                  "text": "The invariant holds."
+                }
+              ],
+              "canonical_refs": [
+                "payload.reasoning[0]",
+                "payload.content[0]"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "seq": 2,
+        "timestamp": "2026-06-20T10:10:02Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue."
+            }
+          ]
+        }
+      }
+    ],
+    "expect_request": {
+      "model": "claude-test",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Does the invariant hold?"
+        },
+        {
+          "role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Check the invariant before answering.",
+              "signature": "sig_anthropic_thinking_001"
+            },
+            {
+              "type": "text",
+              "text": "The invariant holds."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Continue."
+        }
+      ]
+    }
+  },
+  "round_trip": {
+    "source_event_path": "project.log[1]",
+    "expect_provider_wire_path": "project.expect_request.messages[1].content",
+    "reingest_response_path": "ingest.provider_response",
+    "expect_provider_items_path": "ingest.expect_event.payload.provider_items",
+    "expect_reasoning_provider_parts_path": "ingest.expect_event.payload.reasoning[0].provider_parts"
+  }
+}
