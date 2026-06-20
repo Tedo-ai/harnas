@@ -1,0 +1,5 @@
+{
+  "forbidden_log_substrings": [
+    "SECRET-DO-NOT-LOG"
+  ]
+}

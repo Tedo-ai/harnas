@@ -274,6 +274,9 @@
         "gemini-thought-signature-final-part/fixture.json": "b831f396ea011319e6c0cca8a4ecea2c44f9ff7a2d95e7cc5adc3ce249f460a3",
         "openai-reasoning-item/README.md": "5a137f70fe7edf08fb4ad4c2cb2e2c7572299e4ec937e41b2a2c1f07661875c4",
         "openai-reasoning-item/fixture.json": "f59e3a857f9a191261feb32d33eaee5cc6a6883a400616c8a9555a558c9b204a"
+      },
+      "agent_assertions": {
+        "with-credential-proxy-injection": "d745ab926254f0d87da7d9f47bd9b1b1f28f00a9aa4e51c29146b586ece06a86"
       }
     }
   }

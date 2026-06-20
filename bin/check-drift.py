@@ -46,6 +46,18 @@ def fixture_hashes() -> dict[str, str]:
     return hashes
 
 
+def agent_assertion_hashes() -> dict[str, str]:
+    agents = ROOT / "conformance" / "agents"
+    hashes: dict[str, str] = {}
+    for path in sorted(agents.iterdir()):
+        if not path.is_dir() or not (path / "manifest.json").exists():
+            continue
+        assertions = path / "assertions.json"
+        if assertions.exists():
+            hashes[path.name] = hashlib.sha256(assertions.read_bytes()).hexdigest()
+    return hashes
+
+
 def tree_hashes(relative_root: str) -> dict[str, str]:
     base = ROOT / relative_root
     hashes: dict[str, str] = {}
@@ -90,6 +102,11 @@ def require_corpus_manifest(fixtures_version: str) -> None:
         fail(f"corpus manifest entry {fixtures_version} has no agents object")
     actual = fixture_hashes()
     compare_manifest_section("agent fixture", expected, actual)
+    expected_assertions = entry.get("agent_assertions")
+    if expected_assertions is not None:
+        if not isinstance(expected_assertions, dict):
+            fail(f"corpus manifest entry {fixtures_version} has invalid agent_assertions object")
+        compare_manifest_section("agent assertion", expected_assertions, agent_assertion_hashes())
     for key, relative_root in (
         ("oracle_corpus", "conformance/oracle-corpus"),
         ("storage_laws", "conformance/storage-laws"),
