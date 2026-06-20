@@ -90,7 +90,11 @@
         "properties": {
           "type": { "const": "text" },
           "text": { "type": "string" },
-          "signature": { "type": "string" }
+          "signature": { "type": "string" },
+          "provider_parts": {
+            "type": "array",
+            "items": { "$ref": "provider-carrier.json" }
+          }
         }
       }
     }
