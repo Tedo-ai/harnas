@@ -1,0 +1,185 @@
+{
+  "name": "gemini-thought-signature-final-part",
+  "provider": {
+    "kind": "gemini",
+    "model": "gemini-test",
+    "carrier_destination": "gemini.generateContent"
+  },
+  "ingest": {
+    "provider_response": {
+      "candidates": [
+        {
+          "content": {
+            "role": "model",
+            "parts": [
+              {
+                "text": "The migration is safe to apply.",
+                "thoughtSignature": "sig_gemini_final_part_001"
+              }
+            ]
+          },
+          "finishReason": "STOP"
+        }
+      ],
+      "usageMetadata": {
+        "promptTokenCount": 12,
+        "candidatesTokenCount": 7
+      }
+    },
+    "expect_event": {
+      "type": "assistant_message",
+      "payload": {
+        "content": [
+          {
+            "type": "text",
+            "text": "The migration is safe to apply.",
+            "provider_parts": [
+              {
+                "carrier_destination": "gemini.generateContent",
+                "index": 0,
+                "kind": "gemini.part",
+                "wire": {
+                  "text": "The migration is safe to apply.",
+                  "thoughtSignature": "sig_gemini_final_part_001"
+                },
+                "canonical_refs": [
+                  "payload.content[0]"
+                ]
+              }
+            ]
+          }
+        ],
+        "stop_reason": "end_turn",
+        "usage": {
+          "input_tokens": 12,
+          "output_tokens": 7,
+          "total_tokens": 19,
+          "cache_read_input_tokens": null,
+          "cache_write_input_tokens": null,
+          "reasoning_tokens": null,
+          "provider_raw": {
+            "promptTokenCount": 12,
+            "candidatesTokenCount": 7
+          },
+          "provenance": "provider_reported"
+        },
+        "provider": "gemini",
+        "model": "gemini-test"
+      }
+    }
+  },
+  "project": {
+    "log": [
+      {
+        "seq": 0,
+        "timestamp": "2026-06-20T10:00:00Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Can I apply the migration?"
+            }
+          ]
+        }
+      },
+      {
+        "seq": 1,
+        "timestamp": "2026-06-20T10:00:01Z",
+        "type": "assistant_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "The migration is safe to apply.",
+              "provider_parts": [
+                {
+                  "carrier_destination": "gemini.generateContent",
+                  "index": 0,
+                  "kind": "gemini.part",
+                  "wire": {
+                    "text": "The migration is safe to apply.",
+                    "thoughtSignature": "sig_gemini_final_part_001"
+                  },
+                  "canonical_refs": [
+                    "payload.content[0]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "stop_reason": "end_turn",
+          "usage": {
+            "input_tokens": 12,
+            "output_tokens": 7,
+            "total_tokens": 19,
+            "cache_read_input_tokens": null,
+            "cache_write_input_tokens": null,
+            "reasoning_tokens": null,
+            "provider_raw": {
+              "promptTokenCount": 12,
+              "candidatesTokenCount": 7
+            },
+            "provenance": "provider_reported"
+          },
+          "provider": "gemini",
+          "model": "gemini-test"
+        }
+      },
+      {
+        "seq": 2,
+        "timestamp": "2026-06-20T10:00:02Z",
+        "type": "user_message",
+        "payload": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue."
+            }
+          ]
+        }
+      }
+    ],
+    "expect_request": {
+      "model": "gemini-test",
+      "contents": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Can I apply the migration?"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "The migration is safe to apply.",
+              "thoughtSignature": "sig_gemini_final_part_001"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Continue."
+            }
+          ]
+        }
+      ],
+      "generationConfig": {
+        "thinkingConfig": {
+          "thinkingBudget": 0
+        }
+      }
+    }
+  },
+  "round_trip": {
+    "source_event_path": "project.log[1]",
+    "expect_provider_wire_path": "project.expect_request.contents[1].parts[0]",
+    "reingest_response_path": "ingest.provider_response",
+    "expect_provider_parts_path": "ingest.expect_event.payload.content[0].provider_parts"
+  }
+}

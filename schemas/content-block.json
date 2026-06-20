@@ -60,7 +60,11 @@
       "required": ["type", "text"],
       "properties": {
         "type": { "const": "text" },
-        "text": { "type": "string" }
+        "text": { "type": "string" },
+        "provider_parts": {
+          "type": "array",
+          "items": { "$ref": "provider-carrier.json" }
+        }
       }
     },
     "image": {
@@ -77,6 +81,10 @@
         "name": {
           "type": "string",
           "minLength": 1
+        },
+        "provider_parts": {
+          "type": "array",
+          "items": { "$ref": "provider-carrier.json" }
         }
       }
     },
@@ -91,6 +99,10 @@
         "name": {
           "type": "string",
           "minLength": 1
+        },
+        "provider_parts": {
+          "type": "array",
+          "items": { "$ref": "provider-carrier.json" }
         }
       }
     }

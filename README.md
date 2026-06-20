@@ -9,7 +9,7 @@ This repository is the **specification itself**. Implementations live
 in their own repositories; passing the conformance fixtures here is
 what makes an implementation Harnas-conformant.
 
-**Version 0.20.0** (in development). See
+**Version 0.20.1** (in development). See
 [`CHANGELOG.md`](CHANGELOG.md) for normative additions and fixture
 coverage.
 
@@ -52,20 +52,23 @@ reference earlier ones rather than modifying them.
    recommended production embedding shape for web apps and services.
 9. [`21-storage-adapters.md`](21-storage-adapters.md) — pluggable
    Session persistence laws, including `EventDraft` → `EventRow`.
-10. [`23-conformance-runner.md`](23-conformance-runner.md) —
+10. [`22-provider-carriers.md`](22-provider-carriers.md) —
+   provider-faithful carrier data for lossless destination-scoped
+   replay.
+11. [`23-conformance-runner.md`](23-conformance-runner.md) —
    conformance runner laws, strict artifact diffing, and oracle-corpus
    checks for the measurement system.
-11. [`24-harnas-jcs-v1.md`](24-harnas-jcs-v1.md) — canonical JSON
+12. [`24-harnas-jcs-v1.md`](24-harnas-jcs-v1.md) — canonical JSON
    serialization profile used by strict diffing and content hashes.
-12. [`informative/`](informative/) — non-normative ecosystem
+13. [`informative/`](informative/) — non-normative ecosystem
    conventions, including adopter helper surfaces, skills, MCP mapping
    guidance, multimodal content blocks, shell-tool embedding notes, provider implementation
    guidance, shell isolation guidance, conformance process,
    Log/Projection framing, subagent delegation, and worktree-per-agent
    runs.
-13. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
+14. [`strategies/`](strategies/) — per-strategy spec stubs (compaction
    and permission shipped in 0.1; more in 0.2+).
-14. [`conformance/`](conformance/) — fixtures any conformant
+15. [`conformance/`](conformance/) — fixtures any conformant
    implementation must reproduce byte-for-byte.
 
 ## Implementations

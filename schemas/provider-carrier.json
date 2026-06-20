@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harnas.dev/schemas/provider-carrier.json",
+  "title": "Harnas provider carrier",
+  "description": "Provider-native carrier data for lossless destination-scoped replay.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["carrier_destination", "index", "kind"],
+  "properties": {
+    "carrier_destination": {
+      "type": "string",
+      "minLength": 1
+    },
+    "index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "wire": true,
+    "raw_text": {
+      "type": "string"
+    },
+    "canonical_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "oneOf": [
+    {
+      "required": ["wire"],
+      "not": { "required": ["raw_text"] }
+    },
+    {
+      "required": ["raw_text"],
+      "not": { "required": ["wire"] }
+    }
+  ]
+}

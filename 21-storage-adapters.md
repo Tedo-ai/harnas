@@ -15,9 +15,8 @@ The adapter laws and interface contract in this section are normative.
 Recommended built-in adapters, packaging shape, contrib database
 adapters, and examples are informative.
 
-**Status note.** S9 `expected_next_seq` / `storage_conflict` is staged
-for v0.20.0 and is bound by `harnas_version: 0.20.0` and
-`fixtures_version: 0.20.0`.
+**Status note.** S9 `expected_next_seq` / `storage_conflict` was
+introduced in v0.20.0 and is normative in the current spec version.
 
 The storage laws are normative for persisted Session behavior and for
 any adapter interface an implementation exposes. A reference

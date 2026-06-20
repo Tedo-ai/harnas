@@ -19,6 +19,8 @@ expected artifacts. Artifacts include, when present:
 - child-session assertions (`expected-spawn-children.json`)
 - cross-session projections (`expected-projections.jsonl`)
 - round-trip Session JSONL outputs
+- provider-carrier ingest, projection, and round-trip artifacts
+  (`conformance/provider-carriers/*/fixture.json`)
 
 ## Runner Laws
 

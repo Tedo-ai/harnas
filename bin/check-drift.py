@@ -93,6 +93,7 @@ def require_corpus_manifest(fixtures_version: str) -> None:
     for key, relative_root in (
         ("oracle_corpus", "conformance/oracle-corpus"),
         ("storage_laws", "conformance/storage-laws"),
+        ("provider_carriers", "conformance/provider-carriers"),
     ):
         expected_tree = entry.get(key)
         if expected_tree is None:

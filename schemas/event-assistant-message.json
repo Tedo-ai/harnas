@@ -35,6 +35,10 @@
         },
         "reasoning": {
           "$ref": "#/$defs/reasoning"
+        },
+        "provider_items": {
+          "type": "array",
+          "items": { "$ref": "provider-carrier.json" }
         }
       }
     },
@@ -68,6 +72,10 @@
         },
         "reasoning": {
           "$ref": "#/$defs/reasoning"
+        },
+        "provider_items": {
+          "type": "array",
+          "items": { "$ref": "provider-carrier.json" }
         }
       }
     }

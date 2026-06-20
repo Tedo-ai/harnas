@@ -41,6 +41,15 @@ the specification as a whole.
 - Extended the corpus manifest and drift check so `fixtures_version`
   binds oracle-corpus and storage-law fixture files, not only agent
   fixture expected logs.
+- Added §22 Provider Carriers, defining the two-layer Log model for
+  provider-neutral canonical data plus provider-faithful
+  destination-scoped carrier data.
+- Added the `conformance/provider-carriers/` fixture corpus and the
+  `gemini-thought-signature-final-part` fixture, which asserts both
+  Gemini request projection and Log/provider-native round-trip
+  preservation for a part-level `thoughtSignature`.
+- Added `schemas/provider-carrier.json` and allowed `provider_parts` on
+  content blocks plus `provider_items` on assistant messages.
 
 ### Changed
 
@@ -52,11 +61,13 @@ the specification as a whole.
   environment behavior unless they explicitly opt into scrubbing; the
   v0.20 default flip remains gated on a leak-prevention fixture and
   release-note framing.
-- Fixture version is now `0.20.0`.
+- Fixture version is now `0.20.1`.
 - Agent conformance covers 75 fixtures in this Unreleased set.
-- Spec version is now `0.20.0`.
-- Marked §19 J11, §21 S9, and §24 as staged for v0.20.0 and bound by
-  `harnas_version: 0.20.0` plus `fixtures_version: 0.20.0`.
+- Spec version is now `0.20.1`.
+- Kept §19 J11, §21 S9, and §24 normative as v0.20.0 additions while
+  moving the current Unreleased spec baseline to v0.20.1 for §22.
+- Marked §22 as staged for v0.20.1 and bound by
+  `harnas_version: 0.20.1` plus `fixtures_version: 0.20.1`.
 - Public implementation-status docs now identify Ruby, Python, Go, and
   TypeScript as the current conforming reference set, with
   implementation-specific footnotes disclosed per repository.

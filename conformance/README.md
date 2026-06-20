@@ -17,6 +17,9 @@ Two layers of conformance:
   agent scenarios; they are operation scripts that every adapter
   implementation can run against memory, file, and future database
   backends.
+- **`provider-carriers/`** — provider carrier fixtures for §22. These
+  are ingestor/projection/round-trip checks for provider-native carrier
+  data that must survive Log persistence and same-destination replay.
 - **`oracle-corpus/`** — runner and canonicalization checks. These are
   not agent scenarios; they are small inputs and expected outcomes that
   prove the measurement system rejects known invalid matches or computes
@@ -26,7 +29,9 @@ All fixture families are **normative** for the behavior they exercise.
 Any Harnas implementation in any language SHOULD pass every agent
 fixture, SHOULD pass every round-trip fixture, SHOULD be able to load
 every single-call fixture into its mock provider, SHOULD pass the
-storage law fixtures for each adapter it exposes, and SHOULD pass every
+storage law fixtures for each adapter it exposes, SHOULD pass the
+provider-carrier fixtures for each provider destination it exposes, and
+SHOULD pass every
 oracle-corpus check used by its conformance runner.
 
 ## `agents/` — agent-level conformance
@@ -217,8 +222,30 @@ The `event-content-hash` oracle pins RFC 8785 / `harnas-jcs-v1`
 canonicalization vectors to exact canonical bytes and SHA-256 hashes.
 It covers RFC 8785 number forms, arbitrary-precision integer
 preservation, UTF-16 key ordering, Unicode preservation without
-normalization, invalid Unicode, recursive sorting, and §19
+normalization, invalid Unicode, recursive sorting, and §19 Event row
 `content_hash` self-exclusion.
+
+## `provider-carriers/` — carrier conformance
+
+Each directory under `provider-carriers/` is one provider-faithfulness
+fixture for §22. These fixtures are operation scripts, not full agent
+scenarios. A carrier runner executes three checks:
+
+1. ingest the provider-native `provider_response` and compare the
+   produced canonical Event payload, including `provider_items` and
+   `provider_parts`, to `ingest.expect_event`;
+2. project the supplied `project.log` to the fixture's
+   `carrier_destination` and compare the request to
+   `project.expect_request`;
+3. re-ingest the same native provider response and verify the carrier
+   arrays identified by `round_trip` are byte-identical after strict
+   normalization.
+
+The first fixture,
+`gemini-thought-signature-final-part`, proves that a Gemini final text
+part carrying `thoughtSignature` remains normal assistant text in the
+canonical layer while its provider-native part survives for later
+`gemini.generateContent` replay.
 
 ## `round-trips/` — persistence conformance
 
