@@ -50,6 +50,8 @@ the specification as a whole.
   preservation for a part-level `thoughtSignature`.
 - Added `schemas/provider-carrier.json` and allowed `provider_parts` on
   content blocks plus `provider_items` on assistant messages.
+- Added a four-implementation fixture divergence gate for new or changed
+  agent, provider-carrier, oracle-corpus, and storage-law fixtures.
 
 ### Changed
 

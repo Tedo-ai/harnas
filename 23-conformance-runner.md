@@ -108,6 +108,28 @@ or implementation gaps. Implementations MUST NOT reintroduce filtering,
 fixture-name branches, or runner-side synthesis to restore a green
 count.
 
+**C9. New fixture divergence gate.** A new or changed normative fixture
+MUST be checked against all conforming reference implementations before
+it is trusted as part of the corpus. This applies to agent fixtures,
+provider-carrier fixtures, oracle-corpus entries, and storage-law
+fixtures.
+
+The gate is scoped to changed fixture corpora. For each changed fixture
+or corpus, Go, Ruby, Python, and TypeScript MUST run the same strict
+fixture artifact. If any implementation disagrees with the fixture, the
+fixture is not yet accepted: the next step is to determine whether the
+fixture is under-specified, wrong, or has exposed a real implementation
+bug. A one-vs-three or two-vs-two split is especially strong evidence
+that the fixture itself needs review before it becomes a lockstep
+release artifact.
+
+The divergence gate is part of the measurement system and is subject to
+C1 through C8. It MUST NOT contain fixture-name branches, provider-payload
+recognition, or implementation-specific accommodations. Fixture-local
+assertions and generated-field sentinels remain allowed only when they
+are declared by the fixture format and compared by the same strict
+normalization rules as the ordinary corpus.
+
 ## Oracle Corpus
 
 `conformance/oracle-corpus/` contains fixtures for testing conformance
@@ -124,3 +146,26 @@ filtering actual payload keys down to the expected payload shape.
 Implementations SHOULD include fast unit tests that load every oracle
 entry and assert the documented outcome. These tests are part of the
 measurement system; they are not substitutes for the agent fixture suite.
+
+## Four-Implementation Divergence Check
+
+The spec repository provides `bin/check-fixture-divergence.py` as the
+standing CI gate for C9. It detects changed paths under:
+
+- `conformance/agents/`
+- `conformance/provider-carriers/`
+- `conformance/oracle-corpus/`
+- `conformance/storage-laws/`
+
+Agent fixtures are run by fixture name. Provider-carrier, oracle, and
+storage-law changes run the corresponding small corpus tests in each
+implementation. The script reports per-implementation result buckets so
+reviewers can see whether a failure is unanimous or divergent. A fixture
+change passes only when all four implementations accept the same strict
+artifact set.
+
+This gate does not make an implementation conformant by itself. It
+answers a different question: whether the changed fixture corpus is
+stable enough to measure implementations. Per-implementation conformance
+runners remain responsible for reporting the full fixture count for each
+release.

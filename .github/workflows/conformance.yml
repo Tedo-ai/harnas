@@ -13,6 +13,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           path: harnas
+          fetch-depth: 0
       - name: Checkout Ruby implementation
         uses: actions/checkout@v5
         with:
@@ -28,6 +29,11 @@ jobs:
         with:
           repository: Tedo-ai/harnas-go
           path: harnas-go
+      - name: Checkout TypeScript implementation
+        uses: actions/checkout@v5
+        with:
+          repository: Tedo-ai/harnas-typescript
+          path: harnas-typescript
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -40,14 +46,31 @@ jobs:
         with:
           go-version-file: harnas-go/go.mod
           cache: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: harnas-typescript/package-lock.json
 
       - name: Install Python package
         working-directory: harnas-python
         run: python -m pip install -e .[test]
+      - name: Install TypeScript package
+        working-directory: harnas-typescript
+        run: npm ci
 
       - name: Drift check
         working-directory: harnas
         run: python3 bin/check-drift.py
+
+      - name: Fixture divergence gate
+        run: |
+          python3 harnas/bin/check-fixture-divergence.py \
+            --spec-root harnas \
+            --impl-root go=harnas-go \
+            --impl-root ruby=harnas-ruby \
+            --impl-root python=harnas-python \
+            --impl-root typescript=harnas-typescript
 
       - name: Ruby agent conformance
         working-directory: harnas-ruby
@@ -58,6 +81,9 @@ jobs:
       - name: Go agent conformance
         working-directory: harnas-go
         run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" bin/conformance
+      - name: TypeScript agent conformance
+        working-directory: harnas-typescript
+        run: HARNAS_SPEC="$GITHUB_WORKSPACE/harnas" npm run test:conformance:node:all
 
       - name: Round-trip matrix
         shell: bash
